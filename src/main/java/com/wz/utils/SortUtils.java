@@ -15,6 +15,7 @@ import java.util.Arrays;
  * @author wangzi
  */
 public class SortUtils {
+    public static Integer[] arr = {36, 8, 67, 98, 32, 21};
     /**
      * 元素比较
      * self < other : true

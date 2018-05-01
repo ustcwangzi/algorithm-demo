@@ -35,9 +35,9 @@ public class Selection {
     }
 
     public static void main(String[] args) {
-        String[] arr = new String[]{"a", "n", "i", "p", "z"};
-        sort(arr);
-        assert SortUtils.isSorted(arr);
-        SortUtils.show(arr);
+        SortUtils.show(SortUtils.arr);
+        sort(SortUtils.arr);
+        assert SortUtils.isSorted(SortUtils.arr);
+        SortUtils.show(SortUtils.arr);
     }
 }
