@@ -22,10 +22,10 @@ import com.wz.utils.SortUtils;
  */
 public class Selection {
     public static void sort(Comparable[] arr){
-        int N = arr.length;
-        for (int i = 0; i < N; i++){
+        int length = arr.length;
+        for (int i = 0; i < length; i++){
             int min = i; //最小元素的索引
-            for (int j = i+1; j < N; j++){
+            for (int j = i+1; j < length; j++){
                 if (SortUtils.less(arr[j], arr[min])){
                     min = j;
                 }
