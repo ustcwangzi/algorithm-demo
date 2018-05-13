@@ -52,4 +52,16 @@ public class SortUtils {
         }
         return true;
     }
+
+    /**
+     * 元素是否有序
+     */
+    public static boolean isSorted(Comparable[] arr, int low, int high){
+        for (int i = low+1; i<= high; i++){
+            if (less(arr[i], arr[i-1])){
+                return false;
+            }
+        }
+        return true;
+    }
 }
