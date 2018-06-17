@@ -93,12 +93,17 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         priorityQueue.insert(1);
         priorityQueue.insert(2);
         priorityQueue.insert(9);
+        System.out.println(priorityQueue.size());
         priorityQueue.insert(8);
         priorityQueue.insert(6);
-        System.out.println(priorityQueue.delMax());
-        System.out.println(priorityQueue.delMax());
-        System.out.println(priorityQueue.delMax());
-        System.out.println(priorityQueue.delMax());
-        System.out.println(priorityQueue.delMax());
+        System.out.println("size: " + priorityQueue.size());
+        System.out.println("delMax:" + priorityQueue.delMax());
+        System.out.println("delMax:" + priorityQueue.delMax());
+        System.out.println("delMax:" + priorityQueue.delMax());
+        System.out.println("delMax:" + priorityQueue.delMax());
+        System.out.println("empty:" + priorityQueue.isEmpty());
+        System.out.println("getMax:" + priorityQueue.getMax());
+        System.out.println("delMax:" + priorityQueue.delMax());
+        System.out.println("empty:" + priorityQueue.isEmpty());
     }
 }
