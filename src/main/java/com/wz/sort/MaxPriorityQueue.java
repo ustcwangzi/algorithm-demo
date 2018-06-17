@@ -56,8 +56,6 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         }
         T max = pQueue[1];
         SortUtils.exch(pQueue, 1, N--);
-        // 防止越界
-        pQueue[N+1] = null;
         sink(1);
         return max;
     }
@@ -80,7 +78,7 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
             int j = 2*k;
             // 找到k的两个孩子中较大的一个，与k进行交换
             // pQueue[j]是k的左孩子，并且k的右孩子大于左孩子
-            if (j < N && SortUtils.less(pQueue[j], pQueue[j + 1])){
+            if (j < N && j + 1 < N && SortUtils.less(pQueue[j], pQueue[j + 1])){
                 j++;
             }
             if (SortUtils.less(pQueue[k], pQueue[j])){
@@ -102,6 +100,5 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         System.out.println(priorityQueue.delMax());
         System.out.println(priorityQueue.delMax());
         System.out.println(priorityQueue.delMax());
-        System.out.println(priorityQueue.isEmpty());
     }
 }
