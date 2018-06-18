@@ -26,11 +26,46 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
     /** 存储在[1...N]中 */
     private int N = 0;
 
-    public MaxPriorityQueue(int maxLength) {
-        if (maxLength < 0){
+    public MaxPriorityQueue(int initCapacity) {
+        if (initCapacity < 0){
             throw new IllegalArgumentException();
         }
-        pQueue = (T[]) new Comparable[maxLength + 1];
+        pQueue = (T[]) new Comparable[initCapacity + 1];
+    }
+
+    public MaxPriorityQueue() {
+        this(10);
+    }
+
+    public MaxPriorityQueue(T[] keys) {
+        N = keys.length;
+        pQueue = (T[]) new Comparable[N + 1];
+        for (int i = 0; i < N; i++){
+            pQueue[i+1] = keys[i];
+        }
+        for (int k = N/2; k >= 1; k--){
+            sink(k);
+        }
+        assert isMaxHeap();
+    }
+
+    private boolean isMaxHeap() {
+        return isMaxHeap(1);
+    }
+
+    private boolean isMaxHeap(int k) {
+        if (k > N) {
+            return true;
+        }
+        int left = 2*k;
+        int right = 2*k + 1;
+        if (left  <= N && SortUtils.less(pQueue[k], pQueue[left])){
+            return false;
+        }
+        if (right <= N && SortUtils.less(pQueue[k], pQueue[right])){
+            return false;
+        }
+        return isMaxHeap(left) && isMaxHeap(right);
     }
 
     public boolean isEmpty(){
@@ -41,7 +76,20 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         return N;
     }
 
+    private void resize(int capacity) {
+        assert capacity > N;
+        T[] temp = (T[]) new Comparable[capacity];
+        for (int i = 1; i <= N; i++) {
+            temp[i] = pQueue[i];
+        }
+        pQueue = temp;
+    }
+
+
     public void insert(T value){
+        if (N == pQueue.length - 1) {
+            resize(2 * pQueue.length);
+        }
         pQueue[++N] = value;
         swim(N);
     }
@@ -59,6 +107,9 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         }
         T max = pQueue[1];
         SortUtils.exch(pQueue, 1, N--);
+        if ((N > 0) && (N == (pQueue.length - 1) / 4)) {
+            resize(pQueue.length / 2);
+        }
         sink(1);
         return max;
     }
@@ -98,17 +149,8 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         priorityQueue.insert(1);
         priorityQueue.insert(2);
         priorityQueue.insert(9);
-        System.out.println(priorityQueue.size());
         priorityQueue.insert(8);
         priorityQueue.insert(6);
-        System.out.println("size: " + priorityQueue.size());
-        System.out.println("delMax:" + priorityQueue.delMax());
-        System.out.println("delMax:" + priorityQueue.delMax());
-        System.out.println("delMax:" + priorityQueue.delMax());
-        System.out.println("delMax:" + priorityQueue.delMax());
-        System.out.println("empty:" + priorityQueue.isEmpty());
-        System.out.println("getMax:" + priorityQueue.getMax());
-        System.out.println("delMax:" + priorityQueue.delMax());
-        System.out.println("empty:" + priorityQueue.isEmpty());
+        assert priorityQueue.isMaxHeap();
     }
 }
