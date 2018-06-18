@@ -27,6 +27,9 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
     private int N = 0;
 
     public MaxPriorityQueue(int maxLength) {
+        if (maxLength < 0){
+            throw new IllegalArgumentException();
+        }
         pQueue = (T[]) new Comparable[maxLength + 1];
     }
 
