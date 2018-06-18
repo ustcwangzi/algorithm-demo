@@ -64,7 +64,7 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
     }
 
     /**
-     * 由下之上交换元素调整堆
+     * 位置k的元素上浮，由下至上调整堆
      */
     private void swim(int k){
         while (k > 1 && SortUtils.less(pQueue[k/2], pQueue[k])){
@@ -74,19 +74,21 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
     }
 
     /**
-     * 由上至下交换元素调整堆
+     * 位置k的元素下沉，由上至下调整堆
      */
     private void sink(int k){
         while (2*k < N){
             int j = 2*k;
-            // 找到k的两个孩子中较大的一个，与k进行交换
-            // pQueue[j]是k的左孩子，并且k的右孩子大于左孩子
+            // 存在右孩子时，找出左右孩子中较大的一个
             if (j < N && j + 1 < N && SortUtils.less(pQueue[j], pQueue[j + 1])){
                 j++;
             }
+            // 如果孩子中较大的一个大于当前位置k的元素，交换
             if (SortUtils.less(pQueue[k], pQueue[j])){
                 SortUtils.exch(pQueue, k, j);
                 k = j;
+            }else {
+                break;
             }
         }
     }
