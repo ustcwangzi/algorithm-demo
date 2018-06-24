@@ -19,6 +19,7 @@ import com.wz.utils.SortUtils;
  *     这样通过先递归的分解数列，再合并数列就完成了归并排序。
  * </p>
  * <p>归并排序需要N个长度的额外空间，时间复杂度为N*logN</p>
+ * <p>稳定，不是原地排序，时间复杂度N*logN，空间复杂度N</p>
  *
  * @author wangzi
  */

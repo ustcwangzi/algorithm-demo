@@ -21,6 +21,7 @@ import com.wz.utils.SortUtils;
  *     第二阶段结束后，将得到一个从小到大排序好的数组
  * </p>
  * <p>使用下沉方法由 N 个元素构造堆只需要少于 2N 次比较以及少于 N 次交换</p>
+ * <p>不稳定，原地排序，时间复杂度N*logN，空间复杂度1</p>
  *
  * @author wangzi
  */
