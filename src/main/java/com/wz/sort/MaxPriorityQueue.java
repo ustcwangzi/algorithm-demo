@@ -92,6 +92,7 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         }
         pQueue[++N] = value;
         swim(N);
+        assert isMaxHeap();
     }
 
     public T getMax(){
@@ -107,15 +108,17 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         }
         T max = pQueue[1];
         SortUtils.exch(pQueue, 1, N--);
+        sink(1);
         if ((N > 0) && (N == (pQueue.length - 1) / 4)) {
             resize(pQueue.length / 2);
         }
-        sink(1);
+        assert isMaxHeap();
         return max;
     }
 
     /**
      * 位置k的元素上浮，由下至上调整堆
+     * 即：若当前元素大于父节点，交换
      */
     private void swim(int k){
         while (k > 1 && SortUtils.less(pQueue[k/2], pQueue[k])){
@@ -126,9 +129,10 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 
     /**
      * 位置k的元素下沉，由上至下调整堆
+     * 即：当前元素与子节点中较小的一个进行交换
      */
     private void sink(int k){
-        while (2*k < N){
+        while (2*k <= N){
             int j = 2*k;
             // 存在右孩子时，找出左右孩子中较大的一个
             if (j < N && j + 1 < N && SortUtils.less(pQueue[j], pQueue[j + 1])){
