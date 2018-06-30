@@ -179,7 +179,7 @@ public class BinarySearch<Key extends Comparable, Value> {
 
     private boolean isSorted(){
         for (int i = 1; i < size(); i++){
-            if (keys[i].compareTo(i-1) < 0){
+            if (keys[i].compareTo(keys[i-1]) < 0){
                 return false;
             }
         }
@@ -192,6 +192,6 @@ public class BinarySearch<Key extends Comparable, Value> {
         bs.put("A", 8);
         bs.put("N", 8);
         bs.put("G", 9);
-        System.out.println(bs.get("A"));
+        System.out.println(bs.isSorted());
     }
 }
