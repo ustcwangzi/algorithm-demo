@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
  *
  * <p>二叉查找树中，所有操作在最坏的情况下所需的时间都和树的高度成正比</p>
  * <p>最坏情况下，插入成本是 N，查找成本是 N</p>
- * <p>平均情况下，插入成本是 1.39*logN，查找成本是 1.39*lonN</p>
+ * <p>平均情况下，插入成本是 1.39*logN，查找成本是 1.39*logN</p>
  *
  * @author wangzi
  */
