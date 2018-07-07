@@ -12,3 +12,4 @@
 - BinarySearch：二分查找
 - BinarySearchTree：二叉查找树
 - SeparateChainingHashSearch：基于链表的散列表查找
+- LinearProbingHashSearch：基于线性探测的散列表查找
