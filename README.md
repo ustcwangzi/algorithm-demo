@@ -11,3 +11,4 @@
 - SequentialSearch：顺序查找
 - BinarySearch：二分查找
 - BinarySearchTree：二叉查找树
+- SeparateChainingHashSearch：基于链表的散列表查找

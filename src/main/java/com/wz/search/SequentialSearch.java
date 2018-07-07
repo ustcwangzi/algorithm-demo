@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class SequentialSearch<Key, Value> {
     /** 键值对数量 */
-    private int n;
+    private int paris;
     /** 头节点 */
     private Node first;
 
@@ -40,11 +40,18 @@ public class SequentialSearch<Key, Value> {
     }
 
     public int size(){
-        return n;
+        return paris;
     }
 
     public boolean isEmpty(){
         return size() == 0;
+    }
+
+    public boolean contains(Key key){
+        if (key == null){
+            throw new IllegalArgumentException("argument is null");
+        }
+        return get(key) != null;
     }
 
     public Value get(Key key){
@@ -74,7 +81,7 @@ public class SequentialSearch<Key, Value> {
             }
         }
         first = new Node(key, value, first);
-        n++;
+        paris++;
     }
 
     public void delete(Key key){
@@ -92,7 +99,7 @@ public class SequentialSearch<Key, Value> {
             return null;
         }
         if (key.equals(head.key)){
-            n--;
+            paris--;
             return head.next;
         }
         head.next = delete(head.next, key);
