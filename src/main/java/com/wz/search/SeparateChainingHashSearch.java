@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>基于拉链法的散列表</p>
+ * <p>基于拉链法的散列表查找</p>
  *
  * <p>发生冲突的元素都存储在链表中</p>
  *
@@ -33,14 +33,14 @@ public class SeparateChainingHashSearch<Key, Value> {
 
     public SeparateChainingHashSearch(int tableSize) {
         this.tableSize = tableSize;
-        st = (SequentialSearch<Key, Value>[]) new SequentialSearch[tableSize];
+        this.st = (SequentialSearch<Key, Value>[]) new SequentialSearch[tableSize];
         for (int i = 0; i < tableSize; i++){
             st[i] = new SequentialSearch<>();
         }
     }
 
-    private void resize(int chains){
-        SeparateChainingHashSearch<Key, Value> temp = new SeparateChainingHashSearch<>(chains);
+    private void resize(int capacity){
+        SeparateChainingHashSearch<Key, Value> temp = new SeparateChainingHashSearch<>(capacity);
         for (int i = 0; i< tableSize; i++){
             for (Key key : st[i].keys()){
                 temp.put(key, st[i].get(key));
