@@ -121,7 +121,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 插入的实现和二叉查找树完全相同
      * 插入后沿着插入点向上，到根节点的路径中所经过的节点，进行以下三种操作保证树的平衡性：
      * 1、右节点是红色，左节点是黑色，进行左旋转
-     * 2、左节点是红色，右节点是黑色，进行右旋转
+     * 2、左节点是红色，左节点的左子树是红色，进行右旋转
      * 3、左右节点都是红色，进行颜色转换
      */
     private Node put(Node node, Key key, Value value){
@@ -172,11 +172,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 如果要删除的节点在3-node或者4-node中，直接删除即可
      * 如果要删除的节点是2-node，直接删除会破坏平衡，删除之前要进行一定的变换，变成3-node或者4-node
      * 2-node的条件就是，node.left和node.left.left均为黑色的
-     * 具体流程：
-     * 1、如果已经到了最底部，那么直接移除就行，移除的要求是最底部的节点一定是red
-     * 2、如果遇到了2-node就借节点
-     * 3、继续往下递归查找
-     * 4、删除完毕，恢复红黑树
+     * 沿着左链接向下过程中，保证以下情况之一成立：
+     * 1、如果当前节点的左子节点不是2-node，完成
+     * 2、如果当前节点的左子节点是2-node，而左子节点的兄弟节点不是2-node，从其兄弟节点中借一个节点
+     * 3、如果当前节点的左子节点和左子节点的兄弟节点都是2-node，将左子节点、父节点中的最小键和左子节点的兄弟节点合并成4-node
+     *    使其父节点由3-node变为2-node或由4-node变为3-node
+     * 在遍历过程中执行以上操作，最后能够得到一个含有最小键的3-node或4-node
+     * 然后直接删除，再向上回溯分解所有临时的4-node
      */
     private Node deleteMin(Node node) {
         if (node.left == null){
@@ -211,12 +213,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 如果要删除的节点在3-node或者4-node中，直接删除即可
      * 如果要删除的节点是2-node，直接删除会破坏平衡，删除之前要进行一定的变换，变成3-node或者4-node
      * 2-node的条件就是，node.right和node.right.left均为黑色的
-     * 具体流程：
-     * 1、首先如果左旋则变为右旋，因为找最大节点在最右边
-     * 2、如果，已经到了最底部，那么直接移除就行，移除的要求是最底部的节点一定是red
-     * 3、如果遇到了2-node就借节点
-     * 4、继续往下递归查找
-     * 5、删除完毕，恢复红黑树
+     * 沿着右链接向下过程中，保证以下情况之一成立：
+     * 1、如果当前节点的右子节点不是2-node，完成
+     * 2、如果当前节点的右子节点是2-node，而右子节点的兄弟节点不是2-node，从其兄弟节点中借一个节点
+     * 3、如果当前节点的右子节点和右子节点的兄弟节点都是2-node，将右子节点、父节点中的最小键和右子节点的兄弟节点合并成4-node
+     *    使其父节点由3-node变为2-node或由4-node变为3-node
+     * 在遍历过程中执行以上操作，最后能够得到一个含有最大键的3-node或4-node
+     * 然后直接删除，再向上回溯分解所有临时的4-node
      */
     private Node deleteMax(Node node) {
         if (isRed(node.left)){
@@ -253,9 +256,11 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
     /**
      * 删除节点
-     * 如果要删除一个节点，把要删除的那个节点和最底部的节点交换
-     * 然后就变成删除最底部的节点，就可以转换成删除最大节点或者最小节点了
-     *
+     * 在查找路径上进行和删除最小节点相同的变换，可以保证在查找过程中任意当前节点均不是2-node
+     * 如果要删除的节点在树的底部，可以直接删除
+     * 如果不在底部，把要删除的节点和它的后继节点（右子树中的最小节点）交换
+     * 然后问题就转化成了在一棵根节点不是2-node的子树中删除最小节点
+     * 删除后，和之前一样向上回溯分解4-node
      */
     private Node delete(Node node, Key key) {
         if (key.compareTo(node.key) < 0)  {
