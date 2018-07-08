@@ -14,13 +14,19 @@ import java.util.List;
 
 /**
  * <p>使用深度优先搜索查找图中的路径</p>
+ * <p>
+ *     edgeTo数组可以找到每个与source联通的顶点回到source的路径
+ *     由边v-w第一次访问w时，将edgeTo[w]设为v来记住这条路径
+ *     即v-w是从source到w的路径上最后一条已知的边
+ *     这样，搜索的结果是一棵以source为根节点的树，使用pathTo遍历整棵树
+ * </p>
  *
  * @author wangzi
  */
 public class DepthFirstPaths {
     /** 标记是否遍历过 */
     private boolean[] marked;
-    /** 从起点到一个顶点的一直路径上的最后一个顶点 */
+    /** 从起点到一个顶点的已知路径上的最后一个顶点 */
     private int[] edgeTo;
     /** 起点 */
     private final int source;
