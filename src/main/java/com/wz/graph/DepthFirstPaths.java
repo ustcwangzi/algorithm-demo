@@ -8,6 +8,8 @@
 package com.wz.graph;
 
 
+import com.wz.utils.GraphUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
  *     即v-w是从source到w的路径上最后一条已知的边
  *     这样，搜索的结果是一棵以source为根节点的树，使用pathTo遍历整棵树
  * </p>
+ *
+ * <p>使用深度优先搜索得到从给定起点到任意顶点的路径所需时间与路径长度成正比</p>
  *
  * @author wangzi
  */
@@ -73,20 +77,15 @@ public class DepthFirstPaths {
     }
 
     private void validateVertex(int v) {
-        int V = marked.length;
-        if (v < 0 || v >= V) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (V-1));
+        int length = marked.length;
+        if (v < 0 || v >= length) {
+            throw new IllegalArgumentException("vertex must between 0 and " + (length-1));
         }
     }
 
     public static void main(String[] args) {
-        Graph graph = new Graph(7);
-        graph.addEdge(0,1);
-        graph.addEdge(2,5);
-        graph.addEdge(1,6);
-        graph.addEdge(3,5);
-        graph.addEdge(6,5);
-        int source = 1;
+        Graph graph = GraphUtils.initGraph();
+        int source = 0;
         DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, source);
 
         for (int v = 0; v < graph.V(); v++){

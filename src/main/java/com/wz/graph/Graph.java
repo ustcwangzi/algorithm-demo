@@ -7,6 +7,8 @@
  */
 package com.wz.graph;
 
+import com.wz.utils.GraphUtils;
+
 /**
  * <p>使用邻接表表示无向图</p>
  *
@@ -92,11 +94,7 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph graph = new Graph(7);
-        graph.addEdge(0,1);
-        graph.addEdge(2,5);
-        graph.addEdge(1,6);
-        graph.addEdge(3,5);
+        Graph graph = GraphUtils.initGraph();
         System.out.println(graph);
     }
 }

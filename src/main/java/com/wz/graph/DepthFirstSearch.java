@@ -7,6 +7,8 @@
  */
 package com.wz.graph;
 
+import com.wz.utils.GraphUtils;
+
 /**
  * <p>深度优先搜索</p>
  * <p>
@@ -58,13 +60,7 @@ public class DepthFirstSearch {
     }
 
     public static void main(String[] args) {
-        Graph graph = new Graph(7);
-        graph.addEdge(0,1);
-        graph.addEdge(2,5);
-        graph.addEdge(1,6);
-        graph.addEdge(1,4);
-        graph.addEdge(3,5);
-        graph.addEdge(6,5);
+        Graph graph = GraphUtils.initGraph();
         DepthFirstSearch search = new DepthFirstSearch(graph, 1);
         for (int v = 0; v < graph.V(); v++){
             if (search.marked(v)){
