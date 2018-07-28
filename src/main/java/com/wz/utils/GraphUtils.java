@@ -40,6 +40,7 @@ public class GraphUtils {
         digraph.addEdge(2,4);
         digraph.addEdge(3,4);
         digraph.addEdge(3,5);
+        digraph.addEdge(6,5);
         return digraph;
     }
 }
