@@ -7,7 +7,7 @@
  */
 package com.wz.utils;
 
-import com.wz.graph.Graph;
+import com.wz.graph.undirected.Graph;
 
 /**
  * <p>图工具类</p>

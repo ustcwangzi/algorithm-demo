@@ -15,6 +15,10 @@
 - LinearProbingHashSearch：基于线性探测的散列表查找
 
 ## graph 图
+### undirected 无向图
 - Graph：使用邻接表表示图
 - DepthFirstSearch：深度优先遍历
 - DepthFirstPaths：使用深度优先遍历查找路径
+- ConnectedComponent：计算联通分量
+- BreadthFirstPaths：广度优先遍历查找路径
+### directed 有向图

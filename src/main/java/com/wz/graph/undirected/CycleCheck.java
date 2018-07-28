@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph;
+package com.wz.graph.undirected;
 
 import com.wz.utils.GraphUtils;
 
