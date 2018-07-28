@@ -1,26 +1,21 @@
 /**
- * <p>Title: Graph</p>
+ * <p>Title: Digraph</p>
  * <p>Description: </p>
- * <p>Created by wangzi on 2018/7/8</p>
+ * <p>Created by wangzi on 2018/7/28</p>
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.undirected;
+package com.wz.graph.directed;
 
 import com.wz.graph.Bag;
 import com.wz.utils.GraphUtils;
 
 /**
- * <p>使用邻接表表示无向图</p>
- *
- * <p>
- *     使用一个以顶点为索引的列表数组，其中每个元素都是和该顶点相邻的顶点列表
- *     它将每个顶点的所有相邻顶点都保存在该顶点对应的元素所指向的一张链表中
- * </p>
+ * <p>使用邻接表表示有向图</p>
  *
  * @author wangzi
  */
-public class Graph {
+public class Digraph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
     /** 顶点数量 */
@@ -29,13 +24,16 @@ public class Graph {
     private int edges;
     /** 邻接表 */
     private Bag<Integer>[] adjacent;
+     /** 顶点的入度 */
+    private int[] indegree;
 
-    public Graph(int vertices) {
+    public Digraph(int vertices) {
         if (vertices < 0){
             throw new IllegalArgumentException("Number of vertices must be positive");
         }
         this.vertices = vertices;
         this.edges = 0;
+        this.indegree = new int[vertices];
         this.adjacent = (Bag<Integer>[]) new Bag[vertices];
         for (int v = 0; v < vertices; v++){
             adjacent[v] = new Bag<>();
@@ -56,28 +54,37 @@ public class Graph {
         }
     }
 
-    /**
-     * 增加边v-w
-     */
     public void addEdge(int v, int w){
         validateVertex(v);
         validateVertex(w);
-        edges++;
         adjacent[v].add(w);
-        adjacent[w].add(v);
+        indegree[w]++;
+        edges++;
     }
 
-    /**
-     * 获取和v相邻的顶点列表
-     */
     public Iterable<Integer> adj(int v){
         validateVertex(v);
         return adjacent[v];
     }
 
-    public int degree(int v) {
+    public int inDegree(int v) {
+        validateVertex(v);
+        return indegree[v];
+    }
+
+    public int outDegree(int v) {
         validateVertex(v);
         return adjacent[v].size();
+    }
+
+    public Digraph reverse() {
+        Digraph reverse = new Digraph(vertices);
+        for (int v = 0; v < vertices; v++) {
+            for (int w : adj(v)) {
+                reverse.addEdge(w, v);
+            }
+        }
+        return reverse;
     }
 
     @Override
@@ -95,7 +102,7 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph graph = GraphUtils.initGraph();
-        System.out.println(graph);
+        Digraph digraph = GraphUtils.initDigraph();
+        System.out.println(digraph);
     }
 }

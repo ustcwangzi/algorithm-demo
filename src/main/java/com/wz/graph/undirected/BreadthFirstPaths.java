@@ -58,9 +58,9 @@ public class BreadthFirstPaths {
     private final int source;
 
     public BreadthFirstPaths(Graph graph, int source) {
-        this.marked = new boolean[graph.V()];
-        this.edgeTo = new int[graph.V()];
-        this.distTo = new int[graph.V()];
+        this.marked = new boolean[graph.vertices()];
+        this.edgeTo = new int[graph.vertices()];
+        this.distTo = new int[graph.vertices()];
         this.source = source;
         bfs(graph);
 
@@ -69,7 +69,7 @@ public class BreadthFirstPaths {
 
     private void bfs(Graph graph){
         List<Integer> path = new ArrayList<>();
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             distTo[v] = INFINITY;
         }
         distTo[source] = 0;
@@ -119,7 +119,7 @@ public class BreadthFirstPaths {
             return false;
         }
 
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             for (int w : graph.adj(v)){
                 if (hasPathTo(v) != hasPathTo(w)){
                     return false;
@@ -130,7 +130,7 @@ public class BreadthFirstPaths {
             }
         }
 
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             if (!hasPathTo(v) || v == source){
                 continue;
             }
@@ -155,7 +155,7 @@ public class BreadthFirstPaths {
         int source = 0;
         BreadthFirstPaths breadthPaths = new BreadthFirstPaths(graph, source);
 
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             if (breadthPaths.hasPathTo(v)){
                 System.out.printf("%d to %d (%d): ", source, v, breadthPaths.distTo(v));
                 for (int w : breadthPaths.pathTo(v)){

@@ -28,10 +28,10 @@ public class CycleCheck {
         if (hasSelfLoop(graph) || hasParallelEdges(graph)){
             return;
         }
-        this.marked = new boolean[graph.V()];
-        this.edgeTo = new int[graph.V()];
+        this.marked = new boolean[graph.vertices()];
+        this.edgeTo = new int[graph.vertices()];
 
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             if (!marked[v]){
                 dfs(graph, -1, v);
             }
@@ -39,7 +39,7 @@ public class CycleCheck {
     }
 
     private boolean hasSelfLoop(Graph graph){
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             for (int w : graph.adj(v)){
                 if (v == w){
                     cycle = new ArrayList<>();
@@ -53,8 +53,8 @@ public class CycleCheck {
     }
 
     private boolean hasParallelEdges(Graph graph){
-        this.marked = new boolean[graph.V()];
-        for (int v = 0; v < graph.V(); v++) {
+        this.marked = new boolean[graph.vertices()];
+        for (int v = 0; v < graph.vertices(); v++) {
             for (int w : graph.adj(v)) {
                 if (marked[w]){
                     cycle = new ArrayList<>();

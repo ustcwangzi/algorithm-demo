@@ -36,8 +36,8 @@ public class DepthFirstPaths {
     private final int source;
 
     public DepthFirstPaths(Graph graph, int source) {
-        this.marked = new boolean[graph.V()];
-        this.edgeTo = new int[graph.V()];
+        this.marked = new boolean[graph.vertices()];
+        this.edgeTo = new int[graph.vertices()];
         this.source = source;
         validateVertex(source);
         dfs(graph, source);
@@ -88,7 +88,7 @@ public class DepthFirstPaths {
         int source = 0;
         DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, source);
 
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             if (depthFirstPaths.hasPathTo(v)){
                 System.out.printf("%d to %d: ", source, v);
                 for (int w : depthFirstPaths.pathTo(v)){

@@ -7,6 +7,7 @@
  */
 package com.wz.utils;
 
+import com.wz.graph.directed.Digraph;
 import com.wz.graph.undirected.Graph;
 
 /**
@@ -27,5 +28,18 @@ public class GraphUtils {
         graph.addEdge(3,4);
         graph.addEdge(3,5);
         return graph;
+    }
+
+    public static Digraph initDigraph(){
+        Digraph digraph = new Digraph(7);
+        digraph.addEdge(0,1);
+        digraph.addEdge(0,2);
+        digraph.addEdge(0,5);
+        digraph.addEdge(1,2);
+        digraph.addEdge(2,3);
+        digraph.addEdge(2,4);
+        digraph.addEdge(3,4);
+        digraph.addEdge(3,5);
+        return digraph;
     }
 }

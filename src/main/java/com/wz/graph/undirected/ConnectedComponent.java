@@ -28,11 +28,11 @@ public class ConnectedComponent {
     private int count;
 
     public ConnectedComponent(Graph graph) {
-        this.marked = new boolean[graph.V()];
-        this.id = new int[graph.V()];
-        this.size = new int[graph.V()];
+        this.marked = new boolean[graph.vertices()];
+        this.id = new int[graph.vertices()];
+        this.size = new int[graph.vertices()];
 
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             if (!marked[v]){
                 dfs(graph, v);
                 count++;
@@ -72,7 +72,7 @@ public class ConnectedComponent {
         for (int i = 0; i < count; i++){
             list.add(new ArrayList<>());
         }
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             list.get(id(v)).add(v);
         }
         return list;

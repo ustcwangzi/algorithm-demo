@@ -28,7 +28,7 @@ public class DepthFirstSearch {
     private int count;
 
     public DepthFirstSearch(Graph graph, int source) {
-        marked = new boolean[graph.V()];
+        marked = new boolean[graph.vertices()];
         validateVertex(source);
         dfs(graph, source);
     }
@@ -62,12 +62,12 @@ public class DepthFirstSearch {
     public static void main(String[] args) {
         Graph graph = GraphUtils.initGraph();
         DepthFirstSearch search = new DepthFirstSearch(graph, 1);
-        for (int v = 0; v < graph.V(); v++){
+        for (int v = 0; v < graph.vertices(); v++){
             if (search.marked(v)){
                 System.out.print(v + " ");
             }
         }
-        if (search.count != graph.V()){
+        if (search.count != graph.vertices()){
             System.out.println("not connected");
         }else {
             System.out.println("connected");
