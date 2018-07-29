@@ -66,6 +66,9 @@ public class Topological {
     public static void main(String[] args) {
         Digraph digraph = GraphUtils.initDigraph();
         Topological topological = new Topological(digraph);
+        if (topological.order == null){
+            return;
+        }
         for (int v : topological.order()) {
             System.out.print(v + " ");
         }
