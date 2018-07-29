@@ -17,6 +17,8 @@ import java.util.List;
  * <p>
  *     深度优先搜索中，系统维护的递归调用的栈表示的是当前正在遍历的有向路径
  *     一旦找到一条边 v->w 且 w 已经在栈中了，表明此时形成了回路，即存在环
+ *     执行dfs(graph, v)时，查找的是一条由起点到v的有向路径
+ *     使用数组onStack[]维护了这条路径，以标记递归调用的栈上的所有顶点
  * </p>
  *
  * @author wangzi
@@ -52,6 +54,7 @@ public class DirectedCycle {
 
     private void dfs(Digraph digraph, int v) {
         marked[v] = true;
+        // 递归调用开始时将其设为true
         onStack[v] = true;
         for (int w : digraph.adj(v)) {
             // 已找到有向环
@@ -71,6 +74,7 @@ public class DirectedCycle {
                 assert check();
             }
         }
+        // 递归调用结束时将其设为false
         onStack[v] = false;
     }
 
