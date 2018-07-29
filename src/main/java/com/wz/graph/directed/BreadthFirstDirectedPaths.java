@@ -94,7 +94,7 @@ public class BreadthFirstDirectedPaths {
 
     public static void main(String[] args) {
         Digraph digraph = GraphUtils.initDigraph();
-        int source = 0;
+        int source = 3;
         BreadthFirstDirectedPaths directedPaths = new BreadthFirstDirectedPaths(digraph, source);
 
         for (int v = 0; v < digraph.vertices(); v++){
