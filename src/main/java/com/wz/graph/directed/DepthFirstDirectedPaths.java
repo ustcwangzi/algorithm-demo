@@ -77,7 +77,7 @@ public class DepthFirstDirectedPaths {
     }
 
     public static void main(String[] args) {
-        Digraph digraph = GraphUtils.initDigraph();
+        Digraph digraph = GraphUtils.initCycleDigraph();
         int source = 3;
         DepthFirstDirectedPaths directedPaths = new DepthFirstDirectedPaths(digraph, source);
 

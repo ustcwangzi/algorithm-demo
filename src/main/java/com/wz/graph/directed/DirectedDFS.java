@@ -94,7 +94,7 @@ public class DirectedDFS {
     }
 
     public static void main(String[] args) {
-        Digraph digraph = GraphUtils.initDigraph();
+        Digraph digraph = GraphUtils.initCycleDigraph();
         DirectedDFS dfs = new DirectedDFS(digraph, 2);
         for (int v = 0; v < digraph.vertices(); v++) {
             if (dfs.marked(v)) {

@@ -103,7 +103,7 @@ public class DirectedCycle {
     }
 
     public static void main(String[] args) {
-        Digraph digraph = GraphUtils.initDigraph();
+        Digraph digraph = GraphUtils.initCycleDigraph();
         DirectedCycle finder = new DirectedCycle(digraph);
         if (finder.hasCycle()) {
             System.out.print("Directed cycle: ");

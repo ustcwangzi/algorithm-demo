@@ -30,7 +30,7 @@ public class GraphUtils {
         return graph;
     }
 
-    public static Digraph initDigraph() {
+    public static Digraph initCycleDigraph() {
         Digraph digraph = new Digraph(13);
         digraph.addEdge(0, 1);
         digraph.addEdge(0, 5);

@@ -110,7 +110,7 @@ public class Digraph {
     }
 
     public static void main(String[] args) {
-        Digraph digraph = GraphUtils.initDigraph();
+        Digraph digraph = GraphUtils.initCycleDigraph();
         System.out.println(digraph);
     }
 }
