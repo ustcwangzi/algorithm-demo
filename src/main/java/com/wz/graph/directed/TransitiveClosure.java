@@ -40,16 +40,12 @@ public class TransitiveClosure {
         }
     }
 
-    private static String format(int v) {
-        String str = String.valueOf(v);
-        return "%" + (str.length() + 2) + "d";
-    }
-
     public static void main(String[] args) {
         Digraph digraph = GraphUtils.initCycleDigraph();
         TransitiveClosure closure = new TransitiveClosure(digraph);
+        System.out.print("   ");
         for (int v = 0; v < digraph.vertices(); v++) {
-            System.out.printf(format(v), v);
+            System.out.printf("%3d", v);
         }
         System.out.println();
 
