@@ -46,7 +46,7 @@ public class TransitiveClosure {
     }
 
     public static void main(String[] args) {
-        Digraph digraph = GraphUtils.initDigraph();
+        Digraph digraph = GraphUtils.initCycleDigraph();
         TransitiveClosure closure = new TransitiveClosure(digraph);
         for (int v = 0; v < digraph.vertices(); v++) {
             System.out.printf(format(v), v);
