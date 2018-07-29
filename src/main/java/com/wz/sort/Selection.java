@@ -22,12 +22,13 @@ import com.wz.utils.SortUtils;
  * @author wangzi
  */
 public class Selection {
-    public static void sort(Comparable[] arr){
+    public static void sort(Comparable[] arr) {
         int length = arr.length;
-        for (int i = 0; i < length; i++){
-            int min = i; //最小元素的索引
-            for (int j = i+1; j < length; j++){
-                if (SortUtils.less(arr[j], arr[min])){
+        for (int i = 0; i < length; i++) {
+            //最小元素的索引
+            int min = i;
+            for (int j = i + 1; j < length; j++) {
+                if (SortUtils.less(arr[j], arr[min])) {
                     min = j;
                 }
             }

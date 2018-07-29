@@ -15,16 +15,20 @@ import java.util.List;
  * <p>
  *     基于链表实现顺序查找
  * </p>
- *
+ * <p>
  * <p>最坏情况下，插入成本是 N，查找成本是 N</p>
  * <p>平均情况下，插入成本是 N，查找成本是 N/2</p>
  *
  * @author wangzi
  */
 public class SequentialSearch<Key, Value> {
-    /** 键值对数量 */
+    /**
+     * 键值对数量
+     */
     private int paris;
-    /** 头节点 */
+    /**
+     * 头节点
+     */
     private Node first;
 
     private class Node {
@@ -39,43 +43,43 @@ public class SequentialSearch<Key, Value> {
         }
     }
 
-    public int size(){
+    public int size() {
         return paris;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size() == 0;
     }
 
-    public boolean contains(Key key){
-        if (key == null){
+    public boolean contains(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         return get(key) != null;
     }
 
-    public Value get(Key key){
-        if (key == null){
+    public Value get(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
-        for (Node i = first; i != null; i = i.next){
-            if (key.equals(i.key)){
+        for (Node i = first; i != null; i = i.next) {
+            if (key.equals(i.key)) {
                 return i.value;
             }
         }
         return null;
     }
 
-    public void put(Key key, Value value){
-        if (key == null){
+    public void put(Key key, Value value) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
-        if (value == null){
+        if (value == null) {
             delete(key);
             return;
         }
-        for (Node i = first; i != null; i = i.next){
-            if (key.equals(i.key)){
+        for (Node i = first; i != null; i = i.next) {
+            if (key.equals(i.key)) {
                 i.value = value;
                 return;
             }
@@ -84,8 +88,8 @@ public class SequentialSearch<Key, Value> {
         paris++;
     }
 
-    public void delete(Key key){
-        if (key == null){
+    public void delete(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         first = delete(first, key);
@@ -94,11 +98,11 @@ public class SequentialSearch<Key, Value> {
     /**
      * 从head开始查找链表中键为key的节点，删除
      */
-    public Node delete(Node head, Key key){
-        if (head == null){
+    public Node delete(Node head, Key key) {
+        if (head == null) {
             return null;
         }
-        if (key.equals(head.key)){
+        if (key.equals(head.key)) {
             paris--;
             return head.next;
         }
@@ -106,9 +110,9 @@ public class SequentialSearch<Key, Value> {
         return head;
     }
 
-    public Iterable<Key> keys(){
+    public Iterable<Key> keys() {
         List<Key> list = new ArrayList<>();
-        for (Node i = first; i != null; i = i.next){
+        for (Node i = first; i != null; i = i.next) {
             list.add(i.key);
         }
         return list;

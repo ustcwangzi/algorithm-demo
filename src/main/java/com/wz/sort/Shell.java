@@ -21,15 +21,16 @@ import com.wz.utils.SortUtils;
  * @author wangzi
  */
 public class Shell {
-    public static void sort(Comparable[] arr){
+    public static void sort(Comparable[] arr) {
         int length = arr.length;
-        for (int gap = length/2; gap > 0; gap /= 2){ // 增量减少
+        for (int gap = length / 2; gap > 0; gap /= 2) { // 增量减少
             // 从gap个元素开始，逐渐对其所在组进行直接插入排序
-            for (int i = gap; i < length; i++){
+            for (int i = gap; i < length; i++) {
                 Comparable temp = arr[i];
                 int j;  // 找到temp的位置
-                for (j = i; j-gap >= 0 && SortUtils.less(temp, arr[j-gap]); j-=gap){
-                    arr[j] = arr[j-gap];  // 元素后移
+                for (j = i; j - gap >= 0 && SortUtils.less(temp, arr[j - gap]); j -= gap) {
+                    // 元素后移
+                    arr[j] = arr[j - gap];
                 }
                 arr[j] = temp;
             }

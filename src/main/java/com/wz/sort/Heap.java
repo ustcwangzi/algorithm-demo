@@ -26,15 +26,15 @@ import com.wz.utils.SortUtils;
  * @author wangzi
  */
 public class Heap {
-    public static void sort(Comparable[] arr){
+    public static void sort(Comparable[] arr) {
         // 位置0不使用
         int length = arr.length - 1;
         // 扫描前半部分元素，建立子堆
-        for (int k = length/2; k >= 1; k--){
+        for (int k = length / 2; k >= 1; k--) {
             sink(arr, k, length);
         }
         // 不断将最大的元素(位于位置1)放到后面，并保持堆有序
-        while (length > 1){
+        while (length > 1) {
             SortUtils.exch(arr, 1, length--);
             sink(arr, 1, length);
         }
@@ -43,18 +43,18 @@ public class Heap {
     /**
      * 位置k的元素下沉，由上至下调整堆
      */
-    private static void sink(Comparable[] arr, int k, int length){
+    private static void sink(Comparable[] arr, int k, int length) {
         // 存在子节点
-        while (2*k <= length){
-            int j = 2*k;
+        while (2 * k <= length) {
+            int j = 2 * k;
             // 存在右孩子时，找出左右孩子中较大的一个
-            if (j < length  && j+1 < length && SortUtils.less(arr[j],arr[j+1])){
+            if (j < length && j + 1 < length && SortUtils.less(arr[j], arr[j + 1])) {
                 j++;
             }
-            if (SortUtils.less(arr[k], arr[j])){
+            if (SortUtils.less(arr[k], arr[j])) {
                 SortUtils.exch(arr, j, k);
                 k = j;
-            }else {
+            } else {
                 break;
             }
         }

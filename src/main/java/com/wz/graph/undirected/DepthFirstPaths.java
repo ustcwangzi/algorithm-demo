@@ -22,17 +22,23 @@ import java.util.List;
  *     即v-w是从source到w的路径上最后一条已知的边
  *     这样，搜索的结果是一棵以source为根节点的树，使用pathTo遍历整棵树
  * </p>
- *
+ * <p>
  * <p>使用深度优先搜索得到从给定起点到任意顶点的路径所需时间与路径长度成正比</p>
  *
  * @author wangzi
  */
 public class DepthFirstPaths {
-    /** 标记是否遍历过 */
+    /**
+     * 标记是否遍历过
+     */
     private boolean[] marked;
-    /** 从起点到一个顶点的已知路径上的最后一个顶点 */
+    /**
+     * 从起点到一个顶点的已知路径上的最后一个顶点
+     */
     private int[] edgeTo;
-    /** 起点 */
+    /**
+     * 起点
+     */
     private final int source;
 
     public DepthFirstPaths(Graph graph, int source) {
@@ -43,17 +49,17 @@ public class DepthFirstPaths {
         dfs(graph, source);
     }
 
-    private void dfs(Graph graph, int v){
+    private void dfs(Graph graph, int v) {
         marked[v] = true;
-        for (int w : graph.adj(v)){
-            if (!marked[w]){
+        for (int w : graph.adj(v)) {
+            if (!marked[w]) {
                 edgeTo[w] = v;
                 dfs(graph, w);
             }
         }
     }
 
-    public boolean hasPathTo(int v){
+    public boolean hasPathTo(int v) {
         validateVertex(v);
         return marked[v];
     }
@@ -61,14 +67,14 @@ public class DepthFirstPaths {
     /**
      * 找到source到它联通的所有顶点的路径
      */
-    public Iterable<Integer> pathTo(int v){
+    public Iterable<Integer> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)){
+        if (!hasPathTo(v)) {
             return null;
         }
 
         List<Integer> path = new ArrayList<>();
-        for (int w = v; w != source; w = edgeTo[w]){
+        for (int w = v; w != source; w = edgeTo[w]) {
             path.add(w);
         }
         path.add(source);
@@ -79,7 +85,7 @@ public class DepthFirstPaths {
     private void validateVertex(int v) {
         int length = marked.length;
         if (v < 0 || v >= length) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (length-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (length - 1));
         }
     }
 
@@ -88,18 +94,18 @@ public class DepthFirstPaths {
         int source = 0;
         DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, source);
 
-        for (int v = 0; v < graph.vertices(); v++){
-            if (depthFirstPaths.hasPathTo(v)){
+        for (int v = 0; v < graph.vertices(); v++) {
+            if (depthFirstPaths.hasPathTo(v)) {
                 System.out.printf("%d to %d: ", source, v);
-                for (int w : depthFirstPaths.pathTo(v)){
-                    if (w == source){
+                for (int w : depthFirstPaths.pathTo(v)) {
+                    if (w == source) {
                         System.out.print(w);
-                    }else {
+                    } else {
                         System.out.print("-" + w);
                     }
                 }
                 System.out.println();
-            }else {
+            } else {
                 System.out.printf("%d to %d not connected\n", source, v);
             }
         }

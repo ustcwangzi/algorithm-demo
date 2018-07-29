@@ -22,12 +22,12 @@ import com.wz.utils.SortUtils;
  * @author wangzi
  */
 public class Quick {
-    public static void sort(Comparable[] arr){
+    public static void sort(Comparable[] arr) {
         sort(arr, 0, arr.length - 1);
     }
 
-    private static void sort(Comparable[] arr, int low, int high){
-        if (low >= high){
+    private static void sort(Comparable[] arr, int low, int high) {
+        if (low >= high) {
             return;
         }
         int j = partition(arr, low, arr.length - 1);
@@ -35,18 +35,18 @@ public class Quick {
         sort(arr, j + 1, high);
     }
 
-    private static int partition(Comparable[] arr, int low, int high){
+    private static int partition(Comparable[] arr, int low, int high) {
         // 待排序的第一个元素作为基准元素
         Comparable temp = arr[low];
-        while (low < high){
+        while (low < high) {
             // 从右往左扫描，找到比基准小的元素，将其放到左边
-            while (low < high && SortUtils.less(temp, arr[high])){
+            while (low < high && SortUtils.less(temp, arr[high])) {
                 high--;
             }
             arr[low] = arr[high];
 
             // 从左往右扫描，找到比基准大的元素，将其放到右边
-            while (low < high && SortUtils.less(arr[low], temp)){
+            while (low < high && SortUtils.less(arr[low], temp)) {
                 low++;
             }
             arr[high] = arr[low];

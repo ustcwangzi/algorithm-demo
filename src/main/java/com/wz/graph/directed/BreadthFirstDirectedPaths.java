@@ -20,13 +20,21 @@ import java.util.List;
  */
 public class BreadthFirstDirectedPaths {
     private static final int INFINITY = Integer.MAX_VALUE;
-    /** 标记是否遍历过 */
+    /**
+     * 标记是否遍历过
+     */
     private boolean[] marked;
-    /** 从起点到一个顶点的已知路径上的最后一个顶点 */
+    /**
+     * 从起点到一个顶点的已知路径上的最后一个顶点
+     */
     private int[] edgeTo;
-    /** 从起点到一个顶点的已知路径长度 */
+    /**
+     * 从起点到一个顶点的已知路径长度
+     */
     private int[] distTo;
-    /** 起点 */
+    /**
+     * 起点
+     */
     private final int source;
 
     public BreadthFirstDirectedPaths(Digraph digraph, int source) {
@@ -38,9 +46,9 @@ public class BreadthFirstDirectedPaths {
         bfs(digraph);
     }
 
-    private void bfs(Digraph digraph){
+    private void bfs(Digraph digraph) {
         List<Integer> path = new ArrayList<>();
-        for (int v = 0; v < digraph.vertices(); v++){
+        for (int v = 0; v < digraph.vertices(); v++) {
             distTo[v] = INFINITY;
         }
         distTo[source] = 0;
@@ -49,8 +57,8 @@ public class BreadthFirstDirectedPaths {
 
         for (int i = 0; i < path.size(); i++) {
             int v = path.get(i);
-            for (int w : digraph.adj(v)){
-                if (!marked[w]){
+            for (int w : digraph.adj(v)) {
+                if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
@@ -60,7 +68,7 @@ public class BreadthFirstDirectedPaths {
         }
     }
 
-    public boolean hasPathTo(int v){
+    public boolean hasPathTo(int v) {
         validateVertex(v);
         return marked[v];
     }
@@ -70,14 +78,14 @@ public class BreadthFirstDirectedPaths {
         return distTo[v];
     }
 
-    public Iterable<Integer> pathTo(int v){
+    public Iterable<Integer> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)){
+        if (!hasPathTo(v)) {
             return null;
         }
 
         List<Integer> path = new ArrayList<>();
-        for (int w = v; distTo[w] != 0; w = edgeTo[w]){
+        for (int w = v; distTo[w] != 0; w = edgeTo[w]) {
             path.add(w);
         }
         path.add(source);
@@ -88,7 +96,7 @@ public class BreadthFirstDirectedPaths {
     private void validateVertex(int v) {
         int length = marked.length;
         if (v < 0 || v >= length) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (length-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (length - 1));
         }
     }
 
@@ -97,18 +105,18 @@ public class BreadthFirstDirectedPaths {
         int source = 3;
         BreadthFirstDirectedPaths directedPaths = new BreadthFirstDirectedPaths(digraph, source);
 
-        for (int v = 0; v < digraph.vertices(); v++){
-            if (directedPaths.hasPathTo(v)){
+        for (int v = 0; v < digraph.vertices(); v++) {
+            if (directedPaths.hasPathTo(v)) {
                 System.out.printf("%d to %d (%d): ", source, v, directedPaths.distTo(v));
-                for (int w : directedPaths.pathTo(v)){
-                    if (w == source){
+                for (int w : directedPaths.pathTo(v)) {
+                    if (w == source) {
                         System.out.print(w);
-                    }else {
+                    } else {
                         System.out.print("-" + w);
                     }
                 }
                 System.out.println();
-            }else {
+            } else {
                 System.out.printf("%d to %d not connected\n", source, v);
             }
         }

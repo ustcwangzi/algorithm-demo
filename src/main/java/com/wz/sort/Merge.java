@@ -29,7 +29,7 @@ public class Merge {
      */
     private static Comparable[] aux;
 
-    public static void sort(Comparable[] arr){
+    public static void sort(Comparable[] arr) {
         aux = new Comparable[arr.length];
         sort(arr, 0, arr.length - 1);
     }
@@ -37,39 +37,39 @@ public class Merge {
     /**
      * 排序arr[low ... high]
      */
-    private static void sort(Comparable[] arr, int low, int high){
-        if (high <= low){
+    private static void sort(Comparable[] arr, int low, int high) {
+        if (high <= low) {
             return;
         }
-        int mid = low + (high-low)/2;
+        int mid = low + (high - low) / 2;
         sort(arr, low, mid);
-        sort(arr, mid+1, high);
+        sort(arr, mid + 1, high);
         merge(arr, low, mid, high);
     }
 
     /**
      * 将两个有序数组 arr[low ... mid] 与 arr[mid+1, high]进行归并
      */
-    private static void merge(Comparable[] arr, int low, int mid, int high){
+    private static void merge(Comparable[] arr, int low, int mid, int high) {
         assert SortUtils.isSorted(arr, low, mid);
-        assert SortUtils.isSorted(arr, mid+1, high);
+        assert SortUtils.isSorted(arr, mid + 1, high);
 
-        for (int k = low; k <= high; k++){
+        for (int k = low; k <= high; k++) {
             aux[k] = arr[k];
         }
 
         int i = low, j = mid + 1;
-        for (int k = low; k <= high; k++){
-            if (i > mid){
+        for (int k = low; k <= high; k++) {
+            if (i > mid) {
                 // 左边用尽，取右边
                 arr[k] = aux[j++];
-            }else if (j > high){
+            } else if (j > high) {
                 // 右边用尽，取左边
                 arr[k] = aux[i++];
-            }else if (SortUtils.less(aux[j], aux[i])){
+            } else if (SortUtils.less(aux[j], aux[i])) {
                 // 右边元素较小，取右边
                 arr[k] = aux[j++];
-            }else {
+            } else {
                 // 左边元素较小，取左边
                 arr[k] = aux[i++];
             }

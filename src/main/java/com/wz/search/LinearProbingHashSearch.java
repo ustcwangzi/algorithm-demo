@@ -12,17 +12,22 @@ import java.util.List;
 
 /**
  * <p>基于线性探测的散列表查找</p>
- *
- * <p>发生冲突的元素直接放在下一个位置</p>
+ * <p>
+ *     发生冲突的元素直接放在下一个位置
+ * </p>
  *
  * @author wangzi
  */
 public class LinearProbingHashSearch<Key, Value> {
     private static final int INIT_CAPACITY = 4;
 
-    /** 存储键值对的数量 */
+    /**
+     * 存储键值对的数量
+     */
     private int paris;
-    /** hash表的长度 */
+    /**
+     * hash表的长度
+     */
     private int tableSize;
     private Key[] keys;
     private Value[] values;
@@ -38,29 +43,29 @@ public class LinearProbingHashSearch<Key, Value> {
         this.values = (Value[]) new Object[capacity];
     }
 
-    public int size(){
+    public int size() {
         return paris;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size() == 0;
     }
 
-    public boolean contains(Key key){
-        if (key == null){
+    public boolean contains(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         return get(key) != null;
     }
 
-    private int hash(Key key){
+    private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % tableSize;
     }
 
-    private void resize(int capacity){
+    private void resize(int capacity) {
         LinearProbingHashSearch<Key, Value> temp = new LinearProbingHashSearch<>(capacity);
-        for (int i = 0; i < tableSize; i++){
-            if (keys[i] != null){
+        for (int i = 0; i < tableSize; i++) {
+            if (keys[i] != null) {
                 temp.put(keys[i], values[i]);
             }
         }
@@ -69,22 +74,22 @@ public class LinearProbingHashSearch<Key, Value> {
         tableSize = temp.tableSize;
     }
 
-    public void put(Key key, Value value){
-        if (key == null){
+    public void put(Key key, Value value) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
-        if (value == null){
+        if (value == null) {
             delete(key);
             return;
         }
 
-        if (paris >= tableSize/2){
-            resize(2*tableSize);
+        if (paris >= tableSize / 2) {
+            resize(2 * tableSize);
         }
 
         int i;
-        for (i = hash(key); keys[i] != null; i = (i+1) % tableSize){
-            if (keys[i].equals(key)){
+        for (i = hash(key); keys[i] != null; i = (i + 1) % tableSize) {
+            if (keys[i].equals(key)) {
                 values[i] = value;
                 return;
             }
@@ -95,27 +100,27 @@ public class LinearProbingHashSearch<Key, Value> {
     }
 
     public Value get(Key key) {
-        if (key == null){
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
-        for (int i = hash(key); keys[i] != null; i = (i+1) % tableSize){
-            if (keys[i].equals(key)){
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % tableSize) {
+            if (keys[i].equals(key)) {
                 return values[i];
             }
         }
         return null;
     }
 
-    public void delete(Key key){
-        if (key == null){
+    public void delete(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
-        if (!contains(key)){
+        if (!contains(key)) {
             return;
         }
 
         int i = hash(key);
-        while (!key.equals(keys[i])){
+        while (!key.equals(keys[i])) {
             i = (i + 1) % tableSize;
         }
         keys[i] = null;
@@ -123,7 +128,7 @@ public class LinearProbingHashSearch<Key, Value> {
 
         // rehash
         i = (i + 1) % tableSize;
-        while (keys[i] != null){
+        while (keys[i] != null) {
             Key keyToRehash = keys[i];
             Value valToRehash = values[i];
             keys[i] = null;
@@ -134,22 +139,22 @@ public class LinearProbingHashSearch<Key, Value> {
         }
 
         paris--;
-        if (paris > 0 && paris <= tableSize/8){
-            resize(tableSize/2);
+        if (paris > 0 && paris <= tableSize / 8) {
+            resize(tableSize / 2);
         }
     }
 
-    public Iterable<Key> keys(){
+    public Iterable<Key> keys() {
         List<Key> list = new ArrayList<>();
         for (int i = 0; i < tableSize; i++) {
-           if (keys[i] != null){
+            if (keys[i] != null) {
                 list.add(keys[i]);
             }
         }
         return list;
     }
 
-    private boolean check(){
+    private boolean check() {
         for (int i = 0; i < tableSize; i++) {
             if (keys[i] != null && get(keys[i]) != values[i]) {
                 return false;

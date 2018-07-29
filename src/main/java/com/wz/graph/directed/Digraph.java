@@ -18,43 +18,51 @@ import com.wz.utils.GraphUtils;
 public class Digraph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
-    /** 顶点数量 */
+    /**
+     * 顶点数量
+     */
     private final int vertices;
-    /** 边的数量 */
+    /**
+     * 边的数量
+     */
     private int edges;
-    /** 邻接表 */
+    /**
+     * 邻接表
+     */
     private Bag<Integer>[] adjacent;
-     /** 顶点的入度 */
+    /**
+     * 顶点的入度
+     */
     private int[] indegree;
 
     public Digraph(int vertices) {
-        if (vertices < 0){
+        if (vertices < 0) {
             throw new IllegalArgumentException("Number of vertices must be positive");
         }
         this.vertices = vertices;
         this.edges = 0;
         this.indegree = new int[vertices];
         this.adjacent = (Bag<Integer>[]) new Bag[vertices];
-        for (int v = 0; v < vertices; v++){
+        for (int v = 0; v < vertices; v++) {
             adjacent[v] = new Bag<>();
         }
     }
 
-    public int vertices(){
+    public int vertices() {
         return vertices;
     }
 
-    public int edges(){
+    public int edges() {
         return edges;
     }
 
     private void validateVertex(int v) {
         if (v < 0 || v >= vertices) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (vertices-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (vertices - 1));
         }
     }
 
-    public void addEdge(int v, int w){
+    public void addEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
         adjacent[v].add(w);
@@ -62,7 +70,7 @@ public class Digraph {
         edges++;
     }
 
-    public Iterable<Integer> adj(int v){
+    public Iterable<Integer> adj(int v) {
         validateVertex(v);
         return adjacent[v];
     }
@@ -91,9 +99,9 @@ public class Digraph {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(vertices + " vertices, " + edges + " edges " + NEWLINE);
-        for (int v = 0; v < vertices; v++){
+        for (int v = 0; v < vertices; v++) {
             builder.append(v + ": ");
-            for (int w : adjacent[v]){
+            for (int w : adjacent[v]) {
                 builder.append(w + " ");
             }
             builder.append(NEWLINE);

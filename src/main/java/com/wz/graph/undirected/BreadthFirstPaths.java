@@ -31,7 +31,6 @@ import java.util.List;
  *     和深度优先搜索一样，其结果也是一个数组edgeTo[]，也是一棵以source为根节点的树
  *     它表示了source到每个与source相通的顶点的最短路径
  * </p>
- *
  * <p>
  *     深度优先搜索和广度优先搜索的对比：
  *     两种搜索都是先将起点存到数据结构中，然后重复以下步骤直到数据结构被清空：
@@ -41,20 +40,27 @@ import java.util.List;
  *     对于广度优先搜索来说，取的是最早加入的顶点
  *     对于深度优先搜索来说，取的是最晚加入的顶点
  * </p>
- *
  * <p>广度优先搜索所需时间在最坏情况下和V+E成正比</p>
  *
  * @author wangzi
  */
 public class BreadthFirstPaths {
     private static final int INFINITY = Integer.MAX_VALUE;
-    /** 标记是否遍历过 */
+    /**
+     * 标记是否遍历过
+     */
     private boolean[] marked;
-    /** 从起点到一个顶点的已知路径上的最后一个顶点 */
+    /**
+     * 从起点到一个顶点的已知路径上的最后一个顶点
+     */
     private int[] edgeTo;
-    /** 从起点到一个顶点的已知路径长度 */
+    /**
+     * 从起点到一个顶点的已知路径长度
+     */
     private int[] distTo;
-    /** 起点 */
+    /**
+     * 起点
+     */
     private final int source;
 
     public BreadthFirstPaths(Graph graph, int source) {
@@ -67,9 +73,9 @@ public class BreadthFirstPaths {
         assert check(graph);
     }
 
-    private void bfs(Graph graph){
+    private void bfs(Graph graph) {
         List<Integer> path = new ArrayList<>();
-        for (int v = 0; v < graph.vertices(); v++){
+        for (int v = 0; v < graph.vertices(); v++) {
             distTo[v] = INFINITY;
         }
         distTo[source] = 0;
@@ -78,8 +84,8 @@ public class BreadthFirstPaths {
 
         for (int i = 0; i < path.size(); i++) {
             int v = path.get(i);
-            for (int w : graph.adj(v)){
-                if (!marked[w]){
+            for (int w : graph.adj(v)) {
+                if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
@@ -89,7 +95,7 @@ public class BreadthFirstPaths {
         }
     }
 
-    public boolean hasPathTo(int v){
+    public boolean hasPathTo(int v) {
         validateVertex(v);
         return marked[v];
     }
@@ -99,14 +105,14 @@ public class BreadthFirstPaths {
         return distTo[v];
     }
 
-    public Iterable<Integer> pathTo(int v){
+    public Iterable<Integer> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)){
+        if (!hasPathTo(v)) {
             return null;
         }
 
         List<Integer> path = new ArrayList<>();
-        for (int w = v; distTo[w] != 0; w = edgeTo[w]){
+        for (int w = v; distTo[w] != 0; w = edgeTo[w]) {
             path.add(w);
         }
         path.add(source);
@@ -114,28 +120,28 @@ public class BreadthFirstPaths {
         return path;
     }
 
-    private boolean check(Graph graph){
-        if (distTo[source] != 0){
+    private boolean check(Graph graph) {
+        if (distTo[source] != 0) {
             return false;
         }
 
-        for (int v = 0; v < graph.vertices(); v++){
-            for (int w : graph.adj(v)){
-                if (hasPathTo(v) != hasPathTo(w)){
+        for (int v = 0; v < graph.vertices(); v++) {
+            for (int w : graph.adj(v)) {
+                if (hasPathTo(v) != hasPathTo(w)) {
                     return false;
                 }
-                if (hasPathTo(v) && (distTo[w] > distTo[v] + 1)){
+                if (hasPathTo(v) && (distTo[w] > distTo[v] + 1)) {
                     return false;
                 }
             }
         }
 
-        for (int v = 0; v < graph.vertices(); v++){
-            if (!hasPathTo(v) || v == source){
+        for (int v = 0; v < graph.vertices(); v++) {
+            if (!hasPathTo(v) || v == source) {
                 continue;
             }
             int w = edgeTo[v];
-            if (distTo[v] != distTo[w] + 1){
+            if (distTo[v] != distTo[w] + 1) {
                 return false;
             }
         }
@@ -146,7 +152,7 @@ public class BreadthFirstPaths {
     private void validateVertex(int v) {
         int length = marked.length;
         if (v < 0 || v >= length) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (length-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (length - 1));
         }
     }
 
@@ -155,18 +161,18 @@ public class BreadthFirstPaths {
         int source = 0;
         BreadthFirstPaths breadthPaths = new BreadthFirstPaths(graph, source);
 
-        for (int v = 0; v < graph.vertices(); v++){
-            if (breadthPaths.hasPathTo(v)){
+        for (int v = 0; v < graph.vertices(); v++) {
+            if (breadthPaths.hasPathTo(v)) {
                 System.out.printf("%d to %d (%d): ", source, v, breadthPaths.distTo(v));
-                for (int w : breadthPaths.pathTo(v)){
-                    if (w == source){
+                for (int w : breadthPaths.pathTo(v)) {
+                    if (w == source) {
                         System.out.print(w);
-                    }else {
+                    } else {
                         System.out.print("-" + w);
                     }
                 }
                 System.out.println();
-            }else {
+            } else {
                 System.out.printf("%d to %d not connected\n", source, v);
             }
         }

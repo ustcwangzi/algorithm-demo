@@ -13,22 +13,23 @@ import java.util.NoSuchElementException;
  * <p>红黑树</p>
  * <p>
  *     2-3查找树或为一颗空树，或由以下节点组成：
- *       2-节点：含有一个键和两个子树，左子树中的键都小于该节点，右子树中的键都大于该节点
- *       3-节点：含有两个键和三个子树，左子树中的键都小于该节点，中子树中的键都介于该节点的两个键之间，右子树中的键都大于该节点
+ *     2-节点：含有一个键和两个子树，左子树中的键都小于该节点，右子树中的键都大于该节点
+ *     3-节点：含有两个键和三个子树，左子树中的键都小于该节点，中子树中的键都介于该节点的两个键之间，右子树中的键都大于该节点
  *     平衡的2-3查找树中，所有的空节点到根节点的距离都是相同的
  *     在大小为N的2-3查找树中，查找和插入操作访问的节点都不大于logN
- *
+ * <p/>
+ * <p>
  *     红黑树背后的基本思想是用标准的二叉查找树和一些额外的信息来表示2-3查找树：
  *     黑链接是2-3树中的普通链接，
  *     红链接将两个2-节点连接起来构成一个3-节点，即3-节点表示为由一条左斜的红链接相连的两个2-节点
- *
+ * </p>
+ * <p>
  *     红黑树是含有红黑链接并满足以下条件的二叉查找树：
  *     1、红链接均为左链接
  *     2、没有任何一个节点同时和两条红链接相连
  *     3、平衡，任意空链接到根节点路径上的黑链接数量相同
  *     满足此定义的红黑树和相应的2-3树是一一对应的
  * </p>
- *
  * <p>一颗大小为N的红黑树的高度不超过2*logN</p>
  * <p>最坏情况下，插入成本是 2*logN，查找成本是 2*logN</p>
  * <p>平均情况下，插入成本是 1.001logN，查找成本是 1.001*logN</p>
@@ -39,14 +40,18 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
-    /** 根节点 */
+    /**
+     * 根节点
+     */
     private Node root;
 
-    private class Node{
+    private class Node {
         private Key key;
         private Value value;
         private Node left, right;
-        /** 父链接颜色，红色为true */
+        /**
+         * 父链接颜色，红色为true
+         */
         private boolean color;
         private int size;
 
@@ -58,56 +63,56 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         }
     }
 
-    public int size(){
+    public int size() {
         return size(root);
     }
 
-    private int size(Node node){
-        if (node == null){
+    private int size(Node node) {
+        if (node == null) {
             return 0;
         }
         return node.size;
     }
 
-    private boolean isRed(Node node){
+    private boolean isRed(Node node) {
         return node != null && node.color == RED;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return root == null;
     }
 
-    public Value get(Key key){
+    public Value get(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         return get(root, key);
     }
 
-    private Value get(Node node, Key key){
-        while (node != null){
+    private Value get(Node node, Key key) {
+        while (node != null) {
             int cmp = key.compareTo(node.key);
-            if (cmp > 0){
+            if (cmp > 0) {
                 node = node.right;
-            }else if (cmp < 0){
+            } else if (cmp < 0) {
                 node = node.left;
-            }else {
+            } else {
                 return node.value;
             }
         }
         return null;
     }
 
-    public boolean contains(Key key){
+    public boolean contains(Key key) {
         return get(key) != null;
     }
 
-    public void put(Key key, Value value){
+    public void put(Key key, Value value) {
         if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
 
-        if (value == null){
+        if (value == null) {
             delete(key);
             return;
         }
@@ -124,27 +129,27 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 2、左节点是红色，左节点的左子树是红色，进行右旋转
      * 3、左右节点都是红色，进行颜色转换
      */
-    private Node put(Node node, Key key, Value value){
-        if (node == null){
+    private Node put(Node node, Key key, Value value) {
+        if (node == null) {
             return new Node(key, value, RED, 1);
         }
 
         int cmp = key.compareTo(node.key);
-        if (cmp > 0){
+        if (cmp > 0) {
             node.right = put(node.right, key, value);
-        }else if (cmp < 0){
+        } else if (cmp < 0) {
             node.left = put(node.left, key, value);
-        }else {
+        } else {
             node.value = value;
         }
 
-        if (isRed(node.right) && !isRed(node.left)){
+        if (isRed(node.right) && !isRed(node.left)) {
             node = rotateLeft(node);
         }
-        if (isRed(node.left) && isRed(node.left.left)){
+        if (isRed(node.left) && isRed(node.left.left)) {
             node = rotateRight(node);
         }
-        if (isRed(node.left) && isRed(node.right)){
+        if (isRed(node.left) && isRed(node.right)) {
             flipColors(node);
         }
         node.size = 1 + size(node.left) + size(node.right);
@@ -157,7 +162,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
             throw new NoSuchElementException("empty tree");
         }
 
-        if (!isRed(root.left) && !isRed(root.right)){
+        if (!isRed(root.left) && !isRed(root.right)) {
             root.color = RED;
         }
 
@@ -176,16 +181,16 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 1、如果当前节点的左子节点不是2-node，完成
      * 2、如果当前节点的左子节点是2-node，而左子节点的兄弟节点不是2-node，从其兄弟节点中借一个节点
      * 3、如果当前节点的左子节点和左子节点的兄弟节点都是2-node，将左子节点、父节点中的最小键和左子节点的兄弟节点合并成4-node
-     *    使其父节点由3-node变为2-node或由4-node变为3-node
+     * 使其父节点由3-node变为2-node或由4-node变为3-node
      * 在遍历过程中执行以上操作，最后能够得到一个含有最小键的3-node或4-node
      * 然后直接删除，再向上回溯分解所有临时的4-node
      */
     private Node deleteMin(Node node) {
-        if (node.left == null){
+        if (node.left == null) {
             return null;
         }
 
-        if (!isRed(node.left) && !isRed(node.left.left)){
+        if (!isRed(node.left) && !isRed(node.left.left)) {
             node = moveRedLeft(node);
         }
 
@@ -198,7 +203,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
             throw new NoSuchElementException("empty tree");
         }
 
-        if (!isRed(root.left) && !isRed(root.right)){
+        if (!isRed(root.left) && !isRed(root.right)) {
             root.color = RED;
         }
 
@@ -217,18 +222,18 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 1、如果当前节点的右子节点不是2-node，完成
      * 2、如果当前节点的右子节点是2-node，而右子节点的兄弟节点不是2-node，从其兄弟节点中借一个节点
      * 3、如果当前节点的右子节点和右子节点的兄弟节点都是2-node，将右子节点、父节点中的最小键和右子节点的兄弟节点合并成4-node
-     *    使其父节点由3-node变为2-node或由4-node变为3-node
+     * 使其父节点由3-node变为2-node或由4-node变为3-node
      * 在遍历过程中执行以上操作，最后能够得到一个含有最大键的3-node或4-node
      * 然后直接删除，再向上回溯分解所有临时的4-node
      */
     private Node deleteMax(Node node) {
-        if (isRed(node.left)){
+        if (isRed(node.left)) {
             node = rotateRight(node);
         }
-        if (node.right == null){
+        if (node.right == null) {
             return null;
         }
-        if (!isRed(node.right) && !isRed(node.right.left)){
+        if (!isRed(node.right) && !isRed(node.right.left)) {
             node = moveRedRight(node);
         }
 
@@ -244,7 +249,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
             return;
         }
 
-        if (!isRed(root.left) && !isRed(root.right)){
+        if (!isRed(root.left) && !isRed(root.right)) {
             root.color = RED;
         }
 
@@ -263,19 +268,19 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 删除后，和之前一样向上回溯分解4-node
      */
     private Node delete(Node node, Key key) {
-        if (key.compareTo(node.key) < 0)  {
-            if (!isRed(node.left) && !isRed(node.left.left)){
+        if (key.compareTo(node.key) < 0) {
+            if (!isRed(node.left) && !isRed(node.left.left)) {
                 node = moveRedLeft(node);
             }
             node.left = delete(node.left, key);
-        }else {
-            if (isRed(node.left)){
+        } else {
+            if (isRed(node.left)) {
                 node = rotateRight(node);
             }
-            if (key.compareTo(node.key) == 0 && (node.right == null)){
+            if (key.compareTo(node.key) == 0 && (node.right == null)) {
                 return null;
             }
-            if (!isRed(node.right) && !isRed(node.right.left)){
+            if (!isRed(node.right) && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
             if (key.compareTo(node.key) == 0) {
@@ -283,7 +288,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
                 node.key = x.key;
                 node.value = x.value;
                 node.right = deleteMin(node.right);
-            }else {
+            } else {
                 node.right = delete(node.right, key);
             }
         }
@@ -295,7 +300,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 旋转前，x是node的左孩子
      * 旋转后，x的右孩子变为node的左孩子，node变为x的右孩子
      */
-    private Node rotateRight(Node node){
+    private Node rotateRight(Node node) {
         Node x = node.left;
         node.left = x.right;
         x.right = node;
@@ -311,7 +316,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 旋转前，x是node的右孩子
      * 旋转后，x的左孩子变为node的右孩子，node变为x的左孩子
      */
-    private Node rotateLeft(Node node){
+    private Node rotateLeft(Node node) {
         Node x = node.right;
         node.right = x.left;
         x.left = node;
@@ -325,10 +330,10 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     /**
      * 改变节点及其两个子节点的颜色
      */
-    private void flipColors(Node node){
+    private void flipColors(Node node) {
         node.color = !node.color;
         node.left.color = !node.left.color;
-        node.right.color = ! node.right.color;
+        node.right.color = !node.right.color;
     }
 
     /**
@@ -336,9 +341,9 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 1、node.right.left为黑，说明兄弟节点也是2-node，从父节点借节点，直接color flip即可
      * 2、node.right.left为红，则可以直接从兄弟节点借一个节点过来
      */
-    private Node moveRedLeft(Node node){
+    private Node moveRedLeft(Node node) {
         flipColors(node);
-        if (isRed(node.right.left)){
+        if (isRed(node.right.left)) {
             node.right = rotateRight(node.right);
             node = rotateLeft(node);
             flipColors(node);
@@ -351,9 +356,9 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * 1、兄弟节点是2-node，则从父节点中借一个过来，然后和兄弟节点合并成一个4-node
      * 2、兄弟节点不是2-node，就可以直接从兄弟节点借一个节点过来
      */
-    private Node moveRedRight(Node node){
+    private Node moveRedRight(Node node) {
         flipColors(node);
-        if (isRed(node.left.left)){
+        if (isRed(node.left.left)) {
             node = rotateRight(node);
             flipColors(node);
         }
@@ -363,14 +368,14 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     /**
      * 红黑树平衡
      */
-    private Node balance(Node node){
-        if (isRed(node.right)){
+    private Node balance(Node node) {
+        if (isRed(node.right)) {
             node = rotateLeft(node);
         }
-        if (isRed(node.left) && isRed(node.left.left)){
+        if (isRed(node.left) && isRed(node.left.left)) {
             node = rotateRight(node);
         }
-        if (isRed(node.left) && isRed(node.right)){
+        if (isRed(node.left) && isRed(node.right)) {
             flipColors(node);
         }
 
@@ -400,7 +405,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node max(Node x) {
-        if (x.right == null){
+        if (x.right == null) {
             return x;
         }
         return max(x.right);
@@ -428,7 +433,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         if (x == null) {
             return true;
         }
-        if (isRed(x.right)){
+        if (isRed(x.right)) {
             return false;
         }
         if (x != root && isRed(x) && isRed(x.left)) {
@@ -441,7 +446,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         int black = 0;
         Node x = root;
         while (x != null) {
-            if(!isRed(x)){
+            if (!isRed(x)) {
                 black++;
             }
             x = x.left;

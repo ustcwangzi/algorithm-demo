@@ -12,19 +12,26 @@ import java.util.List;
 
 /**
  * <p>基于拉链法的散列表查找</p>
- *
- * <p>发生冲突的元素都存储在链表中</p>
+ * <p>
+ *     发生冲突的元素都存储在链表中
+ * </p>
  *
  * @author wangzi
  */
 public class SeparateChainingHashSearch<Key, Value> {
     private static final int INIT_CAPACITY = 4;
 
-    /** 存储键值对的数量 */
+    /**
+     * 存储键值对的数量
+     */
     private int paris;
-    /** hash表的长度 */
+    /**
+     * hash表的长度
+     */
     private int tableSize;
-    /** 使用链表存储数据 */
+    /**
+     * 使用链表存储数据
+     */
     private SequentialSearch<Key, Value>[] st;
 
     public SeparateChainingHashSearch() {
@@ -34,15 +41,15 @@ public class SeparateChainingHashSearch<Key, Value> {
     public SeparateChainingHashSearch(int tableSize) {
         this.tableSize = tableSize;
         this.st = (SequentialSearch<Key, Value>[]) new SequentialSearch[tableSize];
-        for (int i = 0; i < tableSize; i++){
+        for (int i = 0; i < tableSize; i++) {
             st[i] = new SequentialSearch<>();
         }
     }
 
-    private void resize(int capacity){
+    private void resize(int capacity) {
         SeparateChainingHashSearch<Key, Value> temp = new SeparateChainingHashSearch<>(capacity);
-        for (int i = 0; i< tableSize; i++){
-            for (Key key : st[i].keys()){
+        for (int i = 0; i < tableSize; i++) {
+            for (Key key : st[i].keys()) {
                 temp.put(key, st[i].get(key));
             }
         }
@@ -51,70 +58,70 @@ public class SeparateChainingHashSearch<Key, Value> {
         this.st = temp.st;
     }
 
-    private int hash(Key key){
+    private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % tableSize;
     }
 
-    public int size(){
+    public int size() {
         return tableSize;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size() == 0;
     }
 
-    public boolean contains(Key key){
-        if (key == null){
+    public boolean contains(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         return get(key) != null;
     }
 
-    public Value get(Key key){
-        if (key == null){
+    public Value get(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         int i = hash(key);
         return st[i].get(key);
     }
 
-    public void put(Key key, Value value){
-        if (key == null){
+    public void put(Key key, Value value) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
-        if (value == null){
+        if (value == null) {
             delete(key);
             return;
         }
 
-        if (paris >= 10*tableSize){
-            resize(2*tableSize);
+        if (paris >= 10 * tableSize) {
+            resize(2 * tableSize);
         }
 
         int i = hash(key);
-        if (!st[i].contains(key)){
+        if (!st[i].contains(key)) {
             paris++;
         }
         st[i].put(key, value);
     }
 
-    public void delete(Key key){
-        if (key == null){
+    public void delete(Key key) {
+        if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
 
         int i = hash(key);
-        if (st[i].contains(key)){
+        if (st[i].contains(key)) {
             paris--;
         }
         st[i].delete(key);
 
-        if (tableSize > INIT_CAPACITY && paris <= 2*tableSize){
-            resize(tableSize/2);
+        if (tableSize > INIT_CAPACITY && paris <= 2 * tableSize) {
+            resize(tableSize / 2);
         }
     }
 
-    public Iterable<Key> keys(){
+    public Iterable<Key> keys() {
         List<Key> list = new ArrayList<>();
         for (int i = 0; i < tableSize; i++) {
             for (Key key : st[i].keys()) {

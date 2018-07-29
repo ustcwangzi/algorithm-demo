@@ -18,13 +18,21 @@ import java.util.List;
  * @author wangzi
  */
 public class ConnectedComponent {
-    /** 标记是否遍历过 */
+    /**
+     * 标记是否遍历过
+     */
     private boolean[] marked;
-    /** 某一顶点所属联通分量 */
+    /**
+     * 某一顶点所属联通分量
+     */
     private int[] id;
-    /** 某一联通分量中顶点的个数 */
+    /**
+     * 某一联通分量中顶点的个数
+     */
     private int[] size;
-    /** 联通分量个数 */
+    /**
+     * 联通分量个数
+     */
     private int count;
 
     public ConnectedComponent(Graph graph) {
@@ -32,20 +40,20 @@ public class ConnectedComponent {
         this.id = new int[graph.vertices()];
         this.size = new int[graph.vertices()];
 
-        for (int v = 0; v < graph.vertices(); v++){
-            if (!marked[v]){
+        for (int v = 0; v < graph.vertices(); v++) {
+            if (!marked[v]) {
                 dfs(graph, v);
                 count++;
             }
         }
     }
 
-    private void dfs(Graph graph, int v){
+    private void dfs(Graph graph, int v) {
         marked[v] = true;
         id[v] = count;
         size[count]++;
         for (int w : graph.adj(v)) {
-            if (!marked[w]){
+            if (!marked[w]) {
                 dfs(graph, w);
             }
         }
@@ -67,12 +75,12 @@ public class ConnectedComponent {
         return id(v) == id(w);
     }
 
-    public List<List<Integer>> components(Graph graph){
+    public List<List<Integer>> components(Graph graph) {
         List<List<Integer>> list = new ArrayList<>();
-        for (int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             list.add(new ArrayList<>());
         }
-        for (int v = 0; v < graph.vertices(); v++){
+        for (int v = 0; v < graph.vertices(); v++) {
             list.get(id(v)).add(v);
         }
         return list;
@@ -81,7 +89,7 @@ public class ConnectedComponent {
     private void validateVertex(int v) {
         int length = marked.length;
         if (v < 0 || v >= length) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (length-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (length - 1));
         }
     }
 
@@ -91,9 +99,9 @@ public class ConnectedComponent {
         List<List<Integer>> components = component.components(graph);
 
         System.out.println(components.size() + " components");
-        for (int i = 0; i < components.size(); i++){
-            System.out.print( i + 1 + " component: ");
-            for (int v : components.get(i)){
+        for (int i = 0; i < components.size(); i++) {
+            System.out.print(i + 1 + " component: ");
+            for (int v : components.get(i)) {
                 System.out.print(v + " ");
             }
             System.out.println();

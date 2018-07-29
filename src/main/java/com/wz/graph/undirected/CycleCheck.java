@@ -18,30 +18,34 @@ import java.util.List;
  * @author wangzi
  */
 public class CycleCheck {
-    /** 标记是否遍历过 */
+    /**
+     * 标记是否遍历过
+     */
     private boolean[] marked;
-    /** 从起点到一个顶点的已知路径上的最后一个顶点 */
+    /**
+     * 从起点到一个顶点的已知路径上的最后一个顶点
+     */
     private int[] edgeTo;
     private List<Integer> cycle;
 
     public CycleCheck(Graph graph) {
-        if (hasSelfLoop(graph) || hasParallelEdges(graph)){
+        if (hasSelfLoop(graph) || hasParallelEdges(graph)) {
             return;
         }
         this.marked = new boolean[graph.vertices()];
         this.edgeTo = new int[graph.vertices()];
 
-        for (int v = 0; v < graph.vertices(); v++){
-            if (!marked[v]){
+        for (int v = 0; v < graph.vertices(); v++) {
+            if (!marked[v]) {
                 dfs(graph, -1, v);
             }
         }
     }
 
-    private boolean hasSelfLoop(Graph graph){
-        for (int v = 0; v < graph.vertices(); v++){
-            for (int w : graph.adj(v)){
-                if (v == w){
+    private boolean hasSelfLoop(Graph graph) {
+        for (int v = 0; v < graph.vertices(); v++) {
+            for (int w : graph.adj(v)) {
+                if (v == w) {
                     cycle = new ArrayList<>();
                     cycle.add(v);
                     cycle.add(v);
@@ -52,11 +56,11 @@ public class CycleCheck {
         return false;
     }
 
-    private boolean hasParallelEdges(Graph graph){
+    private boolean hasParallelEdges(Graph graph) {
         this.marked = new boolean[graph.vertices()];
         for (int v = 0; v < graph.vertices(); v++) {
             for (int w : graph.adj(v)) {
-                if (marked[w]){
+                if (marked[w]) {
                     cycle = new ArrayList<>();
                     cycle.add(v);
                     cycle.add(w);
@@ -65,29 +69,29 @@ public class CycleCheck {
                 }
                 marked[w] = true;
             }
-            for (int w : graph.adj(v)){
+            for (int w : graph.adj(v)) {
                 marked[w] = false;
             }
         }
         return false;
     }
 
-    public boolean hasCycle(){
+    public boolean hasCycle() {
         return cycle != null;
     }
 
-    private void dfs(Graph graph, int u, int v){
+    private void dfs(Graph graph, int u, int v) {
         marked[v] = true;
-        for (int w : graph.adj(v)){
-            if (cycle != null){
+        for (int w : graph.adj(v)) {
+            if (cycle != null) {
                 return;
             }
-            if (!marked[w]){
+            if (!marked[w]) {
                 edgeTo[w] = v;
                 dfs(graph, v, w);
-            }else if (w != u){
+            } else if (w != u) {
                 cycle = new ArrayList<>();
-                for (int x = v; x != w; x = edgeTo[x]){
+                for (int x = v; x != w; x = edgeTo[x]) {
                     cycle.add(x);
                 }
                 cycle.add(w);
@@ -96,7 +100,7 @@ public class CycleCheck {
         }
     }
 
-    public Iterable<Integer> cycle(){
+    public Iterable<Integer> cycle() {
         return cycle;
     }
 
@@ -104,12 +108,12 @@ public class CycleCheck {
         Graph graph = GraphUtils.initGraph();
         CycleCheck check = new CycleCheck(graph);
 
-        if (check.hasCycle()){
-            for (int v : check.cycle()){
+        if (check.hasCycle()) {
+            for (int v : check.cycle()) {
                 System.out.print(v + " ");
             }
             System.out.println();
-        }else {
+        } else {
             System.out.println("no cycle");
         }
     }

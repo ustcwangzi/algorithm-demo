@@ -21,13 +21,17 @@ import com.wz.utils.SortUtils;
  * @author wangzi
  */
 public class MaxPriorityQueue<T extends Comparable<T>> {
-    /** 基于堆的完全二叉树 */
+    /**
+     * 基于堆的完全二叉树
+     */
     private T[] pQueue;
-    /** 存储在[1...N]中 */
+    /**
+     * 存储在[1...N]中
+     */
     private int N = 0;
 
     public MaxPriorityQueue(int initCapacity) {
-        if (initCapacity < 0){
+        if (initCapacity < 0) {
             throw new IllegalArgumentException();
         }
         pQueue = (T[]) new Comparable[initCapacity + 1];
@@ -40,10 +44,10 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
     public MaxPriorityQueue(T[] keys) {
         N = keys.length;
         pQueue = (T[]) new Comparable[N + 1];
-        for (int i = 0; i < N; i++){
-            pQueue[i+1] = keys[i];
+        for (int i = 0; i < N; i++) {
+            pQueue[i + 1] = keys[i];
         }
-        for (int k = N/2; k >= 1; k--){
+        for (int k = N / 2; k >= 1; k--) {
             sink(k);
         }
         assert isMaxHeap();
@@ -57,22 +61,22 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         if (k > N) {
             return true;
         }
-        int left = 2*k;
-        int right = 2*k + 1;
-        if (left  <= N && SortUtils.less(pQueue[k], pQueue[left])){
+        int left = 2 * k;
+        int right = 2 * k + 1;
+        if (left <= N && SortUtils.less(pQueue[k], pQueue[left])) {
             return false;
         }
-        if (right <= N && SortUtils.less(pQueue[k], pQueue[right])){
+        if (right <= N && SortUtils.less(pQueue[k], pQueue[right])) {
             return false;
         }
         return isMaxHeap(left) && isMaxHeap(right);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return N == 0;
     }
 
-    public int size(){
+    public int size() {
         return N;
     }
 
@@ -86,7 +90,7 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
     }
 
 
-    public void insert(T value){
+    public void insert(T value) {
         if (N == pQueue.length - 1) {
             resize(2 * pQueue.length);
         }
@@ -95,15 +99,15 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
         assert isMaxHeap();
     }
 
-    public T getMax(){
-        if (isEmpty()){
+    public T getMax() {
+        if (isEmpty()) {
             return null;
         }
         return pQueue[1];
     }
 
-    public T delMax(){
-        if (isEmpty()){
+    public T delMax() {
+        if (isEmpty()) {
             return null;
         }
         T max = pQueue[1];
@@ -120,10 +124,10 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
      * 位置k的元素上浮，由下至上调整堆
      * 即：若当前元素大于父节点，交换
      */
-    private void swim(int k){
-        while (k > 1 && SortUtils.less(pQueue[k/2], pQueue[k])){
-            SortUtils.exch(pQueue,k/2, k);
-            k = k/2;
+    private void swim(int k) {
+        while (k > 1 && SortUtils.less(pQueue[k / 2], pQueue[k])) {
+            SortUtils.exch(pQueue, k / 2, k);
+            k = k / 2;
         }
     }
 
@@ -131,18 +135,18 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
      * 位置k的元素下沉，由上至下调整堆
      * 即：当前元素与子节点中较小的一个进行交换
      */
-    private void sink(int k){
-        while (2*k <= N){
-            int j = 2*k;
+    private void sink(int k) {
+        while (2 * k <= N) {
+            int j = 2 * k;
             // 存在右孩子时，找出左右孩子中较大的一个
-            if (j < N && j + 1 < N && SortUtils.less(pQueue[j], pQueue[j + 1])){
+            if (j < N && j + 1 < N && SortUtils.less(pQueue[j], pQueue[j + 1])) {
                 j++;
             }
             // 如果孩子中较大的一个大于当前位置k的元素，交换
-            if (SortUtils.less(pQueue[k], pQueue[j])){
+            if (SortUtils.less(pQueue[k], pQueue[j])) {
                 SortUtils.exch(pQueue, k, j);
                 k = j;
-            }else {
+            } else {
                 break;
             }
         }

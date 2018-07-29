@@ -25,13 +25,13 @@ import com.wz.utils.SortUtils;
  * @author wangzi
  */
 public class Insertion {
-    public static void sort(Comparable[] arr){
+    public static void sort(Comparable[] arr) {
         int length = arr.length;
-        for (int i = 1; i < length; i++){
+        for (int i = 1; i < length; i++) {
             Comparable temp = arr[i];  //[0,i-1]已经有序
             int j;  // 找到temp的位置
-            for (j = i; j > 0 && SortUtils.less(temp, arr[j-1]); j--){
-                arr[j] = arr[j-1];  // 元素后移
+            for (j = i; j > 0 && SortUtils.less(temp, arr[j - 1]); j--) {
+                arr[j] = arr[j - 1];  // 元素后移
             }
             arr[j] = temp;
         }

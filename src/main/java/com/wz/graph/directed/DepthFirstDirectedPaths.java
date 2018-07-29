@@ -19,11 +19,17 @@ import java.util.List;
  * @author wangzi
  */
 public class DepthFirstDirectedPaths {
-    /** 标记是否可达 */
+    /**
+     * 标记是否可达
+     */
     private boolean[] marked;
-    /** 从起点到一个顶点的已知路径上的最后一个顶点 */
+    /**
+     * 从起点到一个顶点的已知路径上的最后一个顶点
+     */
     private int[] edgeTo;
-    /** 起点 */
+    /**
+     * 起点
+     */
     private final int source;
 
     public DepthFirstDirectedPaths(Digraph digraph, int source) {
@@ -34,28 +40,28 @@ public class DepthFirstDirectedPaths {
         dfs(digraph, source);
     }
 
-    private void dfs(Digraph digraph, int v){
+    private void dfs(Digraph digraph, int v) {
         marked[v] = true;
-        for (int w : digraph.adj(v)){
-            if (!marked[w]){
+        for (int w : digraph.adj(v)) {
+            if (!marked[w]) {
                 edgeTo[w] = v;
                 dfs(digraph, w);
             }
         }
     }
 
-    public boolean hasPathTo(int v){
+    public boolean hasPathTo(int v) {
         validateVertex(v);
         return marked[v];
     }
 
-    public Iterable<Integer> pathTo(int v){
+    public Iterable<Integer> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)){
+        if (!hasPathTo(v)) {
             return null;
         }
         List<Integer> path = new ArrayList<>();
-        for (int w = v; w != source; w = edgeTo[w]){
+        for (int w = v; w != source; w = edgeTo[w]) {
             path.add(w);
         }
         path.add(source);
@@ -66,7 +72,7 @@ public class DepthFirstDirectedPaths {
     private void validateVertex(int v) {
         int length = marked.length;
         if (v < 0 || v >= length) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (length-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (length - 1));
         }
     }
 
@@ -75,18 +81,18 @@ public class DepthFirstDirectedPaths {
         int source = 3;
         DepthFirstDirectedPaths directedPaths = new DepthFirstDirectedPaths(digraph, source);
 
-        for (int v = 0; v < digraph.vertices(); v++){
-            if (directedPaths.hasPathTo(v)){
+        for (int v = 0; v < digraph.vertices(); v++) {
+            if (directedPaths.hasPathTo(v)) {
                 System.out.printf("%d to %d: ", source, v);
-                for (int w : directedPaths.pathTo(v)){
-                    if (w == source){
+                for (int w : directedPaths.pathTo(v)) {
+                    if (w == source) {
                         System.out.print(w);
-                    }else {
+                    } else {
                         System.out.print("-" + w);
                     }
                 }
                 System.out.println();
-            }else {
+            } else {
                 System.out.printf("%d to %d not connected\n", source, v);
             }
         }

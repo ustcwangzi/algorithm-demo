@@ -19,7 +19,7 @@ public class Bag<Item> implements Iterable<Item> {
     private Node<Item> first;
     private int size;
 
-    private static class Node<Item>{
+    private static class Node<Item> {
         private Item item;
         private Node<Item> next;
     }
@@ -29,18 +29,18 @@ public class Bag<Item> implements Iterable<Item> {
         this.size = 0;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return first == null;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
     /**
      * 头插法加入元素
      */
-    public void add(Item item){
+    public void add(Item item) {
         Node<Item> oldFirst = first;
         first = new Node<>();
         first.item = item;
@@ -67,7 +67,7 @@ public class Bag<Item> implements Iterable<Item> {
 
         @Override
         public Item next() {
-            if (!hasNext()){
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             Item item = current.item;

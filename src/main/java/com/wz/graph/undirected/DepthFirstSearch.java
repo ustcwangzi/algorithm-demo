@@ -22,9 +22,13 @@ import com.wz.utils.GraphUtils;
  * @author wangzi
  */
 public class DepthFirstSearch {
-    /** 标记是否遍历过 */
+    /**
+     * 标记是否遍历过
+     */
     private boolean[] marked;
-    /** 遍历过的节点数量 */
+    /**
+     * 遍历过的节点数量
+     */
     private int count;
 
     public DepthFirstSearch(Graph graph, int source) {
@@ -33,43 +37,43 @@ public class DepthFirstSearch {
         dfs(graph, source);
     }
 
-    private void dfs(Graph graph, int v){
+    private void dfs(Graph graph, int v) {
         count++;
         marked[v] = true;
-        for (int w : graph.adj(v)){
-            if (!marked[w]){
+        for (int w : graph.adj(v)) {
+            if (!marked[w]) {
                 dfs(graph, w);
             }
         }
     }
 
-    public boolean marked(int v){
+    public boolean marked(int v) {
         validateVertex(v);
         return marked[v];
     }
 
-    public int count(){
+    public int count() {
         return count;
     }
 
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V) {
-            throw new IllegalArgumentException("vertex must between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex must between 0 and " + (V - 1));
         }
     }
 
     public static void main(String[] args) {
         Graph graph = GraphUtils.initGraph();
         DepthFirstSearch search = new DepthFirstSearch(graph, 1);
-        for (int v = 0; v < graph.vertices(); v++){
-            if (search.marked(v)){
+        for (int v = 0; v < graph.vertices(); v++) {
+            if (search.marked(v)) {
                 System.out.print(v + " ");
             }
         }
-        if (search.count != graph.vertices()){
+        if (search.count != graph.vertices()) {
             System.out.println("not connected");
-        }else {
+        } else {
             System.out.println("connected");
         }
     }
