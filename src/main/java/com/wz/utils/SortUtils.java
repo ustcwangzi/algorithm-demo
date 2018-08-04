@@ -26,6 +26,14 @@ public class SortUtils {
     }
 
     /**
+     * 元素比较
+     * self  > other : true
+     */
+    public static boolean greater(Comparable self, Comparable other) {
+        return other.compareTo(self) < 0;
+    }
+
+    /**
      * 元素交换
      */
     public static void exch(Comparable[] arr, int i, int j) {
