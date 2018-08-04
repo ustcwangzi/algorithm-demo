@@ -8,6 +8,8 @@
 package com.wz.utils;
 
 import com.wz.graph.directed.Digraph;
+import com.wz.graph.mst.Edge;
+import com.wz.graph.mst.EdgeWeightedGraph;
 import com.wz.graph.undirected.Graph;
 
 /**
@@ -57,7 +59,7 @@ public class GraphUtils {
         return digraph;
     }
 
-    public static Digraph initDigraph(){
+    public static Digraph initDigraph() {
         Digraph digraph = new Digraph(13);
         digraph.addEdge(0, 1);
         digraph.addEdge(0, 5);
@@ -75,5 +77,26 @@ public class GraphUtils {
         digraph.addEdge(9, 12);
         digraph.addEdge(11, 12);
         return digraph;
+    }
+
+    public static EdgeWeightedGraph initEdgeWeightedGraph() {
+        EdgeWeightedGraph weightedGraph = new EdgeWeightedGraph(8);
+        weightedGraph.addEdge(new Edge(0, 2, 26));
+        weightedGraph.addEdge(new Edge(0, 4, 38));
+        weightedGraph.addEdge(new Edge(0, 6, 58));
+        weightedGraph.addEdge(new Edge(0, 7, 16));
+        weightedGraph.addEdge(new Edge(1, 2, 36));
+        weightedGraph.addEdge(new Edge(1, 3, 29));
+        weightedGraph.addEdge(new Edge(1, 5, 32));
+        weightedGraph.addEdge(new Edge(1, 7, 19));
+        weightedGraph.addEdge(new Edge(2, 3, 17));
+        weightedGraph.addEdge(new Edge(2, 6, 40));
+        weightedGraph.addEdge(new Edge(2, 7, 34));
+        weightedGraph.addEdge(new Edge(3, 6, 52));
+        weightedGraph.addEdge(new Edge(4, 5, 35));
+        weightedGraph.addEdge(new Edge(4, 6, 93));
+        weightedGraph.addEdge(new Edge(4, 7, 37));
+        weightedGraph.addEdge(new Edge(5, 7, 28));
+        return weightedGraph;
     }
 }
