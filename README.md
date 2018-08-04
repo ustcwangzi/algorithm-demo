@@ -22,3 +22,13 @@
 - ConnectedComponent：计算联通分量
 - BreadthFirstPaths：广度优先遍历查找路径
 ### directed 有向图
+- Digraph：使用邻接表表示有向图
+- DepthFirstOrder：基于深度优先搜索的顶点排序
+- DepthFirstDirectedPaths：使用深度优先搜索查找有向图中的路径
+- BreadthFirstDirectedPaths：使用广度优先搜索查找有向图中的路径
+- DirectedCycle：寻找有向环
+- DirectedDFS：深度优先遍历计算有向图的可达性
+- KosarajuConnectedComponent：计算强联通分量
+- Topological：拓扑排序
+- TransitiveClosure：顶点对的可达性
+### mst 最小生成树
