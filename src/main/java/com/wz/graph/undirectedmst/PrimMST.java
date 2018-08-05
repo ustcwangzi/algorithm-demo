@@ -120,7 +120,7 @@ public class PrimMST {
     }
 
     public static void main(String[] args) {
-        WeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph graph = GraphUtils.initWeightedGraph();
         PrimMST mst = new PrimMST(graph);
         System.out.println(mst.weight());
         for (Edge edge : mst.edges()) {

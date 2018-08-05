@@ -37,7 +37,7 @@
 - Topological：拓扑排序
 - TransitiveClosure：顶点对的可达性
 ### undirectedmst 无向图最小生成树
-- EdgeWeightedGraph：加权无向图
+- WeightedGraph：加权无向图
 - LazyPrimMST：Prim算法延时实现
 - PrimMST：Prim算法即时实现
 - KruskalMST：Kruskal算法

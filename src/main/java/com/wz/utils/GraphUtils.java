@@ -79,7 +79,7 @@ public class GraphUtils {
         return digraph;
     }
 
-    public static WeightedGraph initEdgeWeightedGraph() {
+    public static WeightedGraph initWeightedGraph() {
         WeightedGraph weightedGraph = new WeightedGraph(8);
         weightedGraph.addEdge(new Edge(0, 2, 26));
         weightedGraph.addEdge(new Edge(0, 4, 38));

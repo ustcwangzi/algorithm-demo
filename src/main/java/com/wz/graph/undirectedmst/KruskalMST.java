@@ -65,7 +65,7 @@ public class KruskalMST {
     }
 
     public static void main(String[] args) {
-        WeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph graph = GraphUtils.initWeightedGraph();
         KruskalMST mst = new KruskalMST(graph);
         System.out.println(mst.weight());
         for (Edge edge : mst.edges()) {

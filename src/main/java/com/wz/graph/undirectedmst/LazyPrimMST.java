@@ -97,7 +97,7 @@ public class LazyPrimMST {
     }
 
     public static void main(String[] args) {
-        WeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph graph = GraphUtils.initWeightedGraph();
         LazyPrimMST mst = new LazyPrimMST(graph);
         System.out.println(mst.weight);
         for (Edge edge : mst.edges()) {
