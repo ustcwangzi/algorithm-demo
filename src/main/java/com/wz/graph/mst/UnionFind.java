@@ -13,7 +13,7 @@ import com.wz.utils.UnionFindUtils;
  * <p>动态图连通性</p>
  * <p>
  *     两个节点的联通分量ID相同时，即认定为两者处于同一个联通分量之中
- *     因此在union时，需要遍历这个联通分量ID数组，修改联通分量ID
+ *     因此在union时，需要遍历整个联通分量ID数组，修改联通分量ID
  * </p>
  *
  * @author wangzi
