@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.undirectedmst;
+package com.wz.graph.mst;
 
 /**
  * <p>带权重的边</p>

@@ -8,6 +8,7 @@
 package com.wz.graph.directedmst;
 
 import com.wz.graph.Bag;
+import com.wz.utils.GraphUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,6 +111,7 @@ public class WeightedDigraph {
     }
 
     public static void main(String[] args) {
-
+        WeightedDigraph digraph = GraphUtils.initWeightedDigraph();
+        System.out.println(digraph);
     }
 }

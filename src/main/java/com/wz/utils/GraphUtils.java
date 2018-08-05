@@ -8,9 +8,11 @@
 package com.wz.utils;
 
 import com.wz.graph.directed.Digraph;
-import com.wz.graph.undirectedmst.Edge;
-import com.wz.graph.undirectedmst.WeightedGraph;
+import com.wz.graph.directedmst.DirectedEdge;
+import com.wz.graph.directedmst.WeightedDigraph;
 import com.wz.graph.undirected.Graph;
+import com.wz.graph.mst.Edge;
+import com.wz.graph.mst.WeightedGraph;
 
 /**
  * <p>图工具类</p>
@@ -98,5 +100,25 @@ public class GraphUtils {
         weightedGraph.addEdge(new Edge(4, 7, 37));
         weightedGraph.addEdge(new Edge(5, 7, 28));
         return weightedGraph;
+    }
+
+    public static WeightedDigraph initWeightedDigraph() {
+        WeightedDigraph digraph = new WeightedDigraph(8);
+        digraph.addEdge(new DirectedEdge(0, 2, 26));
+        digraph.addEdge(new DirectedEdge(0, 4, 38));
+        digraph.addEdge(new DirectedEdge(1, 3, 29));
+        digraph.addEdge(new DirectedEdge(2, 7, 34));
+        digraph.addEdge(new DirectedEdge(3, 6, 52));
+        digraph.addEdge(new DirectedEdge(4, 5, 35));
+        digraph.addEdge(new DirectedEdge(4, 7, 37));
+        digraph.addEdge(new DirectedEdge(5, 1, 32));
+        digraph.addEdge(new DirectedEdge(5, 4, 35));
+        digraph.addEdge(new DirectedEdge(5, 7, 28));
+        digraph.addEdge(new DirectedEdge(6, 0, 58));
+        digraph.addEdge(new DirectedEdge(6, 2, 40));
+        digraph.addEdge(new DirectedEdge(6, 4, 93));
+        digraph.addEdge(new DirectedEdge(7, 3, 39));
+        digraph.addEdge(new DirectedEdge(7, 5, 28));
+        return digraph;
     }
 }
