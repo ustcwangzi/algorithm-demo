@@ -40,3 +40,4 @@
 - EdgeWeightedGraph：加权无向图
 - LazyPrimMST：Prim算法延时实现
 - PrimMST：Prim算法即时实现
+- KruskalMST：Kruskal算法
