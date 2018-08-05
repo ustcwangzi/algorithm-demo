@@ -10,6 +10,9 @@ package com.wz.graph.mst;
 import com.wz.graph.Bag;
 import com.wz.utils.GraphUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>加权无向图</p>
  *
@@ -47,10 +50,6 @@ public class EdgeWeightedGraph {
         return vertices;
     }
 
-    public int edges() {
-        return edges;
-    }
-
     private void validateVertex(int v) {
         if (v < 0 || v >= vertices) {
             throw new IllegalArgumentException("vertex must between 0 and " + (vertices - 1));
@@ -75,6 +74,25 @@ public class EdgeWeightedGraph {
     public int degree(int v) {
         validateVertex(v);
         return adjacent[v].size();
+    }
+
+    public Iterable<Edge> edges() {
+        List<Edge> edges = new ArrayList<>();
+        for (int v = 0; v < vertices; v++) {
+            int selfLoops = 0;
+            for (Edge edge : adj(v)) {
+                if (edge.other(v) > v) {
+                    edges.add(edge);
+                } else if (edge.other(v) == v) {
+                    // 自环的边只添加一次
+                    if (selfLoops % 2 == 0) {
+                        edges.add(edge);
+                    }
+                    selfLoops++;
+                }
+            }
+        }
+        return edges;
     }
 
     @Override
