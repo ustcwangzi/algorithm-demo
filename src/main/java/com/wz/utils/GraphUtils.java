@@ -9,7 +9,7 @@ package com.wz.utils;
 
 import com.wz.graph.directed.Digraph;
 import com.wz.graph.undirectedmst.Edge;
-import com.wz.graph.undirectedmst.EdgeWeightedGraph;
+import com.wz.graph.undirectedmst.WeightedGraph;
 import com.wz.graph.undirected.Graph;
 
 /**
@@ -79,8 +79,8 @@ public class GraphUtils {
         return digraph;
     }
 
-    public static EdgeWeightedGraph initEdgeWeightedGraph() {
-        EdgeWeightedGraph weightedGraph = new EdgeWeightedGraph(8);
+    public static WeightedGraph initEdgeWeightedGraph() {
+        WeightedGraph weightedGraph = new WeightedGraph(8);
         weightedGraph.addEdge(new Edge(0, 2, 26));
         weightedGraph.addEdge(new Edge(0, 4, 38));
         weightedGraph.addEdge(new Edge(0, 6, 58));

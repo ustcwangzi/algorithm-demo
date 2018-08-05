@@ -36,7 +36,7 @@ public class KruskalMST {
      */
     private List<Edge> mst;
 
-    public KruskalMST(EdgeWeightedGraph graph) {
+    public KruskalMST(WeightedGraph graph) {
         this.mst = new ArrayList<>();
         MinPriorityQueue<Edge> pQueue = new MinPriorityQueue<>();
         for (Edge edge : graph.edges()) {
@@ -65,7 +65,7 @@ public class KruskalMST {
     }
 
     public static void main(String[] args) {
-        EdgeWeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
         KruskalMST mst = new KruskalMST(graph);
         System.out.println(mst.weight());
         for (Edge edge : mst.edges()) {

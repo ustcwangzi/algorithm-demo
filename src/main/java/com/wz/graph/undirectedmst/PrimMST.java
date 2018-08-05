@@ -48,7 +48,7 @@ public class PrimMST {
      */
     private Map<Integer, Double> map;
 
-    public PrimMST(EdgeWeightedGraph graph) {
+    public PrimMST(WeightedGraph graph) {
         this.edgeTo = new Edge[graph.vertices()];
         this.distTo = new double[graph.vertices()];
         this.marked = new boolean[graph.vertices()];
@@ -63,7 +63,7 @@ public class PrimMST {
         }
     }
 
-    private void prim(EdgeWeightedGraph graph, int source) {
+    private void prim(WeightedGraph graph, int source) {
         distTo[source] = 0;
         map.put(source, distTo[source]);
         while (!map.isEmpty()) {
@@ -72,7 +72,7 @@ public class PrimMST {
         }
     }
 
-    private void scan(EdgeWeightedGraph graph, int v) {
+    private void scan(WeightedGraph graph, int v) {
         marked[v] = true;
         for (Edge edge : graph.adj(v)) {
             int w = edge.other(v);
@@ -120,7 +120,7 @@ public class PrimMST {
     }
 
     public static void main(String[] args) {
-        EdgeWeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
         PrimMST mst = new PrimMST(graph);
         System.out.println(mst.weight());
         for (Edge edge : mst.edges()) {

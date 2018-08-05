@@ -46,7 +46,7 @@ public class LazyPrimMST {
      */
     private MinPriorityQueue<Edge> pQueue;
 
-    public LazyPrimMST(EdgeWeightedGraph graph) {
+    public LazyPrimMST(WeightedGraph graph) {
         this.mst = new ArrayList<>();
         this.pQueue = new MinPriorityQueue<>();
         this.marked = new boolean[graph.vertices()];
@@ -57,7 +57,7 @@ public class LazyPrimMST {
         }
     }
 
-    private void prim(EdgeWeightedGraph graph, int source) {
+    private void prim(WeightedGraph graph, int source) {
         scan(graph, source);
         while (!pQueue.isEmpty()) {
             // 取出权重最小的边
@@ -82,7 +82,7 @@ public class LazyPrimMST {
     /**
      * 把其中一个顶点是v的边全部加入优先队列
      */
-    private void scan(EdgeWeightedGraph graph, int v) {
+    private void scan(WeightedGraph graph, int v) {
         assert !marked[v];
         marked[v] = true;
         for (Edge edge : graph.adj(v)) {
@@ -97,7 +97,7 @@ public class LazyPrimMST {
     }
 
     public static void main(String[] args) {
-        EdgeWeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph graph = GraphUtils.initEdgeWeightedGraph();
         LazyPrimMST mst = new LazyPrimMST(graph);
         System.out.println(mst.weight);
         for (Edge edge : mst.edges()) {

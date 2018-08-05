@@ -1,5 +1,5 @@
 /**
- * <p>Title: EdgeWeightedGraph</p>
+ * <p>Title: WeightedGraph</p>
  * <p>Description: </p>
  * <p>Created by wangzi on 2018/8/4</p>
  * <p>Emil: ustcwangzi@foxmail.com</p>
@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author wangzi
  */
-public class EdgeWeightedGraph {
+public class WeightedGraph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
     /**
@@ -34,7 +34,7 @@ public class EdgeWeightedGraph {
      */
     private Bag<Edge>[] adjacent;
 
-    public EdgeWeightedGraph(int vertices) {
+    public WeightedGraph(int vertices) {
         if (vertices < 0) {
             throw new IllegalArgumentException("Number of vertices must be nonnegative");
         }
@@ -110,7 +110,7 @@ public class EdgeWeightedGraph {
     }
 
     public static void main(String[] args) {
-        EdgeWeightedGraph weightedGraph = GraphUtils.initEdgeWeightedGraph();
+        WeightedGraph weightedGraph = GraphUtils.initEdgeWeightedGraph();
         System.out.println(weightedGraph);
     }
 }
