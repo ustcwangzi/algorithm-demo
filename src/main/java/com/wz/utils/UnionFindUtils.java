@@ -17,7 +17,7 @@ import com.wz.unionfind.WeightedQuickUnionFind;
  * @author wangzi
  */
 public class UnionFindUtils {
-    public static UnionFind initUnionFind(){
+    public static UnionFind initUnionFind() {
         UnionFind unionFind = new UnionFind(10);
         unionFind.union(0, 5);
         unionFind.union(1, 2);
@@ -30,7 +30,7 @@ public class UnionFindUtils {
         return unionFind;
     }
 
-    public static QuickUnionFind initQuickUnionFind(){
+    public static QuickUnionFind initQuickUnionFind() {
         QuickUnionFind unionFind = new QuickUnionFind(10);
         unionFind.union(0, 5);
         unionFind.union(1, 2);
@@ -43,7 +43,7 @@ public class UnionFindUtils {
         return unionFind;
     }
 
-    public static WeightedQuickUnionFind initWeightedQuickUnionFind(){
+    public static WeightedQuickUnionFind initWeightedQuickUnionFind() {
         WeightedQuickUnionFind unionFind = new WeightedQuickUnionFind(10);
         unionFind.union(0, 5);
         unionFind.union(1, 2);
