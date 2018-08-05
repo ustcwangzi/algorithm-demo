@@ -36,7 +36,7 @@
 - KosarajuConnectedComponent：计算强联通分量
 - Topological：拓扑排序
 - TransitiveClosure：顶点对的可达性
-### mst 最小生成树
+### undirectedmst 无向图最小生成树
 - EdgeWeightedGraph：加权无向图
 - LazyPrimMST：Prim算法延时实现
 - PrimMST：Prim算法即时实现
