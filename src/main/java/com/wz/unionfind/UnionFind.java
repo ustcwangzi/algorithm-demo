@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.mst;
+package com.wz.unionfind;
 
 import com.wz.utils.UnionFindUtils;
 

@@ -14,6 +14,11 @@
 - SeparateChainingHashSearch：基于链表的散列表查找
 - LinearProbingHashSearch：基于线性探测的散列表查找
 
+## unionfind 动态连通性
+- UnionFind：普通UnionFind算法
+- QuickUnionFind：快速UnionFind算法
+- WeightedQuickUnionFind：加权快速UnionFind算法
+
 ## graph 图
 ### undirected 无向图
 - Graph：使用邻接表表示图

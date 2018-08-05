@@ -5,38 +5,44 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.mst;
+package com.wz.unionfind;
 
 import com.wz.utils.UnionFindUtils;
 
 /**
  * <p>动态图连通性</p>
  * <p>
- *     UnionFind中，每次都需要遍历整个联通分量ID数组，QuickUnionFind对其进行优化
- *     两个节点的根节点相同时，即认定为两者处于同一个联通分量之中
- *     因此在union时，只需要将其中一个节点的根节点的根节点指向另一个节点的根节点即可
+ *     QuickUnionFind中，union时将任意一棵树合并到另一棵上，极端情况下，有可能退化成一个链表
+ *     另外，如果将一棵较大的树合并到一棵较小的树上，会产生"畸形树"，WeightedQuickUnionFind对其进行优化
+ *     通过size记录联通分量的大小，在union时，总是将较小的一棵合并到较大的一棵树上
  * </p>
  *
  * @author wangzi
  */
-public class QuickUnionFind {
+public class WeightedQuickUnionFind {
     /**
      * 联通分量ID
      */
     private int[] parent;
     /**
+     * 各个根节点对应的分量大小
+     */
+    private int[] size;
+    /**
      * 联通分量数量
      */
     private int count;
 
-    public QuickUnionFind(int count) {
+    public WeightedQuickUnionFind(int count) {
         if (count < 0) {
             throw new IllegalArgumentException();
         }
         this.count = count;
         this.parent = new int[count];
+        this.size = new int[count];
         for (int i = 0; i < count; i++) {
             parent[i] = i;
+            size[i] = 1;
         }
     }
 
@@ -48,14 +54,13 @@ public class QuickUnionFind {
         validate(p);
         // 找到根节点，即链接指向自己的那个
         while (p != parent[p]) {
-            parent[p] = parent[parent[p]];
             p = parent[p];
         }
         return p;
     }
 
     /**
-     * 连接p、q，将一个的根作为另一个的根的根即可
+     * 连接p、q，将size较大的根作为size较小的根的根
      */
     public void union(int p, int q) {
         int rootP = find(p);
@@ -63,11 +68,15 @@ public class QuickUnionFind {
         if (rootP == rootQ) {
             return;
         }
-        // 也可以是 parent[rootQ] = rootP
-        parent[rootP] = rootQ;
+        if (size[rootP] < size[rootQ]) {
+            parent[rootP] = rootQ;
+            size[rootQ] += size[rootP];
+        } else {
+            parent[rootQ] = rootP;
+            size[rootP] += size[rootQ];
+        }
         count--;
     }
-
 
 
     public int count() {
@@ -89,7 +98,7 @@ public class QuickUnionFind {
     }
 
     public static void main(String[] args) {
-        QuickUnionFind uf = UnionFindUtils.initQuickUnionFind();
+        WeightedQuickUnionFind uf = UnionFindUtils.initWeightedQuickUnionFind();
         System.out.println(uf.count());
     }
 }

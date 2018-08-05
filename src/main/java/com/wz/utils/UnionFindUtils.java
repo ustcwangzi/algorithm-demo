@@ -7,11 +7,12 @@
  */
 package com.wz.utils;
 
-import com.wz.graph.mst.QuickUnionFind;
-import com.wz.graph.mst.UnionFind;
+import com.wz.unionfind.QuickUnionFind;
+import com.wz.unionfind.UnionFind;
+import com.wz.unionfind.WeightedQuickUnionFind;
 
 /**
- * <p></p>
+ * <p>UnionFind工具类</p>
  *
  * @author wangzi
  */
@@ -41,4 +42,19 @@ public class UnionFindUtils {
         unionFind.union(5, 6);
         return unionFind;
     }
+
+    public static WeightedQuickUnionFind initWeightedQuickUnionFind(){
+        WeightedQuickUnionFind unionFind = new WeightedQuickUnionFind(10);
+        unionFind.union(0, 5);
+        unionFind.union(1, 2);
+        unionFind.union(1, 6);
+        unionFind.union(2, 7);
+        unionFind.union(3, 4);
+        unionFind.union(3, 8);
+        unionFind.union(4, 9);
+        unionFind.union(5, 6);
+        return unionFind;
+    }
+
+
 }
