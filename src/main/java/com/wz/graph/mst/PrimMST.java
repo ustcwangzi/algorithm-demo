@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>Prim算法的即时实现</p>
+ * <p>最小生成树Prim算法的即时实现</p>
  * <p>
  *     要优化LazyPrimMST，可从优先队列中删除失效的边，但其实可以删除更多的边
  *     关键在于，有意义的边只是连接树顶点和非树顶点中权重最小的边
