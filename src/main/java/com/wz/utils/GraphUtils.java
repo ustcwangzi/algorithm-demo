@@ -121,4 +121,24 @@ public class GraphUtils {
         digraph.addEdge(new DirectedEdge(7, 5, 28));
         return digraph;
     }
+
+    public static WeightedDigraph initWeightedNegativeDigraph() {
+        WeightedDigraph digraph = new WeightedDigraph(8);
+        digraph.addEdge(new DirectedEdge(0, 2, 26));
+        digraph.addEdge(new DirectedEdge(0, 4, 38));
+        digraph.addEdge(new DirectedEdge(1, 3, 29));
+        digraph.addEdge(new DirectedEdge(2, 7, 34));
+        digraph.addEdge(new DirectedEdge(3, 6, 52));
+        digraph.addEdge(new DirectedEdge(4, 5, 35));
+        digraph.addEdge(new DirectedEdge(4, 7, 37));
+        digraph.addEdge(new DirectedEdge(5, 1, 32));
+        digraph.addEdge(new DirectedEdge(5, 4, 35));
+        digraph.addEdge(new DirectedEdge(5, 7, 28));
+        digraph.addEdge(new DirectedEdge(6, 0, -140));
+        digraph.addEdge(new DirectedEdge(6, 2, -120));
+        digraph.addEdge(new DirectedEdge(6, 4, -125));
+        digraph.addEdge(new DirectedEdge(7, 3, 39));
+        digraph.addEdge(new DirectedEdge(7, 5, 28));
+        return digraph;
+    }
 }
