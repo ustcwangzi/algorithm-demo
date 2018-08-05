@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.directedmst;
+package com.wz.graph.sp;
 
 /**
  * <p>加权有向边</p>

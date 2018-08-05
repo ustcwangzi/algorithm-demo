@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.directedmst;
+package com.wz.graph.sp;
 
 import com.wz.graph.Bag;
 import com.wz.utils.GraphUtils;
@@ -46,7 +46,7 @@ public class WeightedDigraph {
         this.edges = 0;
         this.indegree = new int[vertices];
         this.adjacent = (Bag<DirectedEdge>[]) new Bag[vertices];
-        for (int v = 0; v < vertices; v++){
+        for (int v = 0; v < vertices; v++) {
             adjacent[v] = new Bag<>();
         }
     }
@@ -76,10 +76,10 @@ public class WeightedDigraph {
         return adjacent[v];
     }
 
-    public Iterable<DirectedEdge> edges(){
+    public Iterable<DirectedEdge> edges() {
         List<DirectedEdge> edges = new ArrayList<>();
-        for (int v = 0; v < vertices; v++){
-            for (DirectedEdge edge : adj(v)){
+        for (int v = 0; v < vertices; v++) {
+            for (DirectedEdge edge : adj(v)) {
                 edges.add(edge);
             }
         }
