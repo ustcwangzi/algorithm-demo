@@ -43,3 +43,4 @@
 - KruskalMST：Kruskal算法
 ### sp 最短路径(Shortest Path)
 - WeightedDigraph：加权有向图
+- DijkstraSP：Dijkstra算法
