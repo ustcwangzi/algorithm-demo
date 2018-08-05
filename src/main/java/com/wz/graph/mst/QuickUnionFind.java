@@ -10,13 +10,13 @@ package com.wz.graph.mst;
 /**
  * <p>动态图连通性</p>
  * <p>
- *     两个节点的联通分量ID相同时，即认定为两者处于同一个联通分量之中
- *     因此在union时，需要遍历这个联通分量ID数组，修改联通分量ID
+ *     两个节点的根节点相同时，即认定为两者处于同一个联通分量之中
+ *     因此在union时，只需要将其中一个节点的根节点的根节点指向另一个节点的根节点即可
  * </p>
  *
  * @author wangzi
  */
-public class UnionFind {
+public class QuickUnionFind {
     /**
      * 联通分量ID
      */
@@ -26,7 +26,7 @@ public class UnionFind {
      */
     private int count;
 
-    public UnionFind(int count) {
+    public QuickUnionFind(int count) {
         if (count < 0) {
             throw new IllegalArgumentException();
         }
@@ -63,16 +63,45 @@ public class UnionFind {
         count--;
     }
 
+    /**
+     * 返回p的根节点的联通分量ID
+     * quickUnion()只需要将一个根节点的根节点指向另一个的根节点即可
+     */
+    public int quickFind(int p) {
+        validate(p);
+        // 找到根节点，即链接指向自己的那个
+        while (p != parent[p]) {
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
+    }
+
+    /**
+     * 连接p、q，将一个的根作为另一个的根的根即可
+     */
+    public void quickUnion(int p, int q) {
+        int rootP = quickFind(p);
+        int rootQ = quickFind(q);
+        if (rootP == rootQ) {
+            return;
+        }
+        // 也可以是 parent[rootQ] = rootP
+        parent[rootP] = rootQ;
+        count--;
+    }
+
+
 
     public int count() {
         return count;
     }
 
     /**
-     * 两个节点的联通分量ID相同时，它们存在于同一个联通分量之中
+     * 两个节点的根节点相同时，它们存在于同一个联通分量之中
      */
     public boolean connected(int p, int q) {
-        return find(p) == find(q);
+        return quickFind(p) == quickFind(q);
     }
 
     private void validate(int p) {
@@ -83,7 +112,17 @@ public class UnionFind {
     }
 
     public static void main(String[] args) {
-        UnionFind uf = new UnionFind(10);
+        QuickUnionFind uf = new QuickUnionFind(10);
+        uf.quickUnion(0, 5);
+        uf.quickUnion(1, 2);
+        uf.quickUnion(1, 6);
+        uf.quickUnion(2, 7);
+        uf.quickUnion(3, 4);
+        uf.quickUnion(3, 8);
+        uf.quickUnion(4, 9);
+        uf.quickUnion(5, 6);
+        System.out.println(uf.count);
+        uf = new QuickUnionFind(10);
         uf.union(0, 5);
         uf.union(1, 2);
         uf.union(1, 6);
