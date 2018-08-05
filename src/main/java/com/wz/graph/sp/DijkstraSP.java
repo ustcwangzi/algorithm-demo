@@ -31,7 +31,7 @@ public class DijkstraSP {
      */
     private DirectedEdge[] edgeTo;
     /**
-     * 从起点到一个顶点的已知路径权重
+     * 从起点到一个顶点的已知最短路径权重
      */
     private double[] distTo;
     /**
