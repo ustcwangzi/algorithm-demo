@@ -7,6 +7,8 @@
  */
 package com.wz.graph.mst;
 
+import com.wz.utils.UnionFindUtils;
+
 /**
  * <p>动态图连通性</p>
  * <p>
@@ -83,15 +85,7 @@ public class UnionFind {
     }
 
     public static void main(String[] args) {
-        UnionFind uf = new UnionFind(10);
-        uf.union(0, 5);
-        uf.union(1, 2);
-        uf.union(1, 6);
-        uf.union(2, 7);
-        uf.union(3, 4);
-        uf.union(3, 8);
-        uf.union(4, 9);
-        uf.union(5, 6);
-        System.out.println(uf.count);
+        UnionFind uf = UnionFindUtils.initUnionFind();
+        System.out.println(uf.count());
     }
 }
