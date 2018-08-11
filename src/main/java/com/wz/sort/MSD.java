@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.strsort;
+package com.wz.sort;
 
 import com.wz.utils.StrSortUtils;
 

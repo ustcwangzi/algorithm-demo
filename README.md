@@ -6,6 +6,9 @@
 - Quick：快速排序
 - Merge：归并排序
 - Heap：堆排序
+- LSD：低位优先排序
+- MSD：高位优先排序
+- QuickThreeWay：三向快速排序
 
 ## search 查找
 - SequentialSearch：顺序查找
@@ -45,7 +48,3 @@
 - WeightedDigraph：加权有向图
 - DijkstraSP：Dijkstra算法
 - BellmanFordSP：BellmanFord算法
-
-## strsort 字符串排序
-- LSD：低位优先排序
-- MSD：高位优先排序
