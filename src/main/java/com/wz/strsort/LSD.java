@@ -46,12 +46,12 @@ public class LSD {
 
         // 对第d个字符使用键索引计数法排序
         for (int d = prefix - 1; d >= 0; d--) {
-            // 计算频率
+            // 计算频率，count[n + 1]中统计键值为n的字符串的个数
             int[] count = new int[RADIX + 1];
             for (int i = 0; i < length; i++) {
                 count[arr[i].charAt(d) + 1]++;
             }
-            // 将频率转换为索引
+            // 将频率转换为索引，变换后count[n]正是下一个键值为n的字符串的索引下标
             for (int r = 0; r < RADIX; r++) {
                 count[r + 1] += count[r];
             }
