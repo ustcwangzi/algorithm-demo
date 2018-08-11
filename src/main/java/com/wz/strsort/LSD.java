@@ -35,7 +35,7 @@ public class LSD {
      * 字符串基数，即所有字符串中不同字符的个数
      * 256为8位的ASCII码
      */
-    private static int RADIX = 256;
+    private static final int RADIX = 256;
 
     /**
      * 通过前prefix个字符将arr[]排序
