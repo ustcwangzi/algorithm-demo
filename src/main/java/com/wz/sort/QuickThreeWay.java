@@ -8,9 +8,10 @@
 package com.wz.sort;
 
 /**
- * <p></p>
+ * <p>三向快速排序</p>
  *
  * @author wangzi
  */
 public class QuickThreeWay {
+    
 }

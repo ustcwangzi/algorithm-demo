@@ -7,7 +7,7 @@
  */
 package com.wz.sort;
 
-import com.wz.utils.StrSortUtils;
+import com.wz.utils.SortUtils;
 
 /**
  * <p>低位优先字符串排序(Least Significant Digit)</p>
@@ -67,7 +67,7 @@ public class LSD {
     }
 
     public static void main(String[] args) {
-        String[] arr = StrSortUtils.initArray();
+        String[] arr = SortUtils.initStrArray();
         int length = arr.length;
         int prefix = arr[0].length();
         for (int i = 1; i < length; i++) {

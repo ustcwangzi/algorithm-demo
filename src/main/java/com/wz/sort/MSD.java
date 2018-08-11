@@ -7,7 +7,7 @@
  */
 package com.wz.sort;
 
-import com.wz.utils.StrSortUtils;
+import com.wz.utils.SortUtils;
 
 /**
  * <p>高位优先字符串排序(Most Significant Digit)</p>
@@ -80,7 +80,7 @@ public class MSD {
     }
 
     public static void main(String[] args) {
-        String[] arr = StrSortUtils.initArray();
+        String[] arr = SortUtils.initStrArray();
         sort(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);

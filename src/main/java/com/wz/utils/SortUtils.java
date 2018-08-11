@@ -17,6 +17,15 @@ import java.util.Arrays;
 public class SortUtils {
     public static Integer[] arr = {36, 8, 67, 98, 32, 21};
 
+    public static String[] initStrArray() {
+        return new String[]{
+                "4PGC938", "2IYE230", "3CIO720", "1ICK750",
+                "1OHV845", "4JZY524", "1ICK750", "3CIO720",
+                "1OHV845", "1OHV845", "2RLA629", "2RLA629",
+                "3ATW723"
+        };
+    }
+
     /**
      * 元素比较
      * self < other : true
