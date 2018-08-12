@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author wangzi
  */
-public class TrieSearchTree<T> {
+public class TrieSearchTree<Value> {
     /**
      * 字符串基数，即所有字符串中不同字符的个数
      * 256为8位的ASCII码
@@ -54,12 +54,12 @@ public class TrieSearchTree<T> {
         private Node[] next = new Node[RADIX];
     }
 
-    private T get(String key) {
+    private Value get(String key) {
         if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
         Node node = get(root, key, 0);
-        return node == null ? null : (T) node.value;
+        return node == null ? null : (Value) node.value;
     }
 
     /**
@@ -83,7 +83,7 @@ public class TrieSearchTree<T> {
         return get(key) != null;
     }
 
-    public void put(String key, T value) {
+    public void put(String key, Value value) {
         if (key == null) {
             throw new IllegalArgumentException("argument is null");
         }
@@ -93,7 +93,7 @@ public class TrieSearchTree<T> {
         root = put(root, key, value, 0);
     }
 
-    private Node put(Node node, String key, T value, int d) {
+    private Node put(Node node, String key, Value value, int d) {
         if (node == null) {
             node = new Node();
         }
