@@ -19,6 +19,7 @@ import java.util.List;
  *     三向单词查找树中，字符是显式的保存在节点中的，只有沿着中间链接前进时才会根据字符找到键
  * </p>
  * <p>三向单词查找树的结构取决于键的插入顺序</p>
+ * <p>三向单词查找树适用于非随机的键</p>
  * @author wangzi
  */
 public class ThreeWaySearchTree<Value> {
