@@ -17,6 +17,7 @@
 - SeparateChainingHashSearch：基于链表的散列表查找
 - LinearProbingHashSearch：基于线性探测的散列表查找
 - TrieSearchTree：单词查找树
+- ThreeWaySearchTree：三向单词查找树
 
 ## unionfind 动态连通性
 - UnionFind：普通UnionFind算法
