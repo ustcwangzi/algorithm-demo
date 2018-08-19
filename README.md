@@ -16,6 +16,7 @@
 - BinarySearchTree：二叉查找树
 - SeparateChainingHashSearch：基于链表的散列表查找
 - LinearProbingHashSearch：基于线性探测的散列表查找
+### str 字符串查找
 - TrieSearchTree：R向单词查找树
 - ThreeWaySearchTree：三向单词查找树
 - KMP：KMP字符串查找算法

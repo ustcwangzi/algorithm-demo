@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.search;
+package com.wz.search.str;
 
 /**
  * <p>KMP字符串查找算法</p>

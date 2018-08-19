@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.search;
+package com.wz.search.str;
 
 import com.wz.graph.Bag;
 import com.wz.graph.directed.Digraph;
