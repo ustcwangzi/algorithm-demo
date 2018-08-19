@@ -99,11 +99,6 @@ public class KMP {
             return;
         }
 
-        for (int i = 0; i < kmp.next.length; i++){
-            System.out.print(kmp.next[i]+" ");
-        }
-        System.out.println();
-
         System.out.println(txt);
         for (int i = 0; i < offset; i++) {
             System.out.print(" ");
