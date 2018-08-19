@@ -20,6 +20,7 @@
 - ThreeWaySearchTree：三向单词查找树
 - KMP：KMP字符串查找算法
 - RabinKarp：RabinKarp指纹字符串查找算法
+- RegExpSearch：正则表达式匹配
 
 ## unionfind 动态连通性
 - UnionFind：普通UnionFind算法
