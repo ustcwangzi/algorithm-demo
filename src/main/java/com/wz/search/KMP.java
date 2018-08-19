@@ -7,8 +7,6 @@
  */
 package com.wz.search;
 
-import java.util.Arrays;
-
 /**
  * <p>KMP字符串查找算法</p>
  * <p>
