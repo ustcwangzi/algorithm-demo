@@ -105,6 +105,7 @@ public class FlowEdge {
         } else {
             throw new IllegalArgumentException("invalid vertex");
         }
+        validateFlow(flow, capacity);
     }
 
     @Override
