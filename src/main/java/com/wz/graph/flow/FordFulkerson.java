@@ -75,6 +75,9 @@ public class FordFulkerson {
         return value;
     }
 
+    /**
+     * 已存在的流量
+     */
     private double excess(FlowNetwork network, int v) {
         double excess = 0;
         for (FlowEdge edge : network.adjacent(v)) {
