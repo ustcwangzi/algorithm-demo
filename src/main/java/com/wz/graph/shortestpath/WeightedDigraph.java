@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.graph.sp;
+package com.wz.graph.shortestpath;
 
 import com.wz.graph.Bag;
 import com.wz.utils.GraphUtils;

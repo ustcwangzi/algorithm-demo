@@ -8,8 +8,8 @@
 package com.wz.utils;
 
 import com.wz.graph.directed.Digraph;
-import com.wz.graph.sp.DirectedEdge;
-import com.wz.graph.sp.WeightedDigraph;
+import com.wz.graph.shortestpath.DirectedEdge;
+import com.wz.graph.shortestpath.WeightedDigraph;
 import com.wz.graph.undirected.Graph;
 import com.wz.graph.mst.Edge;
 import com.wz.graph.mst.WeightedGraph;

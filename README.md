@@ -50,7 +50,7 @@
 - LazyPrimMST：Prim算法延时实现
 - PrimMST：Prim算法即时实现
 - KruskalMST：Kruskal算法
-### sp 最短路径(Shortest Path)
+### shortestpath 最短路径(Shortest Path)
 - WeightedDigraph：加权有向图
 - DijkstraSP：Dijkstra算法
 - BellmanFordSP：BellmanFord算法
