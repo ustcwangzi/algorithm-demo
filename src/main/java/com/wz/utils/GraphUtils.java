@@ -8,6 +8,8 @@
 package com.wz.utils;
 
 import com.wz.graph.directed.Digraph;
+import com.wz.graph.flow.FlowEdge;
+import com.wz.graph.flow.FlowNetwork;
 import com.wz.graph.shortestpath.DirectedEdge;
 import com.wz.graph.shortestpath.WeightedDigraph;
 import com.wz.graph.undirected.Graph;
@@ -140,5 +142,18 @@ public class GraphUtils {
         digraph.addEdge(new DirectedEdge(7, 3, 39));
         digraph.addEdge(new DirectedEdge(7, 5, 28));
         return digraph;
+    }
+
+    public static FlowNetwork initFlowNetwork() {
+        FlowNetwork network = new FlowNetwork(6);
+        network.addEdge(new FlowEdge(0, 1, 2));
+        network.addEdge(new FlowEdge(0, 2, 3));
+        network.addEdge(new FlowEdge(1, 3, 3));
+        network.addEdge(new FlowEdge(1, 4, 1));
+        network.addEdge(new FlowEdge(2, 3, 1));
+        network.addEdge(new FlowEdge(2, 4, 1));
+        network.addEdge(new FlowEdge(3, 5, 2));
+        network.addEdge(new FlowEdge(4, 5, 3));
+        return network;
     }
 }

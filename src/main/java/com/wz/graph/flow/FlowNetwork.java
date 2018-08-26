@@ -5,10 +5,10 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.flow;
+package com.wz.graph.flow;
 
 import com.wz.graph.Bag;
-import com.wz.utils.FlowUtils;
+import com.wz.utils.GraphUtils;
 
 /**
  * <p>流量网络</p>
@@ -95,7 +95,7 @@ public class FlowNetwork {
     }
 
     public static void main(String[] args) {
-        FlowNetwork network = FlowUtils.initFlowNetwork();
+        FlowNetwork network = GraphUtils.initFlowNetwork();
         System.out.println(network);
     }
 }

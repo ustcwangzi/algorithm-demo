@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.flow;
+package com.wz.graph.flow;
 
 /**
  * <p>流量网络中的边</p>
