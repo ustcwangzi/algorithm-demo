@@ -58,5 +58,5 @@
 - FordFulkerson：Ford-Fulkerson最大流量算法
 
 ## grokking 算法图解
-### BinarySearch：二分查找
-### SelectionSort：选择排序
+- BinarySearch：二分查找
+- SelectionSort：选择排序
