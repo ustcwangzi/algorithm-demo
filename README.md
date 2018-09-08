@@ -60,3 +60,5 @@
 ## grokking 算法图解
 - BinarySearch：二分查找
 - SelectionSort：选择排序
+- QuickSort：快速排序
+- BreadthFirstSearch：广度优先搜索
