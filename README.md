@@ -62,3 +62,4 @@
 - SelectionSort：选择排序
 - QuickSort：快速排序
 - BreadthFirstSearch：广度优先搜索
+- DijkstraAlgorithm：Dijkstra算法
