@@ -10,9 +10,7 @@ package com.wz.graph.undirected;
 
 import com.wz.utils.GraphUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>使用广度优先搜索查找图中的路径</p>
@@ -74,22 +72,22 @@ public class BreadthFirstPaths {
     }
 
     private void bfs(Graph graph) {
-        List<Integer> path = new ArrayList<>();
+        Queue<Integer> pathQueue = new ArrayDeque<>();
         for (int v = 0; v < graph.vertices(); v++) {
             distTo[v] = INFINITY;
         }
         distTo[source] = 0;
         marked[source] = true;
-        path.add(source);
+        pathQueue.add(source);
 
-        for (int i = 0; i < path.size(); i++) {
-            int v = path.get(i);
+        while (!pathQueue.isEmpty()) {
+            int v = pathQueue.poll();
             for (int w : graph.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
-                    path.add(w);
+                    pathQueue.add(w);
                 }
             }
         }
