@@ -21,9 +21,9 @@ public class BreadthFirstSearch {
      */
     private static Map<Integer, List<Integer>> graph = new HashMap<>();
     /**
-     * 保存已知路径
+     * 保存已知路径的父节点
      */
-    private static Map<Integer, Integer> pathMap = new HashMap<>();
+    private static Map<Integer, Integer> parentMap = new HashMap<>();
 
     private static boolean search(int source, int target) {
         Queue<Integer> searchQueue = new ArrayDeque<>();
@@ -35,7 +35,7 @@ public class BreadthFirstSearch {
             searched.add(v);
             for (int w : graph.get(v)) {
                 if (!searched.contains(w)) {
-                    pathMap.put(w, v);
+                    parentMap.put(w, v);
                     if (w == target) {
                         System.out.println("have search the target: " + target);
                         return true;
@@ -51,10 +51,10 @@ public class BreadthFirstSearch {
     private static void printPath(int source, int target) {
         Stack<Integer> pathStack = new Stack<>();
         pathStack.push(target);
-        int w = pathMap.get(target);
+        int w = parentMap.get(target);
         while (w != source) {
             pathStack.push(w);
-            w = pathMap.get(w);
+            w = parentMap.get(w);
         }
         pathStack.push(source);
 
