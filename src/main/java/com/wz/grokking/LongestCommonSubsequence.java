@@ -16,7 +16,7 @@ import java.util.Arrays;
  */
 public class LongestCommonSubsequence {
     private static int[][] searchCell(String wordA, String wordB) {
-        if (wordA == null || wordB == null) {
+        if (wordA == null || wordB == null || wordA.length() == 0 || wordB.length() == 0) {
             return null;
         }
 
@@ -49,6 +49,9 @@ public class LongestCommonSubsequence {
         String wordA = "fish";
         String wordB = "hish";
         int[][] cell = searchCell(wordA, wordB);
+        if (cell == null) {
+            return;
+        }
         Arrays.stream(cell).forEach(c -> System.out.println(Arrays.toString(c)));
     }
 }
