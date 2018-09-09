@@ -11,7 +11,11 @@ import java.util.*;
 
 /**
  * <p>集合覆盖</p>
- * <p>使用贪婪算法，每次选择覆盖了最多的未覆盖地区的信号塔</p>
+ * <p>
+ *     使用贪婪算法，每次选择覆盖了最多的未覆盖地区的信号塔
+ *     完美的解决方案需要列出每个可能的信号塔集合，然后选出覆盖所有区域的最小集合，时间为O(2^n)
+ *     这种情况下的贪婪算法，只能得到近似结果，但比完美解决方案的效率高很多，时间为O(n * n)
+ * </p>
  *
  * @author wangzi
  */
@@ -61,6 +65,7 @@ public class SetCoverage {
         coverageMap.put("C", new HashSet<>(Arrays.asList(4, 5, 9)));
         coverageMap.put("D", new HashSet<>(Arrays.asList(3, 4)));
         coverageMap.put("E", new HashSet<>(Arrays.asList(1, 2, 6)));
+        coverageMap.put("F", new HashSet<>(Collections.singleton(6)));
 
         System.out.println(findStation());
     }
