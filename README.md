@@ -63,3 +63,4 @@
 - QuickSort：快速排序
 - BreadthFirstSearch：广度优先搜索
 - DijkstraAlgorithm：Dijkstra算法
+- SetCoverage：贪婪算法解决集合覆盖
