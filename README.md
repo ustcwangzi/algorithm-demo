@@ -64,3 +64,4 @@
 - BreadthFirstSearch：广度优先搜索
 - DijkstraAlgorithm：Dijkstra算法
 - SetCoverage：贪婪算法解决集合覆盖
+- LongestCommonSubsequence：最长公共子序列
