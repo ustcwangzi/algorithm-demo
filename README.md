@@ -65,3 +65,6 @@
 - DijkstraAlgorithm：Dijkstra算法
 - SetCoverage：贪婪算法解决集合覆盖
 - LongestCommonSubsequence：最长公共子序列
+
+## daily 常用算法
+- BubbleSort：冒泡排序
