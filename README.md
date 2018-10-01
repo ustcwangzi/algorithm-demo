@@ -66,5 +66,5 @@
 - SetCoverage：贪婪算法解决集合覆盖
 - LongestCommonSubsequence：最长公共子序列
 
-## daily 常用算法
+## daily 随手
 - BubbleSort：冒泡排序
