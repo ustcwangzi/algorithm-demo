@@ -74,3 +74,4 @@
 - TwoStacksImplementQueue：两个栈实现队列
 - ReverseStackUsingRecursive：使用递归将栈逆置
 - DogCatQueue：猫狗队列
+- StackSortStack：用一个栈实现另一个栈的排序
