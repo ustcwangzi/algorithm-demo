@@ -94,7 +94,7 @@ public class HanoiStack {
     public static class HanoiByStack {
         private enum Action {
             // 初始化
-            NoAction(0, "初始化"),
+            Init(0, "初始化"),
             // 从左到中
             LeftToMid(1, "from left to mid"),
             // 从中到左
@@ -117,7 +117,7 @@ public class HanoiStack {
          * 互逆动作
          */
         private static Map<Enum, Enum> InvalidActionMap = new HashMap<>(Action.values().length);
-        private static Action PreAction = Action.NoAction;
+        private static Action PreAction = Action.Init;
         private final int num;
         private Stack<Integer> leftStack = new Stack<>();
         private Stack<Integer> midStack = new Stack<>();
