@@ -76,3 +76,4 @@
 - DogCatQueue：猫狗队列
 - StackSortStack：用一个栈实现另一个栈的排序
 - HanoiStack：汉诺塔问题
+- SlidingWindowMaxArray：生成窗口最大值数组
