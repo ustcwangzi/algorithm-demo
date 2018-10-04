@@ -78,3 +78,4 @@
 - HanoiStack：汉诺塔问题
 - SlidingWindowMaxArray：生成窗口最大值数组
 - MaxTree：构造数组的MaxTree
+- MaxRectangle：最大子矩阵
