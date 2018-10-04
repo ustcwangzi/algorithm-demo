@@ -48,7 +48,7 @@ public class SlidingWindowMaxArray {
         int[] resultArray = new int[array.length - window + 1];
         int index = 0;
         for (int i = 0; i < array.length; i++) {
-            // 保证新进的值小于队尾，队首代表的值一直是当前最大值
+            // 保证新进的值小于等于队尾，队首代表的值一直是当前最大值
             while (!deque.isEmpty() && array[deque.peekLast()] <= array[i]) {
                 deque.pollLast();
             }
