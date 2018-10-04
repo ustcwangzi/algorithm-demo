@@ -24,6 +24,7 @@ import java.util.LinkedList;
  *          2.2、若array[j]<=array[i]，将j弹出，继续deque的放入规则
  *        deque的弹出规则为：
  *          若deque队头下标等于i-window，说明当前队头下标已过期，弹出队头
+ *        保证队首所代表的值是当前窗口的最大值
  *      根据以上规则，假设当前数组为{4,3,5,3,3,6}，整个过程为：
  *          arr[0]=4,deque={0} ->
  *          arr[1]=3,3<4,deque={0,1} ->
@@ -47,16 +48,16 @@ public class SlidingWindowMaxArray {
         int[] resultArray = new int[array.length - window + 1];
         int index = 0;
         for (int i = 0; i < array.length; i++) {
-            // 若当前遍历到的值 >= 队尾对应的值，将队尾弹出
+            // 保证新进的值小于队尾，队首代表的值一直是当前最大值
             while (!deque.isEmpty() && array[deque.peekLast()] <= array[i]) {
                 deque.pollLast();
             }
             deque.addLast(i);
-            // 队头下标等于i-window，说明当前队头下标已过期，弹出即可
+            // 队首下标等于i-window，说明当前队首下标已过期，弹出即可
             if (deque.peekFirst() == i - window) {
                 deque.pollFirst();
             }
-            // 队尾对应的值，就是当前窗口最大值
+            // 队首对应的值，就是当前窗口最大值
             if (i >= window - 1) {
                 resultArray[index++] = array[deque.peekFirst()];
             }
