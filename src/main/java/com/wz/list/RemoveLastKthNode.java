@@ -49,9 +49,9 @@ public class RemoveLastKthNode {
         }
     }
 
-    public static void removeLastKthNode(Node head, int k) {
+    public static Node removeLastKthNode(Node head, int k) {
         if (head == null || k < 1) {
-            return;
+            return head;
         }
 
         Node cur = head;
@@ -70,11 +70,12 @@ public class RemoveLastKthNode {
             // 节点删除
             cur.next = cur.next.next;
         }
+        return head;
     }
 
-    public static void removeLastKthNode(DoubleNode head, int k) {
+    public static DoubleNode removeLastKthNode(DoubleNode head, int k) {
         if (head == null || k < 1) {
-            return;
+            return head;
         }
 
         DoubleNode cur = head;
@@ -96,13 +97,14 @@ public class RemoveLastKthNode {
                 newNext.pre = cur;
             }
         }
+        return head;
     }
 
     public static void main(String[] args) {
         Node head1 = new Node(1);
         head1.next = new Node(2);
         head1.next.next = new Node(3);
-        removeLastKthNode(head1, 2);
+        head1 = removeLastKthNode(head1, 2);
         while (head1 != null) {
             System.out.print(head1.value + " ");
             head1 = head1.next;
@@ -115,7 +117,7 @@ public class RemoveLastKthNode {
         head2.next.pre = head2;
         head2.next.next = new DoubleNode(3);
         head2.next.pre = head2.next;
-        removeLastKthNode(head2, 2);
+        head2 = removeLastKthNode(head2, 2);
         while (head2 != null) {
             System.out.print(head2.value + " ");
             head2 = head2.next;
