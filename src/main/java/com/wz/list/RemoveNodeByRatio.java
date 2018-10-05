@@ -9,6 +9,13 @@ package com.wz.list;
 
 /**
  * <p>删除链表的中间节点和指定比例a/b处节点</p>
+ * <p>
+ *     删除中间节点：
+ *         链表长度为1时无需删除，为2时删除头节点，为3时删除第二个节点，为4时删除第二个节点...
+ *         即链表长度没增加2(3，5，7...)，要删除的节点就后移一位，根据这个可以找到要删除节点的前一个节点
+ *     删除a/b处节点：
+ *         (a * n / b)向上取整后就是要删除的节点，然后根据这个找到要删除节点的前一个节点即可
+ * </p>
  *
  * @author wangzi
  */
@@ -32,6 +39,7 @@ public class RemoveNodeByRatio {
 
         Node pre = head;
         Node cur = head.next.next;
+        // 找到要删除节点的前一个节点
         while (cur.next != null && cur.next.next != null) {
             pre = pre.next;
             cur = cur.next.next;
