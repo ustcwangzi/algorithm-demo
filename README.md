@@ -87,3 +87,4 @@
 - RemoveNodeByRatio：删除链表中间节点和指定比例处节点
 - ReverseList：反转单链表和双向链表
 - ReversePartList：反转部分单链表
+- JosephusProblem：环形单链表的约瑟夫问题
