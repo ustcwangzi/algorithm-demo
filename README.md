@@ -88,3 +88,5 @@
 - ReverseList：反转单链表和双向链表
 - ReversePartList：反转部分单链表
 - JosephusProblem：环形单链表的约瑟夫问题
+- IsPalindromeList：判断链表是否为回文结构
+
