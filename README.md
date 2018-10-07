@@ -90,3 +90,5 @@
 - JosephusProblem：环形单链表的约瑟夫问题
 - IsPalindromeList：判断链表是否为回文结构
 - PartitionList：按照给定值划分链表
+- CopyListWithRandom：复制含有随机指针节点的链表
+
