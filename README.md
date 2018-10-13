@@ -92,5 +92,6 @@
 - PartitionList：按照给定值划分链表
 - CopyListWithRandom：复制含有随机指针节点的链表
 - AddList：将两个链表生成相加链表
+- FindIntersect：两个链表的第一个相交节点
 
 
