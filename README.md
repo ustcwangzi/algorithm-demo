@@ -95,4 +95,5 @@
 - FindIntersect：两个链表的第一个相交节点
 - ConvertEveryGroup：将每K个节点分组逆序
 - RemoveRepetition：删除值重复的节点
+- RemoveGivenValue：删除给定值
 
