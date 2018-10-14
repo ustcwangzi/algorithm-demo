@@ -99,3 +99,4 @@
 - BinaryTreeToList：二叉树转换为双向链表
 - ListSelectionSort：对链表进行选择排序
 - RemoveNodeWired：怪异的节点删除方式
+- InsertToCircularList：有序环形单链表中插入新节点
