@@ -98,4 +98,4 @@
 - RemoveGivenValue：删除给定值
 - BinaryTreeToList：二叉树转换为双向链表
 - ListSelectionSort：对链表进行选择排序
-
+- RemoveNodeWired：怪异的节点删除方式
