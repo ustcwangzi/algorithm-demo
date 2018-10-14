@@ -19,7 +19,7 @@ package com.wz.list;
  * @author wangzi
  */
 public class ReversePartList {
-    public static class Node {
+    private static class Node {
         public int value;
         public Node next;
 

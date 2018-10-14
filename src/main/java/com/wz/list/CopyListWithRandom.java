@@ -30,7 +30,7 @@ import java.util.Map;
  * @author wangzi
  */
 public class CopyListWithRandom {
-    public static class Node {
+    private static class Node {
         public int value;
         public Node next;
         public Node rand;

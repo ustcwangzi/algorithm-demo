@@ -25,7 +25,7 @@ import java.util.Stack;
  * @author wangzi
  */
 public class AddList {
-    public static class Node {
+    private static class Node {
         public int value;
         public Node next;
 

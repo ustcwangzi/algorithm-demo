@@ -20,7 +20,7 @@ package com.wz.list;
  * @author wangzi
  */
 public class RemoveNodeByRatio {
-    public static class Node {
+    private static class Node {
         public int value;
         public Node next;
 

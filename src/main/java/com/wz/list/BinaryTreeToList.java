@@ -28,7 +28,7 @@ import java.util.Queue;
  * @author wangzi
  */
 public class BinaryTreeToList {
-    public static class Node {
+    private static class Node {
         public int value;
         public Node left;
         public Node right;

@@ -23,7 +23,7 @@ import java.util.Set;
  * @author wangzi
  */
 public class RemoveRepetition {
-    public static class Node {
+    private static class Node {
         public int value;
         public Node next;
 
