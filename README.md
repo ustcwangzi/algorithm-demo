@@ -106,3 +106,4 @@
 ## binarytree 二叉树
 - TreeTraversal：二叉树遍历
 - PrintEdgeNodes：打印二叉树边界节点
+- PrintBinaryTree：直观的打印二叉树
