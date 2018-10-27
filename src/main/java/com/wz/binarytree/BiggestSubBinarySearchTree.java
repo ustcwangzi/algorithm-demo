@@ -10,6 +10,7 @@ package com.wz.binarytree;
 /**
  * <p>最大搜索二叉子树</p>
  * <p>
+ *     已知所有节点值都不同，找到含有节点数最多的搜索二叉树
  *     以节点node为头节点的树中，最大的搜索二叉子树只可能来自以下两种情况
  *     一、node左子树上的最大搜索二叉子树以node.left为头节点，node右子树上的最大搜索二叉子树以node.right为头节点
  *        node左子树上的最大值小于node.value，node右子树上最小值大于node.value，则以node为头节点的整棵树都是搜索树
