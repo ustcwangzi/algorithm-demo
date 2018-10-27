@@ -110,4 +110,4 @@
 - SerializeTree：二叉树序列化和反序列化
 - MorrisTraversal：Morris二叉树遍历
 - LongestPathSum：累加和为指定值的最长路径长度
-- BiggestSubBinarySearchTree：最大搜索二叉树
+- BiggestSubBinarySearchTree：最大搜索二叉子树

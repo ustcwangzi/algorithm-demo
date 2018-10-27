@@ -20,6 +20,7 @@ import java.util.Map;
  *        若sumMap中已包含curSum则不更新，否则将(curSum,level)放入sumMap，遇到累加和为sum时，更新maxLen，然后遍历cur的左右子树
  *        在sumMap中查询curSum出现的层数(即value)，若value等于level，说明curSum这个累加和是在本次遍历到cur时加上去的，
  *        同时该条记录不满足指定累加和的判断条件，因此删除该条记录
+ *     时间复杂度O(N)，空间复杂度O(h)，h为树高
  * </p>
  *
  * @author wangzi
