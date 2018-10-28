@@ -113,3 +113,4 @@
 - BiggestSubBinarySearchTree：最大搜索二叉子树
 - BiggestBinarySearchTreeTopology：符合搜索二叉树的最大拓扑结构
 - PrintBinaryTreeByLevel：按层打印二叉树
+- RecoverBinarySearchTree：调整搜索二叉树中的两个错误节点
