@@ -9,6 +9,12 @@ package com.wz.binarytree;
 
 /**
  * <p>一棵树中是否有与另一棵树拓扑结构完全相同的子树</p>
+ * <p>
+ *     把两棵树按照先序遍历的方式进行序列化 @see com.wz.binarytree.SerializeTree
+ *     self序列化后的结果为selfStr，other序列化后的结果为otherStr，验证otherStr是否是selfStr的子串即可
+ *     使用KMP算法可在线性时间内解决该问题，KMP算法时间复杂度为O(M+N)，KMP算法详细内容不在此进行展开
+ *     序列化时间复杂度为O(N)，KMP算法时间复杂度为O(M+N)，因此总的时间复杂度为O(M+N)
+ * </p>
  *
  * @author wangzi
  */
