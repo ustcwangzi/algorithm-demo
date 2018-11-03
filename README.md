@@ -116,3 +116,4 @@
 - RecoverBinarySearchTree：调整搜索二叉树中的两个错误节点
 - ContainsTopology：一棵树是否包含另一棵树全部的拓扑结构
 - SubtreeEquals：一棵树是否有与另一棵树拓扑结构完全相同的子树
+- IsBalancedTree：判断二叉树是否为平衡二叉树
