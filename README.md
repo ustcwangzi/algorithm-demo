@@ -118,4 +118,5 @@
 - SubtreeEquals：一棵树是否有与另一棵树拓扑结构完全相同的子树
 - IsBalancedTree：判断二叉树是否为平衡二叉树
 - IsBinarySearchTree：判断二叉树是否为搜索二叉树
+- IsCompleteBinaryTree：判断二叉树是否为完全二叉树
 - PosArrayToBinarySearchTree：根据后序数组重建二叉搜索树
