@@ -9,6 +9,13 @@ package com.wz.binarytree;
 
 /**
  * <p>根据后序数组重建搜索二叉树</p>
+ * <p>
+ *     如果一个数组是二叉树后序遍历的结果，那么头节点的值一定是该数组最后一个元素
+ *     再根据搜索二叉树的性质，头节点会将数组分成左右两边，左边都比头节点小，右边都比头节点大
+ *     比如数据为[2,1,3,6,5,7,4]，头节点为4，[2,1,3]在左边，[6,5,7]在右边
+ *     不满足上述情况时，说明数组不是搜索二叉树后序遍历的结果
+ *     使用头节点将数组划分成左右两个数组，相当于二叉树的左右子树，然后递归进行下去即可
+ * </p>
  *
  * @author wangzi
  */
@@ -67,6 +74,7 @@ public class PosArrayToBinarySearchTree {
         }
 
         Node head = new Node(array[end]);
+        // less和more将数组分为左右两部分，代表左右两个子树
         int less = -1, more = end;
         for (int i = start; i < end; i++) {
             if (array[end] > array[i]) {
