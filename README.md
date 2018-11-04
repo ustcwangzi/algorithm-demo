@@ -120,3 +120,4 @@
 - IsBinarySearchTree：判断二叉树是否为搜索二叉树
 - IsCompleteBinaryTree：判断二叉树是否为完全二叉树
 - PosArrayToBinarySearchTree：根据后序数组重建二叉搜索树
+- SortedArrayToBalancedBinarySearchTree：有序数组生成平衡搜索二叉树
