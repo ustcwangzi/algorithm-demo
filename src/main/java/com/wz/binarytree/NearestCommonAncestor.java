@@ -73,6 +73,7 @@ public class NearestCommonAncestor {
             if (head == null) {
                 return;
             }
+
             if (head.left != null) {
                 map.put(head.left, head);
             }
@@ -181,6 +182,7 @@ public class NearestCommonAncestor {
             if (self == other) {
                 return self;
             }
+
             if (map.containsKey(self)) {
                 return map.get(self).get(other);
             }
