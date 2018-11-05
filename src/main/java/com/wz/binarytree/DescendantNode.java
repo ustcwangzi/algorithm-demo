@@ -18,7 +18,7 @@ package com.wz.binarytree;
  *          不需要遍历所有节点，如果node与后继节点之间的实际距离为L，则只需要走过L个节点，不需要额外空间
  *          1、如果node有右子树，那么后继节点就是右子树中的最左节点
  *          2、如果node没有右子树，但node是父节点的左孩子，如果是，则父节点就是后继节点
- *          3、如果node没有右子树，且node是父节点的🈶️右孩子，向上移动，假设移动到s时，s是父节点p的左孩子，则p是node的后继节点
+ *          3、如果node没有右子树，且node是父节点的右孩子，向上移动，假设移动到s时，s是父节点p的左孩子，则p是node的后继节点
  *          4、步骤三在向上移动中已经到了空节点还是没发现后继节点，则node不存在后继节点
  * </p>
  *
@@ -41,7 +41,7 @@ public class DescendantNode {
             return null;
         }
 
-        // 🈶️有右子树时，后继节点就是右子树最左边的节点
+        // 有右子树时，后继节点就是右子树最左边的节点
         if (node.right != null) {
             return getLeftMost(node.right);
         }
