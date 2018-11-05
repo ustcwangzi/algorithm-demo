@@ -207,6 +207,9 @@ public class NearestCommonAncestor {
         Node other = head.right.left;
         System.out.println(nearestAncestor(head, self, other).value);
 
+
+
+
         RecordOne recordOne = new RecordOne(head);
         System.out.println(recordOne.query(self, other).value);
 
