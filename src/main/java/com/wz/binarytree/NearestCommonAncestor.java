@@ -14,6 +14,22 @@ import java.util.Set;
 
 /**
  * <p>二叉树中两个节点最近的公共祖先</p>
+ * <p>
+ *     方案一：
+ *          后序遍历二叉树，假设当前遍历到节点cur，因为是后序遍历，所以先处理cur的两个子树
+ *          假设处理左子树时返回left，处理右子树时返回right，则：
+ *          1、如果cur等于null或self或other，则返回cur
+ *          2、如果left和right都为空，说明cur的整颗子树没有发现self或other，返回null
+ *          3、如果left和right都不为空，说明左子树和右子树都发现过self或other，说明self和other向上过程中首次在cur相遇，返回cur
+ *          4、如果left和right只有一个不为空，记为node，则node要么为self或other中的一个，要么已经是self和other的公共祖先，返回node
+ *     方案二：
+ *          建立二叉树中每个节点对应的父节点信息，保存在Map中
+ *          查找时，找到self所有的父节点Set，然后other往上移动，移动过程中发现某个节点在Set这中，这个节点就是self和other的公共祖先
+ *          建立Map时间复杂度为O(N)，空间复杂度为O(N)，查询操作的时间复杂度为O(h)，其中h为二叉树高度
+ *     方案三：
+ *          直接建立任意两个节点之间的最近公共祖先，对二叉树中的每颗子树都进行以下步骤
+ *          假设子树的头街道为h，h所有的子节点和h节点的最近公共祖先都是h，h左子树的每个节点和h右子树的每个节点最近公共祖先都是h
+ * </p>
  *
  * @author wangzi
  */
@@ -67,6 +83,7 @@ public class NearestCommonAncestor {
         }
 
         public Node query(Node self, Node other) {
+            // self所有的父节点
             Set<Node> path = new HashSet<>();
             while (map.containsKey(self)) {
                 path.add(self);
@@ -88,6 +105,9 @@ public class NearestCommonAncestor {
             setMap(head);
         }
 
+        /**
+         * 对每个节点初始化空的Map
+         */
         private void initMap(Node head) {
             if (head == null) {
                 return;
@@ -110,6 +130,9 @@ public class NearestCommonAncestor {
             setMap(head.right);
         }
 
+        /**
+         * 头节点所有的子节点和头节点的最近公共祖先都是头节点
+         */
         private void headRecord(Node node, Node head) {
             if (node == null) {
                 return;
@@ -140,6 +163,9 @@ public class NearestCommonAncestor {
             preLeft(left.right, right, head);
         }
 
+        /**
+         * 头节点左子树所有节点和头节点右子树所有节点的最近公共祖先都是头节点
+         */
         private void preRight(Node left, Node right, Node head) {
             if (right == null) {
                 return;
