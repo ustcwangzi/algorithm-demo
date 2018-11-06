@@ -210,8 +210,6 @@ public class NearestCommonAncestor {
         RecordOne recordOne = new RecordOne(head);
         System.out.println(recordOne.query(self, other).value);
 
-
-
         RecordTwo recordTwo = new RecordTwo(head);
         System.out.println(recordTwo.query(self, other).value);
     }
