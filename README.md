@@ -123,3 +123,4 @@
 - SortedArrayToBalancedBinarySearchTree：有序数组生成平衡搜索二叉树
 - DescendantNode：二叉树中找到一个节点的后继节点
 - NearestCommonAncestor：二叉树中两个节点最近的公共祖先
+- TarjanAndDisjointSetsForNCA：Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询
