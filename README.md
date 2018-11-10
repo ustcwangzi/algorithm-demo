@@ -126,3 +126,4 @@
 - TarjanAndDisjointSetsForNCA：Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询
 - MaxDistanceInTree：二叉树节点之间的最大距离
 - PreInPosArrayToTree：先序、中序和后序数组两两结合重建二叉树
+- PreInArrayToPosArray：通过先序和中序数组生成后序数组
