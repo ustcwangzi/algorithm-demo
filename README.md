@@ -127,3 +127,4 @@
 - MaxDistanceInTree：二叉树节点之间的最大距离
 - PreInPosArrayToTree：先序、中序和后序数组两两结合重建二叉树
 - PreInArrayToPosArray：通过先序和中序数组生成后序数组
+- UniqueBinarySearchTree：统计和生成所有不同的二叉树
