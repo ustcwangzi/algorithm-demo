@@ -125,3 +125,4 @@
 - NearestCommonAncestor：二叉树中两个节点最近的公共祖先
 - TarjanAndDisjointSetsForNCA：Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询
 - MaxDistanceInTree：二叉树节点之间的最大距离
+- PreInPosArrayToTree：先序、中序和后序数组两两结合重建二叉树
