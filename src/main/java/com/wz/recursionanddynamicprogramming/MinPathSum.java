@@ -56,7 +56,7 @@ public class MinPathSum {
         for (int j = 1; j < col; j++) {
             path[0][j] = path[0][j - 1] + matrix[0][j];
         }
-        // 计算其他路径路径
+        // 计算其他路径
         for (int i = 1; i < row; i++) {
             for (int j = 1; j < col; j++) {
                 path[i][j] = Math.min(path[i - 1][j], path[i][j - 1]) + matrix[i][j];
