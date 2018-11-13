@@ -40,6 +40,9 @@ package com.wz.recursionanddynamicprogramming;
  * @author wangzi
  */
 public class MinPathSum {
+    /**
+     * 经典动态规划解法
+     */
     public static int minPathSunOne(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
             return 0;
@@ -66,6 +69,9 @@ public class MinPathSum {
         return path[row - 1][col - 1];
     }
 
+    /**
+     * 动态规划基础上的空间压缩解法
+     */
     public static int minPathSunTwo(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
             return 0;
