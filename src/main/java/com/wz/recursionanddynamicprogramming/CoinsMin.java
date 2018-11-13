@@ -115,7 +115,7 @@ public class CoinsMin {
         }
 
         int[] result = new int[aim + 1];
-        // 初始化只能使用一张array[0]，只有result[0][array[0]]=1，其他均为MAX
+        // 初始化只能使用一张array[0]，只有result[array[0]]=1，其他均为MAX
         for (int j = 1; j <= aim; j++) {
             result[j] = MAX;
         }
