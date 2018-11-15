@@ -8,6 +8,8 @@
 package com.wz.recursionanddynamicprogramming;
 
 /**
+ * <p>换钱的方法数</p>
+ *
  * @author wangzi
  */
 public class CoinsWay {
