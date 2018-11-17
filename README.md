@@ -135,3 +135,5 @@
 - MinPathSum：矩阵的最小路径和
 - CoinsMin：换钱的最小货币数
 - CoinsWay：换钱的方法数
+- LongestIncreaseSubSequence：最长递增子序列
+
