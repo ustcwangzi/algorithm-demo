@@ -20,7 +20,7 @@ package com.wz.recursionanddynamicprogramming;
  *        3、对于其他位置(i,j)，result[i][j]的值只可能来自以下三种情况：
  *        3.1、result[i-1][j]，即self[0...i-1]与other[0...j]的最长公共子序列长度；
  *        3.2、result[i][j-1]，即self[0...i]与other[0...j-1]的最长公共子序列长度；
- *        3.3、如果self[i]==other[j]，则此时最大长度可能为result[i][j]+1
+ *        3.3、如果self[i]==other[j]，则此时最大长度可能为result[i-1][j-1]+1
  *        这三个值中，选最大的作为result[i][j]的值。
  *     矩阵中最右下角的值代表self与other整体的最长公共子序列长度，通过矩阵状态，可以得到最长公共子序列。
  *     1、从矩阵右下角开始，有三种移动方式：向上、向左、向左上，假设移动过程中，i代表行数，j代表列数，ch代表最长公共子序列

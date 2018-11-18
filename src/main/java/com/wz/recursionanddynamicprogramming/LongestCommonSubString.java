@@ -9,12 +9,37 @@ package com.wz.recursionanddynamicprogramming;
 
 /**
  * <p>最长公共子串</p>
+ * <p>
+ *     方案一：
+ *        求动态规划表：
+ *        如果self的长度为M，other的长度为N，生成大小为M*N的矩阵result，result[i][j]表示把self[i]与other[j]当作
+ *        公共子串最后一个字符的情况下，公共子串最长能达到的长度，从左到右，再从上到下计算矩阵result。
+ *        1、第一列result[0...M-1][0]，如果self[i]==other[0]，则result[i][0]=1，否则result[i][0]=0。
+ *        2、第一行result[0][0...N-1]，与步骤一同理，如果self[0]==other[j]，则result[0][j]=1，否则result[0][j]=0。
+ *        3、对于其他位置(i,j)，result[i][j]的值只可能来自以下两种情况：
+ *        3.1、如果self[i]!=other[j]，说明将self[i]与other[j]作为公共子串最后一个字符是不可能的，令result[i][j]=0；
+ *        3.2、如果self[i]==other[j]，此时result[i][j] = result[i-1][j-1]+1
+ *        根据动态规划表逆推决策路径：
+ *        遍历动态规划表找到最大值及其位置，该最大值就是最长公共子串的长度，位置就是最长公共子串的结束字符的位置。
+ *     方案二：
+ *        根据方案一可知计算每个result[i][j]时，最多只需要左上方的result[i-1][j-1]的值，
+ *        因此可以按照从左上到右下的斜线方向来计算所有的值，只需要一个变量就可以计算出所有位置的值。
+ *        整个求解过程如LongestCommonSubString.png所示。
+ *        每条斜线在计算之前生成变量len，len表示左上方位置的值，初识时len=0，从斜线左上方的位置开始向右下方依次计算每个位置的值。
+ *        假设计算到位置(i,j)，此时len表示位置(i-1,j-1)的值，如果self[i]==other[j]，那么位置(i,j)的值为len+1，否则为0。
+ *        计算后将len更新成位置(i,j)的值，然后计算下一个位置(i+1,j+1)，依次计算下去可以得到斜线上每个位置的值，然后计算下一条斜线。
+ *        用全局变量max记录所有位置的值中的最大值，最大值出现时，用全局变量end记录其位置即可。
+ * </p>
+ * <p>
+ *     方案一时间复杂度为O(M*N)、空间复杂度为O(M*N)
+ *     方案二时间复杂度为O(M*N)、空间复杂度为O(1)
+ * </p>
  *
  * @author wangzi
  */
 public class LongestCommonSubString {
 
-    public static String lscOne(String self, String other) {
+    public static String lcsOne(String self, String other) {
         if (self == null || other == null || self.length() == 0 || other.length() == 0) {
             return "";
         }
@@ -65,7 +90,7 @@ public class LongestCommonSubString {
         return result;
     }
 
-    public static String lscTwo(String self, String other) {
+    public static String lcsTwo(String self, String other) {
         if (self == null || other == null || self.length() == 0 || other.length() == 0) {
             return "";
         }
@@ -110,7 +135,7 @@ public class LongestCommonSubString {
     public static void main(String[] args) {
         String self = "1AB2345CD";
         String other = "12345EF";
-        System.out.println(lscOne(self, other));
-        System.out.println(lscTwo(self, other));
+        System.out.println(lcsOne(self, other));
+        System.out.println(lcsTwo(self, other));
     }
 }
