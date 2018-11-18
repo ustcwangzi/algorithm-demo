@@ -30,6 +30,10 @@ package com.wz.recursionanddynamicprogramming;
  *     4、如果result[i][j]等于result[i][j-1]，与步骤三同理，向左方移动即可
  *     5、如果result[i][j]同时等于result[i-1][j]和result[i][j-1]，向上还是向左移动都行，反正不会错过必须选择的字符。
  * </p>
+ * <p>
+ *     计算动态规划矩阵的时间复杂度为O(M*N)，空间复杂度为O(M*N)，通过动态规划矩阵逆推决策路径时间复杂度为O(M+N)
+ *     所以，总的时间复杂度为O(M*N)，空间复杂度为O(M*N)
+ * </p>
  *
  * @author wangzi
  */
