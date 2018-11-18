@@ -136,4 +136,5 @@
 - CoinsMin：换钱的最小货币数
 - CoinsWay：换钱的方法数
 - LongestIncreaseSubSequence：最长递增子序列
+- LongestCommonSubSequence：最长公共子序列
 - HanoiTower：汉诺塔问题
