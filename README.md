@@ -137,4 +137,5 @@
 - CoinsWay：换钱的方法数
 - LongestIncreaseSubSequence：最长递增子序列
 - LongestCommonSubSequence：最长公共子序列
+- LongestCommonSubString：最长公共子串
 - HanoiTower：汉诺塔问题
