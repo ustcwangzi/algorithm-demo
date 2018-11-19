@@ -139,3 +139,4 @@
 - LongestCommonSubSequence：最长公共子序列
 - LongestCommonSubString：最长公共子串
 - HanoiTower：汉诺塔问题
+- EditCost：最小编辑代价
