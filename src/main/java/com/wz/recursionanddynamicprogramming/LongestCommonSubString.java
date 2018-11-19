@@ -12,17 +12,17 @@ package com.wz.recursionanddynamicprogramming;
  * <p>
  *     方案一：
  *        求动态规划表：
- *        如果self的长度为M，other的长度为N，生成大小为M*N的矩阵result，result[i][j]表示把self[i]与other[j]当作
- *        公共子串最后一个字符的情况下，公共子串最长能达到的长度，从左到右，再从上到下计算矩阵result。
- *        1、第一列result[0...M-1][0]，如果self[i]==other[0]，则result[i][0]=1，否则result[i][0]=0。
- *        2、第一行result[0][0...N-1]，与步骤一同理，如果self[0]==other[j]，则result[0][j]=1，否则result[0][j]=0。
- *        3、对于其他位置(i,j)，result[i][j]的值只可能来自以下两种情况：
- *        3.1、如果self[i]!=other[j]，说明将self[i]与other[j]作为公共子串最后一个字符是不可能的，令result[i][j]=0；
- *        3.2、如果self[i]==other[j]，此时result[i][j] = result[i-1][j-1]+1
+ *        如果self的长度为M，other的长度为N，生成大小为M*N的矩阵dp，dp[i][j]表示把self[i]与other[j]当作
+ *        公共子串最后一个字符的情况下，公共子串最长能达到的长度，从左到右，再从上到下计算矩阵dp。
+ *        1、第一列dp[0...M-1][0]，如果self[i]==other[0]，则dp[i][0]=1，否则dp[i][0]=0。
+ *        2、第一行dp[0][0...N-1]，与步骤一同理，如果self[0]==other[j]，则dp[0][j]=1，否则dp[0][j]=0。
+ *        3、对于其他位置(i,j)，dp[i][j]的值只可能来自以下两种情况：
+ *        3.1、如果self[i]!=other[j]，说明将self[i]与other[j]作为公共子串最后一个字符是不可能的，令dp[i][j]=0；
+ *        3.2、如果self[i]==other[j]，此时dp[i][j] = dp[i-1][j-1]+1
  *        根据动态规划表逆推决策路径：
  *        遍历动态规划表找到最大值及其位置，该最大值就是最长公共子串的长度，位置就是最长公共子串的结束字符的位置。
  *     方案二：
- *        根据方案一可知计算每个result[i][j]时，最多只需要左上方的result[i-1][j-1]的值，
+ *        根据方案一可知计算每个dp[i][j]时，最多只需要左上方的dp[i-1][j-1]的值，
  *        因此可以按照从左上到右下的斜线方向来计算所有的值，只需要一个变量就可以计算出所有位置的值。
  *        整个求解过程如LongestCommonSubString.png所示。
  *        每条斜线在计算之前生成变量len，len表示左上方位置的值，初识时len=0，从斜线左上方的位置开始向右下方依次计算每个位置的值。
@@ -47,16 +47,16 @@ public class LongestCommonSubString {
         char[] chSelf = self.toCharArray();
         char[] chOther = other.toCharArray();
         // 生成动态规划矩阵
-        int[][] result = getResult(chSelf, chOther);
+        int[][] dp = getDp(chSelf, chOther);
         // 最大长度
         int end = 0;
         // 最长公共子串的结尾位置
         int max = 0;
         for (int i = 0; i < chSelf.length; i++) {
             for (int j = 0; j < chOther.length; j++) {
-                if (result[i][j] > max) {
+                if (dp[i][j] > max) {
                     end = i;
-                    max = result[i][j];
+                    max = dp[i][j];
                 }
             }
         }
@@ -64,30 +64,30 @@ public class LongestCommonSubString {
         return self.substring(end - max + 1, end + 1);
     }
 
-    private static int[][] getResult(char[] self, char[] other) {
-        int[][] result = new int[self.length][other.length];
+    private static int[][] getDp(char[] self, char[] other) {
+        int[][] dp = new int[self.length][other.length];
         // 第一列，直接比较self[i]与other[0]
         for (int i = 0; i < self.length; i++) {
             if (self[i] == other[0]) {
-                result[i][0] = 1;
+                dp[i][0] = 1;
             }
         }
         // 第一列，直接比较self[0]与other[j]
         for (int j = 1; j < other.length; j++) {
             if (self[0] == other[j]) {
-                result[0][j] = 1;
+                dp[0][j] = 1;
             }
         }
         // 除第一行、第一列之外的其他位置
         for (int i = 1; i < self.length; i++) {
             for (int j = 1; j < other.length; j++) {
                 if (self[i] == other[j]) {
-                    result[i][j] = result[i - 1][j - 1] + 1;
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
                 }
             }
         }
 
-        return result;
+        return dp;
     }
 
     public static String lcsTwo(String self, String other) {

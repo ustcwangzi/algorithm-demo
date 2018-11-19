@@ -26,25 +26,25 @@ package com.wz.recursionanddynamicprogramming;
  *        类似的重复计算在递归过程中大量发生，记忆搜索方法在每计算完一个递归过程，将结果记录到map中，下次遇到同样的过程，先查找map中是否存在，
  *        若存在直接使用。map[i][j]表示coinsWayOne(array, i, j)的返回值，为0表示未计算过，为-1表示计算过但返回值为0。
  *     方案三：
- *        动态规划方法。生成N行、aim+1列的矩阵result，result[i][j]含义是使用array[0...i]的情况下，组成j有多少中方法，求法如下：
- *        1、矩阵第一列表示组成0的方法数，很明显是一种，即不使用任何货币，所以result第一列统一设置为1
+ *        动态规划方法。生成N行、aim+1列的矩阵dp，dp[i][j]含义是使用array[0...i]的情况下，组成j有多少中方法，求法如下：
+ *        1、矩阵第一列表示组成0的方法数，很明显是一种，即不使用任何货币，所以dp第一列统一设置为1
  *        2、矩阵第一行表示只使用array[0]的情况下，组成j的方法数，比如array[0]=5时，能组成的只有0,5,10,...，所以，
- *           令result[0][k*array[0]]=1 (0<=k*array[0]<=aim, k为非负整数)
- *        3、除第一行和第一列的其他位置，记为(i,j)，result[i][j]是一下值的累加：
- *           3.0、完全不使用array[i]货币，只使用array[0...i-1]货币时，方法数为result[i-1][j]
- *           3.0、使用1张array[i]货币，剩下的使用array[0...i-1]货币组成时，方法数为result[i-1][j-array[i]]
- *           3.0、使用2张array[i]货币，剩下的使用array[0...i-1]货币组成时，方法数为result[i-1][j-2*array[i]]
+ *           令dp[0][k*array[0]]=1 (0<=k*array[0]<=aim, k为非负整数)
+ *        3、除第一行和第一列的其他位置，记为(i,j)，dp[i][j]是一下值的累加：
+ *           3.0、完全不使用array[i]货币，只使用array[0...i-1]货币时，方法数为dp[i-1][j]
+ *           3.0、使用1张array[i]货币，剩下的使用array[0...i-1]货币组成时，方法数为dp[i-1][j-array[i]]
+ *           3.0、使用2张array[i]货币，剩下的使用array[0...i-1]货币组成时，方法数为dp[i-1][j-2*array[i]]
  *               ... ...
- *           3.0、使用k张array[i]货币，剩下的使用array[0...i-1]货币组成时，方法数为result[i-1][j-k*array[i]]
+ *           3.0、使用k张array[i]货币，剩下的使用array[0...i-1]货币组成时，方法数为dp[i-1][j-k*array[i]]
  *               j-k*array[i]>=0，k为非负整数
- *        4、最后，result[N-1][aim]就是最终结果
+ *        4、最后，dp[N-1][aim]就是最终结果
  *     方案四：
- *        优化后动态规划方法。方案三中求result[i][j]的步骤三可知：
- *        result[i][j] = result[i-1][j] + result[i-1][j-array[i]] + result[i-1][j-2*array[i]] +..+ result[i-1][j-k*array[i]]
- *        其中，result[i-1][j-array[i]] + result[i-1][j-2*array[i]] +..+ result[i-1][j-k*array[i]] (j-k*array[i]>=0) =
- *        result[i-1][y] + result[i-1][y-array[i]] +..+ result[i-1][y-h*array[i]] (y>=0, y-h*array[i]>=0) =
- *        result[i][y] = result[i][j-array[i]]
- *        即：result[i][j] = result[i-1][j] + result[i][j-array[i]] (j-array[i]>=0)
+ *        优化后动态规划方法。方案三中求dp[i][j]的步骤三可知：
+ *        dp[i][j] = dp[i-1][j] + dp[i-1][j-array[i]] + dp[i-1][j-2*array[i]] +..+ dp[i-1][j-k*array[i]]
+ *        其中，dp[i-1][j-array[i]] + dp[i-1][j-2*array[i]] +..+ dp[i-1][j-k*array[i]] (j-k*array[i]>=0) =
+ *        dp[i-1][y] + dp[i-1][y-array[i]] +..+ dp[i-1][y-h*array[i]] (y>=0, y-h*array[i]>=0) =
+ *        dp[i][y] = dp[i][j-array[i]]
+ *        即：dp[i][j] = dp[i-1][j] + dp[i][j-array[i]] (j-array[i]>=0)
  *        省去了枚举的过程，降低了方案三的时间复杂度
  *     方案五：
  *        动态规划基础上的空间压缩。思想与com.wz.recursionanddynamicprogramming.MinPathSum的方案二类似。
@@ -138,14 +138,16 @@ public class CoinsWay {
         if (array == null || array.length == 0 || aim < 0) {
             return 0;
         }
-        int[][] result = new int[array.length][aim + 1];
+
+        // 动态规划矩阵
+        int[][] dp = new int[array.length][aim + 1];
         // 第一列，aim为0，即不使用任何货币
         for (int i = 0; i < array.length; i++) {
-            result[i][0] = 1;
+            dp[i][0] = 1;
         }
         // 第一行只能使用货币array[0]
         for (int j = 1; array[0] * j <= aim; j++) {
-            result[0][array[0] * j] = 1;
+            dp[0][array[0] * j] = 1;
         }
 
         int num;
@@ -153,12 +155,12 @@ public class CoinsWay {
             for (int j = 1; j <= aim; j++) {
                 num = 0;
                 for (int k = 0; j - array[i] * k >= 0; k++) {
-                    num += result[i - 1][j - array[i] * k];
+                    num += dp[i - 1][j - array[i] * k];
                 }
-                result[i][j] = num;
+                dp[i][j] = num;
             }
         }
-        return result[array.length - 1][aim];
+        return dp[array.length - 1][aim];
     }
 
     /**
@@ -168,23 +170,25 @@ public class CoinsWay {
         if (array == null || array.length == 0 || aim < 0) {
             return 0;
         }
-        int[][] result = new int[array.length][aim + 1];
+
+        // 动态规划矩阵
+        int[][] dp = new int[array.length][aim + 1];
         // 第一列，aim为0，即不使用任何货币
         for (int i = 0; i < array.length; i++) {
-            result[i][0] = 1;
+            dp[i][0] = 1;
         }
         // 第一行只能使用货币array[0]
         for (int j = 1; array[0] * j <= aim; j++) {
-            result[0][array[0] * j] = 1;
+            dp[0][array[0] * j] = 1;
         }
 
         for (int i = 1; i < array.length; i++) {
             for (int j = 1; j <= aim; j++) {
-                result[i][j] = result[i - 1][j];
-                result[i][j] += j - array[i] >= 0 ? result[i][j - array[i]] : 0;
+                dp[i][j] = dp[i - 1][j];
+                dp[i][j] += j - array[i] >= 0 ? dp[i][j - array[i]] : 0;
             }
         }
-        return result[array.length - 1][aim];
+        return dp[array.length - 1][aim];
     }
 
     /**
@@ -195,18 +199,19 @@ public class CoinsWay {
             return 0;
         }
 
-        int[] result = new int[aim + 1];
+        // 动态规划矩阵
+        int[] dp = new int[aim + 1];
         // 初始化时只能使用货币array[0]
         for (int j = 0; array[0] * j <= aim; j++) {
-            result[array[0] * j] = 1;
+            dp[array[0] * j] = 1;
         }
-        // 按行更新result
+        // 按行更新dp
         for (int i = 1; i < array.length; i++) {
             for (int j = 1; j <= aim; j++) {
-                result[j] += j - array[i] >= 0 ? result[j - array[i]] : 0;
+                dp[j] += j - array[i] >= 0 ? dp[j - array[i]] : 0;
             }
         }
-        return result[aim];
+        return dp[aim];
     }
 
     public static void main(String[] args) {
