@@ -140,3 +140,4 @@
 - LongestCommonSubString：最长公共子串
 - HanoiTower：汉诺塔问题
 - EditCost：最小编辑代价
+- StringCross：字符串的交错组成
