@@ -9,16 +9,52 @@ package com.wz.recursionanddynamicprogramming;
 
 /**
  * <p>表达式得到期望结果的组成种数</p>
+ * <p>
+ *     给定一个只由0(假)、1(真)、&(逻辑与)、|(逻辑或)、^(逻辑非)五种字符组成的字符串express，在给定一个布尔值desired。
+ *     求出express有多少中组合方式，可以达到desired。
+ *     例如，express="1^0|0|1"，desired=false。
+ *          只有"1^((0|0)|1)"和"1^(0|(0|1))"能组合得到false，即两种。
+ *     首先判断表达式是否有效，有三个标准：
+ *     1、表达式长度必须为奇数
+ *     2、表达式偶数位置的字符必须为'0'或'1'
+ *     2、表达式奇数位置的字符必须为'&'或'|'或'^'
+ *     方案一：
+ *        暴力递归。
+ *        将express划分为左右两部分，求出各种划分的情况下，能得到desired的种数是多少。
+ *        1、划分符号为^、desired为true时：
+ *           result = 左部分为真的种数 * 右部分为假的种数 + 左部分为假的种数 * 右部分为真的种数
+ *        2、划分符号为^、desired为false时：
+ *           result = 左部分为真的种数 * 右部分为真的种数 + 左部分为假的种数 * 右部分为假的种数
+ *        3、划分符号为&、desired为true时：
+ *           result = 左部分为真的种数 * 右部分为真的种数
+ *        4、划分符号为&、desired为false时：
+ *           result = 左部分为真的种数 * 右部分为假的种数 + 左部分为假的种数 * 右部分为真的种数
+ *        5、划分符号为|、desired为true时：
+ *           result = 左部分为真的种数 * 右部分为假的种数 + 左部分为假的种数 * 右部分为真的种数 + 左部分为真的种数 * 右部分为真的种数
+ *        6、划分符号为|、desired为false时：
+ *           result = 左部分为假的种数 * 右部分为假的种数
+ *     方案二：
+ *        动态规划。
+ *        生成两个N*N的矩阵t和f，t[j][i]表示express[j...i]组成true的种数，f[j][i]表示express[j...i]组成false的种数。
+ *        t[j][i]和f[j][i]的计算方式还是枚举express[j...i]上的每种划分。
+ * </p>
+ * <p>
+ *     方案一时间复杂度为O(N!)，空间复杂度为O(N)
+ *     方案二时间复杂度为O(N^3)，空间复杂度为O(N*N)
+ * </p>
  *
  * @author wangzi
  */
 public class ExpressionNumber {
 
-    public static int numOne(String expression, boolean desired) {
-        if (expression == null || expression.length() == 0) {
+    /**
+     * 暴力递归
+     */
+    public static int numOne(String express, boolean desired) {
+        if (express == null || express.length() == 0) {
             return 0;
         }
-        char[] exp = expression.toCharArray();
+        char[] exp = express.toCharArray();
         if (!isValid(exp)) {
             return 0;
         }
@@ -89,11 +125,14 @@ public class ExpressionNumber {
         return result;
     }
 
-    public static int numTwo(String expression, boolean desired) {
-        if (expression == null || expression.length() == 0) {
+    /**
+     * 动态规划
+     */
+    public static int numTwo(String express, boolean desired) {
+        if (express == null || express.length() == 0) {
             return 0;
         }
-        char[] exp = expression.toCharArray();
+        char[] exp = express.toCharArray();
         if (!isValid(exp)) {
             return 0;
         }
