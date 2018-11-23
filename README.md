@@ -143,3 +143,4 @@
 - StringCross：字符串的交错组成
 - DungeonGame：龙与地下城游戏问题
 - NumberToAlphabet：数字字符串转换为字符组合的种数
+- ExpressionNumber：表达式得到期望结果的组成种数
