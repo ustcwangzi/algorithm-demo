@@ -146,3 +146,4 @@
 - ExpressionNumber：表达式得到期望结果的组成种数
 - CardsInLine：排成一条线的纸牌博弈问题
 - JumpGame：跳跃游戏
+- LongestConsecutive：数组中的最长连续序列
