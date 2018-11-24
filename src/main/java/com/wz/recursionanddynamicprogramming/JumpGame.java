@@ -22,6 +22,11 @@ package com.wz.recursionanddynamicprogramming;
  *          cur更新为跳jump+1步能够达到的位置，即next
  *     2.3、将next更新为max{next, i+array[i]}，代表下一次多跳一步到达的最远位置
  *     3、最终返回jump即可。
+ *     以array=[3,2,3,1,1,4]为例，说明整个过程：
+ *        i: 0  1  2  3  4  5
+ *     jump: 0  1  1  1  2  2
+ *      cur: 0  3  3  3  5  5
+ *     next: 3  3  5  5  5  9
  * </p>
  * <p>
  *     时间复杂度为O(N)，空间复杂度为O(1)
