@@ -148,3 +148,6 @@
 - JumpGame：跳跃游戏
 - LongestConsecutive：数组中的最长连续序列
 - NQueens：N皇后问题
+
+## string 字符串
+- IsDeformation：两个字符串是否互为变形词
