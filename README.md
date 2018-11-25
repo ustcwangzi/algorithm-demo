@@ -147,3 +147,4 @@
 - CardsInLine：排成一条线的纸牌博弈问题
 - JumpGame：跳跃游戏
 - LongestConsecutive：数组中的最长连续序列
+- NQueens：N皇后问题
