@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>排成一条线的纸牌博弈问题</p>

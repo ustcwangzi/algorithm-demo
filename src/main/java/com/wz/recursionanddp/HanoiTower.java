@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>汉诺塔问题</p>

@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>龙与地下城游戏问题</p>
@@ -29,7 +29,7 @@ package com.wz.recursionanddynamicprogramming;
  *           即之前的血量为dp[i+1][j] - map[i][j]，同时任何位置都不能小于1。
  *        在以上情况中，选择min{向右的要求, 向下的要求}即可。
  *     方案二：
- *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddynamicprogramming.MinPathSum类似。
+ *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddp.MinPathSum类似。
  * </p>
  * <p>
  *     方案一时间复杂度为O(M*N)，空间复杂度为O(M*N)

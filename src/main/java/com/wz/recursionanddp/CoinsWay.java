@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>换钱的方法数</p>
@@ -47,7 +47,7 @@ package com.wz.recursionanddynamicprogramming;
  *        即：dp[i][j] = dp[i-1][j] + dp[i][j-array[i]] (j-array[i]>=0)
  *        省去了枚举的过程，降低了方案三的时间复杂度
  *     方案五：
- *        动态规划基础上的空间压缩。思想与com.wz.recursionanddynamicprogramming.MinPathSum的方案二类似。
+ *        动态规划基础上的空间压缩。思想与com.wz.recursionanddp.MinPathSum的方案二类似。
  *        生成一个aim+1的一维数组，然后按行更新即可。
  * </p>
  * <p>

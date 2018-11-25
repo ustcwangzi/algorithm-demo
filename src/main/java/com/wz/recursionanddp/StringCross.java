@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>字符串的交错组成</p>
@@ -26,7 +26,7 @@ package com.wz.recursionanddynamicprogramming;
  *            说明other[j-1]可以作为交错组成aim[0...i+j-1]的最后一个字符。此时令dp[i][j]=true
  *        4.3、其他情况下，令dp[i][j]=false
  *     方案二：
- *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddynamicprogramming.MinPathSum类似。
+ *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddp.MinPathSum类似。
  *        实际进行空间压缩的时候，选择长度较小的那个作为列对应的字符串，然后生成和较短字符串长度一样的一维数组dp，滚动更新即可。
  * </p>
  * <p>

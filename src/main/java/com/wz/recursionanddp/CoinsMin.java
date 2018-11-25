@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>换钱的最小货币数</p>
@@ -30,7 +30,7 @@ package com.wz.recursionanddynamicprogramming;
  *           dp[i][j] = min{dp[i-1][j], dp[i][j-array[i]]+1}
  *           如果j-array[i]<0，即发生越界，说明array[i]太大，用一张都会超过j，令result[i][j] = dp[i-1][j]即可
  *     方案二：
- *        在方案一的基础上使用空间压缩方法，思想与com.wz.recursionanddynamicprogramming.MinPathSum的方案二类似。
+ *        在方案一的基础上使用空间压缩方法，思想与com.wz.recursionanddp.MinPathSum的方案二类似。
  *        生成一个aim+1的一维数组，然后按行更新即可。之所以不选择按列更新，因为根据
  *        dp[i][j] = min{dp[i-1][j], dp[i][j-array[i]]+1}克制，位置(i,j)同时依赖(i-1,j)与(i,j-array[i])
  *     问题二：给定数组array，数组中所有值都为正数且不重复，每个仅代表一张面额的货币，给定整数aim，求组成aim的最少货币数

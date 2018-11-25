@@ -5,7 +5,7 @@
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
-package com.wz.recursionanddynamicprogramming;
+package com.wz.recursionanddp;
 
 /**
  * <p>最小编辑代价</p>
@@ -29,7 +29,7 @@ package com.wz.recursionanddynamicprogramming;
  *        4.3、如果self[i-1]==other[j-1]，把self[0...i-2]编辑成other[0...j-2]即可，dp[i][j]=dp[i-1][j-1]
  *        以上四种可能的值中，选择最小的值最为dp[i][j]
  *     方案二：
- *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddynamicprogramming.MinPathSum的方案二类似。
+ *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddp.MinPathSum的方案二类似。
  *        不同之处在于MinPathSum中dp[i][j]依赖两个位置的值dp[i-1][j]和dp[i][j-1]，滚动数组从左到右更新是没问题的，因为在求dp[j]时，
  *        dp[j]没有更新之前相当于dp[i-1][j]的值，dp[j-1]的值又已经更新过相当于dp[i][j-1]的值。
  *        而本题中，dp[i][j]依赖dp[i-1][j]、dp[i][j-1]和dp[i-1][j-1]的值，所以滚动数组从左到右更新时，需要一个变量保存dp[j-1]

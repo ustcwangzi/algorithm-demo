@@ -130,7 +130,7 @@
 - UniqueBinarySearchTree：统计和生成所有不同的二叉树
 - CompleteTreeNodeNumber：统计完全二叉树的节点数
 
-## recursionanddynamicprogramming 递归和动态规划
+## recursionanddp 递归和动态规划(dynamicprogramming)
 - Fibonacci：斐波那契数列系列问题
 - MinPathSum：矩阵的最小路径和
 - CoinsMin：换钱的最小货币数
