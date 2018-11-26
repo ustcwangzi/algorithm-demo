@@ -9,6 +9,18 @@ package com.wz.string;
 
 /**
  * <p>两个字符串是否互为旋转词</p>
+ * <p>
+ *     把一个字符串str前面任意的部分移到后面形成的字符串叫做str的旋转词。
+ *     例如str="1234"，那么"1234"、"2341"、"3412"、"4123"都是str的旋转词；"1ab2"与"ab12"不是互为旋转词。
+ *     给定两个字符串self和other，判断self和other是否互为旋转词。
+ *     解决过程：
+ *     如果self和other长度不一样，直接返回false。长度一样时，使用两个other生成一个大字符串tmp，即tmp=other+other，
+ *     如果tmp中包含字符串self，说明self与other互为旋转词，否则说明两个字符串不互为旋转词。因为tmp中包含了字符串other的所以旋转词。
+ *     getIndexOf()的功能是如果tmp中包含self，返回self在tmp中的开始位置，如果不包含则返回-1，利用的是KMP算法，此处不做展开。
+ * </p>
+ * <p>
+ *     KMP算法可在O(N)内完成，因此整个过程的时间复杂度为O(N)
+ * </p>
  *
  * @author wangzi
  */
