@@ -151,5 +151,6 @@
 
 ## string 字符串
 - IsDeformation：两个字符串是否互为变形词
+- IsRotation：两个字符串是否互为旋转词
 - AllNumbersSum：字符串中所有数字子串的求和
 - RemoveKZeros：去掉字符串中连续出现k个0的子串
