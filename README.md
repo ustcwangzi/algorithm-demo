@@ -154,3 +154,4 @@
 - IsRotation：两个字符串是否互为旋转词
 - AllNumbersSum：字符串中所有数字子串的求和
 - RemoveKZeros：去掉字符串中连续出现k个0的子串
+- ConvertStringToInteger：整数字符串转成整数值
