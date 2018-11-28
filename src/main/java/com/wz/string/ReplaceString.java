@@ -9,6 +9,20 @@ package com.wz.string;
 
 /**
  * <p>替换字符串中连续出现的指定字符</p>
+ * <p>
+ *     给定三个字符串str、from和to，吧str中所有from的子串替换为to，对于连续出现的部分只替换为一个to字符串即可。
+ *     例如，str="123abc"，from="abc"，to="X"，替换后为"123X"；
+ *          str="123"，from="abc"，to="X"，替换后为"123"；
+ *          str="123abcabc"，from="abc"，to="X"，替换后为"123X"。
+ *     解决方案：
+ *     把str看作字符类型的数组，把str中from部分的所有位置的字符编码设为0(即空字符)，过程如下：
+ *     1、match表示目前匹配到from字符串的什么位置，初始时match=0
+ *     2、从左到右遍历str的每个字符，假设当前遍历到str[i]
+ *     3、如果str[i]==from[match]，如果match是from的最后一个字符的位置，说明str中发现了from字符串，则从i开始向左的M个位置，
+ *        将字符编码设为0，M为from的长度，然后令match=0。如果match不是from的最后一个字符的位置，令match++，遍历str的下一个字符。
+ *     4、如果str[i]!=from[match]，说明匹配失败，令match=0，即回到from开头重新匹配。
+ *     通过上面过程后，将不为0的区域拼在一起，连续为0的部分用to来替换即可。
+ * </p>
  *
  * @author wangzi
  */
@@ -23,11 +37,13 @@ public class ReplaceString {
         int match = 0;
         for (int i = 0; i < chStr.length; i++) {
             if (chStr[i] == chFrom[match++]) {
+                // 匹配成功
                 if (match == chFrom.length) {
                     clear(chStr, i, chFrom.length);
                     match = 0;
                 }
             } else {
+                // from从头匹配
                 if (chStr[i] == chFrom[0]) {
                     i--;
                 }
@@ -49,6 +65,9 @@ public class ReplaceString {
         return cur.length() == 0 ? result : result + cur;
     }
 
+    /**
+     * 从end开始向左len个位置，将字符编码设为0
+     */
     private static void clear(char[] chas, int end, int len) {
         while (len-- != 0) {
             chas[end--] = 0;
