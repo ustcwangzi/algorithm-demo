@@ -158,3 +158,4 @@
 - ConvertStringToCount：字符串的统计字符串
 - ReplaceString：替换字符串中连续出现的指定字符
 - IsAllUnique：判断字符数组中是否所有的字符都只出现过一次
+- FindStringInContainsNullArray：在有序但包含空的数组中查找字符串
