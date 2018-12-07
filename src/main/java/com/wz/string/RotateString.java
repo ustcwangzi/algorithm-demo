@@ -9,6 +9,19 @@ package com.wz.string;
 
 /**
  * <p>翻转字符串</p>
+ * <p>
+ *     问题一：
+ *        给定一个字符类型的数组array，请在单词间做逆序调整，只要做到单词逆序即可，空格位置无特殊要求。
+ *        例如，"dog loves pig"调整为"pig loves dog"。
+ *     问题二：
+ *        给定一个字符类型的数组array和一个整数size，请把大小为size的左半区整体移动到右边，右半区整体移动到左边。
+ *        例如，"ABCDE"，size=3，调整为"DEABC"。
+ *     问题一解答：
+ *        首先把array整体逆序，逆序后，遍历array找到每一个单词，然后再把每一个单词里的字符逆序即可。
+ *     问题二解答：
+ *        先把array[o...size-1]部分逆序，再把array[size...N-1]部分逆序，最后把array整体逆序即可。
+ *        比如"ABCDE"，size=3，先把array[0...2]逆序变成"CBADE"，再把array[3...4]逆序变成"CBAED"，最后整体逆序变成"EDABC"。
+ * </p>
  *
  * @author wangzi
  */
