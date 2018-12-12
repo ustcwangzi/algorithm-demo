@@ -36,6 +36,9 @@ package com.wz.string;
  *     解决方案三：
  *        类似矩阵乘法求解斐波那契数列，本数列也可以采用矩阵乘法求解。com.wz.recursionanddp.Fibonacci#fibonacciThree(int)
  * </p>
+ * <p>
+ *     方案一时间复杂度O(2^N)，方案二时间复杂度O(N)，方案三时间复杂度O(logN)
+ * </p>
  *
  * @author wangzi
  */
