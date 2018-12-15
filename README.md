@@ -169,3 +169,4 @@
 - LowestLexicography：拼接所有字符串产生字典顺序最小的字符串
 - LongestNoRepeatSubstring：字符串中最长无重复子串的长度
 - FindNewTypeChar：找到指定位置的新类型字符
+- MinWindowLength：最小包含子串的长度
