@@ -177,3 +177,4 @@
 ## bitoperation 位运算
 - SwapWithoutTmp：不用额外遍历交换两个整数的值
 - GetMax：不用任何比较判断找出两个数中较大的数
+- AddMinusMultiDivideByBit：只用位运算实现正数的加减乘除运算
