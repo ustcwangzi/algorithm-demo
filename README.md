@@ -179,3 +179,4 @@
 - GetMax：不用任何比较判断找出两个数中较大的数
 - AddMinusMultiDivideByBit：只用位运算实现正数的加减乘除运算
 - NumberOfOne：整数的二进制中有多少个1
+- EvenTimesOddTimes：其他数出现偶数次的数组中找到出现奇数次的数
