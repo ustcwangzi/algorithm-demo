@@ -185,3 +185,4 @@
 ## arrayandmatrix 数组和矩阵
 - PrintMatrixSpiralOrder：转圈打印矩阵
 - RotateMatrix：将正方形矩阵顺时间转动90度
+- PrintMatrixZigZag：之字形打印矩阵
