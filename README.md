@@ -190,3 +190,4 @@
 - MinLengthForSort：需要排序的最短子数组长度
 - FindKMajority：数组中找到出现次数大于N/K的数
 - FindNumInSortedMatrix：在行列都有序的矩阵中找数
+- LongestIntegratedLength：最长可整合子数组长度
