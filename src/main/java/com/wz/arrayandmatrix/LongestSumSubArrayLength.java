@@ -12,6 +12,33 @@ import java.util.Map;
 
 /**
  * <p>无序数组中累加和为给定值的最长子数组长度</p>
+ * <p>
+ *     问题一：
+ *        给定一个无序数组array，每个值均为正数，再给定一个正数k，求出array的所有子数组中元素之和为k的最长子数组长度。
+ *     问题二：
+ *        给定一个无序数组array，其中元素可正、可负、可0，再给定一个整数k，求出array的所有子数组中元素之和为k的最长子数组长度。
+ *     问题三：
+ *        给定一个无序数组array，其中元素可正、可负、可0，求出array的所有子数组中正数和负数个数相等的最长子数组长度。
+ *     问题四：
+ *        给定一个无序数组array，其中元素只有1和0，求出array的所有子数组中0和1的个数相等的最长子数组长度。
+ *     问题一解答：
+ *        1、用left和right标记子数组的左右位置，代表子数组array[left...right]，开始时left=0，right=0
+ *        2、sum代表array[left...right]中元素之和，开始时sum=array[0]
+ *        3、result记录累加和为k的所有子数组中最大子数组的长度，开始时result=0
+ *        4、比较sum与k
+ *        4.1、sum==k，说明array[left...right]的累加和为k，若array[left...right]的长度大于result，则更新result。
+ *             此时因为数组中所有元素均为正数，那么从left开始，在right位置之后的子数组即array[left...i](i>right)，累加和一定大于k，
+ *             所以，令left+1，表示接下来检查left之后的子数组，同时令sum-=array[left]。
+ *        4.2、sum<k，说明array[left...right]需要假设right之后的元素，累加和才能达到k，所以令right+1，sum+=array[right]
+ *        4.3、sum>k，说明right位置之后的子数组，即array[left...i](i>right)，累加和一定大于k，令left+1，sum-=array[left]
+ *        5、如果right<array.length，重复步骤四，都在返回result。
+ *     问题二解答：
+ *     问题三解答：
+ *     问题四解答：
+ * </p>
+ * <p>
+ *     问题一时间复杂度为O(N)，空间复杂度为O(1)
+ * </p>
  *
  * @author wangzi
  */
