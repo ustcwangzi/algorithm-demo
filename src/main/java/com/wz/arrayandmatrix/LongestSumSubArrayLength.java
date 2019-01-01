@@ -33,11 +33,29 @@ import java.util.Map;
  *        4.3、sum>k，说明right位置之后的子数组，即array[left...i](i>right)，累加和一定大于k，令left+1，sum-=array[left]
  *        5、如果right<array.length，重复步骤四，都在返回result。
  *     问题二解答：
+ *        s(i)代表子数组array[0...i]所有元素的累加和，由此可以得到array[j...i]的累加和为s(i)-s(j-1)，
+ *        因为s(i)=sum{array[0...i]}=sum{array[0...j-1]}+sum{array[j...i]}=s(j-1)+sum{array[j...i]}，
+ *        所以sum{array[j...i]}=s(i)-s(j-1)。
+ *        sum代表array[0...i]所以元素的累加和；result代表累加和为k的最长子数组长度；
+ *        map的key为累加过程中出现的sum，value为sum最早出现的位置。
+ *        从左到右遍历array，假设当前遍历到array[i]
+ *        1、令sum+=array[i]，即目前所有元素的累加和s(i)，检查map中是否存在sum-k
+ *        1.1、若sum-k存在，从map中去除sum-k对应的value，记为j，j代表从左到右的累加过程中第一次出现结果sum-k的位置，
+ *             又sum{array[j...i]}=s(i)-s(j-1)，可得：sum{array[j+1...i]}=s(i)-s(j)=sum-(sum-k)=k，
+ *             同时因为map中只记录每个累加值最早出现的位置，所以此时的array[j+1...i]是在必须以array[i]结尾的所有子数组中，
+ *             累加和为k的最长子数组，如果其长度大于result，更新result
+ *        1.2、若sum-k不存在，说明必须以array[i]结尾的情况下，没有累加和为k的子数组
+ *        2、检查当前sum是否在map中，如不存在，将(sum,i)记录到map中。
+ *        根据sum{array[j+1...i]}=s(i)-s(j)可知，如果从位置0开始累加，会导致j+1==1，也就是所有从0开始子数组都会被忽略，
+ *        因此，应该从-1位置开始累加，即在遍历之前将(0,-1)存入map。
  *     问题三解答：
+ *        与问题二的解答类似，只需要将数组中正数全部变成1，负数全部变成-1，0不变，然后求累加和为0的最长子数组长度即可。
  *     问题四解答：
+ *        与问题二的解答类似，只需要将数组中0全部变成-1，1不变，然后求累加和为0的最长子数组长度即可。
  * </p>
  * <p>
  *     问题一时间复杂度为O(N)，空间复杂度为O(1)
+ *     问题二时间复杂度为O(N)，空间复杂度为O(N)
  * </p>
  *
  * @author wangzi
