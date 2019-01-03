@@ -195,3 +195,4 @@
 - LongestSumSubArrayLength：无序数组中累加和为给定值的最长子数组长度
 - LongestLessSumSubArrayLength：无序数组中累加和小于等于给定值的最长子数组长度
 - SmallSum：计算数组的小和
+- SortNaturalNumberArray：自然数数组的排序
