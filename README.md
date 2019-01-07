@@ -199,4 +199,5 @@
 - EvenInEvenOddInOdd：奇数位置都是奇数或者偶数位置都是偶数
 - SubArrayMaxSum：子数组的最大累加和
 - SubMatrixMaxSum：子矩阵的最大累加和
+- SubArrayMaxProduct：子数组的最大累乘积
 - FindOneLessValueIndex：在数组中找到一个局部最小的位置
