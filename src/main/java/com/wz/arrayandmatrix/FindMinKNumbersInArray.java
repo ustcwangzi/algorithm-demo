@@ -1,5 +1,5 @@
 /**
- * <p>Title: FindMinKNumbers</p>
+ * <p>Title: FindMinKNumbersInArray</p>
  * <p>Description: </p>
  * <p>Created by wangzi on 2018/12/25</p>
  * <p>Emil: ustcwangzi@foxmail.com</p>
@@ -40,7 +40,7 @@ import java.util.Arrays;
  *
  * @author wangzi
  */
-public class FindMinKNumbers {
+public class FindMinKNumbersInArray {
 
     public static int[] getMinKNumbersByHeap(int[] array, int k) {
         if (array == null || array.length == 0 || k < 1 || k > array.length) {

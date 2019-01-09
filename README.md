@@ -186,7 +186,8 @@
 - PrintMatrixSpiralOrder：转圈打印矩阵
 - RotateMatrix：将正方形矩阵顺时间转动90度
 - PrintMatrixZigZag：之字形打印矩阵
-- FindMinKNumbers：找到无序数组中最小的k个数
+- FindMinKNumbersInArray：找到无序数组中最小的K个数
+- FindMaxKNumbersInMatrix：找到N个数组中最大的K个数
 - MinLengthForSort：需要排序的最短子数组长度
 - FindKMajority：数组中找到出现次数大于N/K的数
 - FindNumInSortedMatrix：在行列都有序的矩阵中找数
