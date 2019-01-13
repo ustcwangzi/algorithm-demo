@@ -207,3 +207,4 @@
 - PartitionArray：数组的部分调整
 - MinPathValue：最大路径值
 - SmallestMissNum：数组中未出现的最小正整数
+- MaxGap：数组排序后相邻数的最大差值
