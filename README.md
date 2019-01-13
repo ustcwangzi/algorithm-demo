@@ -206,3 +206,4 @@
 - MultiplyExceptOwn：不包含本位置值的累乘结果数组
 - PartitionArray：数组的部分调整
 - MinPathValue：最大路径值
+- SmallestMissNum：数组中未出现的最小正整数
