@@ -9,6 +9,28 @@ package com.wz.others;
 
 /**
  * <p>从随机到随机的扩展</p>
+ * <p>
+ *     问题一：
+ *        给定等概率随机产生1～5的随机函数rand1To5：
+ *        private static int rand1To5() {
+ *           return (int) (Math.random() * 5) + 1;
+ *        }
+ *        除此之外，不能使用任何额外的随机机制，请使用rand1To5实现等概率随机产生1～7的随机函数rand1To7。
+ *     问题二：
+ *        给定一个以p概率产生0，以1-p概率产生1的随机函数rand01p：
+ *        private static int rand01p() {
+ *           // you can change p to what you like, but it must be (0,1)
+ *           double p = 0.83;
+ *           return Math.random() < p ? 0 : 1;
+ *        }
+ *        除此之外，不能使用任何额外的随机机制，请使用rand01p实现等概率随机产生1～6的随机函数rand1To6。
+ *     问题三：
+ *        给定等概率随机产生1～M的随机函数rand1ToM：
+ *        private static int rand1ToM(int m) {
+ *           return (int) (Math.random() * m) + 1;
+ *        }
+ *        除此之外，不能使用任何额外的随机机制，有两个输入参数m和n，请使用rand1ToM实现等概率随机产生1～N的随机函数rand1ToN。
+ * </p>
  *
  * @author wangzi
  */
@@ -133,7 +155,7 @@ public class Rand1ToRandN {
     /**
      * 已知条件
      */
-    public static int rand1ToM(int m) {
+    private static int rand1ToM(int m) {
         return (int) (Math.random() * m) + 1;
     }
 
