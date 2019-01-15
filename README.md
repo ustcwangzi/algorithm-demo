@@ -211,3 +211,4 @@
 
 ## others 其他
 - Rand1ToRandN：从随机到随机的扩展
+- GreatestCommonDivisor：最大公约数
