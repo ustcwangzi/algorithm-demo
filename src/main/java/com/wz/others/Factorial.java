@@ -1,7 +1,7 @@
 /**
  * <p>Title: Factorial</p>
  * <p>Description: </p>
- * <p>Created by wangzi on 2019/1/15</p>
+ * <p>Created by wangzi on 2019/1/16</p>
  * <p>Emil: ustcwangzi@foxmail.com</p>
  * <p>WebSite: https://github.com/ustcwangzi/</p>
  */
