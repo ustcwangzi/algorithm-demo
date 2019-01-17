@@ -9,6 +9,20 @@ package com.wz.others;
 
 /**
  * <p>判断一个点是否在矩形内部</p>
+ * <p>
+ *     在二维坐标系中，所有的值都是double类型，那么一个矩形可以由四个点代表，(x1,y1)为最左的点，(x2,y2)为最上的点，(x3,y3)为最下的点，
+ *     (x4,y4)为最右的点，给定四个点代表的矩形，再给定一个点(x,y)，判断(x,y)是否在矩形中。
+ *     解决方案：
+ *        当矩形的边平行于坐标轴时，直接判断该点是否完全在矩形的左侧、右侧、上侧或下侧，如果都不是，就一定在矩形中。
+ *        当矩形的边不平行于坐标轴时，可通过坐标变换把矩形转成平行的情况，在旋转时所有的点跟着转动，旋转完成后，再进行判断。
+ *        旋转变换就是将平面上任意一点绕原点旋转θ角，一般规定逆时针方向为正，顺时针方向为负，具体如图resources/PointInRectangle.png。
+ *        又有公式：sin(A+B) = sinAcosB+cosAsinB，sin(A-B) = sinAcosB-cosAsinB，
+ *                cos(A+B) = cosAcosB-sinAsinB，cos(A-B) = cosAcosB+sinAsinB
+ *        假设矩形在旋转前与坐标轴的角度为A，则：x=r*cosA，y=r*sinA
+ *        在这里将矩形按照顺时针方向进行旋转，因此可以得到：
+ *        x1 = r*cos(A-B) = r*(cosAcosB+sinAsinB) = r*cosAcosB+r*sinAsinB = x*cosB+y*sinB
+ *        y1 = r*sin(A-B) = r*(sinAcosB-cosAsinB) = r*sinAcosB-r*cosAsinB = y*cosB-x*sinB
+ * </p>
  *
  * @author wangzi
  */
