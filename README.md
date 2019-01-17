@@ -214,3 +214,4 @@
 - GreatestCommonDivisor：最大公约数
 - LeastCommonMultiple：最小公倍数
 - Factorial：阶乘相关问题
+- PointInRectangle：判断一个点是否在矩形内部
