@@ -12,6 +12,16 @@ import java.util.Map;
 
 /**
  * <p>设计有setAll功能的哈希表</p>
+ * <p>
+ *     哈希表常见的三个操作为put、get和containsKey，时间复杂度都是O(1)。现在想加一个setAll功能，把所有记录的value都更新成同一个值。
+ *     请实现这种有setAll功能的哈希表，并且put、get、containsKey和setAll四个操作的时间复杂度都是O(1)。
+ *     解决方案：
+ *        加入一个时间戳结构。
+ *        1、把每一个记录都加上一个时间，标记这条记录是何时创建的
+ *        2、设置setAll时也加上一个时间，标记setAll是何时创建的
+ *        3、查询记录时，如果某条记录的时间早于setAll记录的时间，说明setAll是在后面执行的，返回setAll记录的值；
+ *           如果某条记录的时间晚于setAll记录的时间，说明记录是在后面创建的，返回该条记录的值。
+ * </p>
  *
  * @author wangzi
  */
