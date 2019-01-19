@@ -217,3 +217,4 @@
 - PointInRectangle：判断一个点是否在矩形内部
 - PointInTriangle：判断一点钟是否在三角形内部
 - PaperFolding：折纸问题
+- ReservoirSampling：蓄水池取样算法
