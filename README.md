@@ -216,3 +216,4 @@
 - Factorial：阶乘相关问题
 - PointInRectangle：判断一个点是否在矩形内部
 - PointInTriangle：判断一点钟是否在三角形内部
+- PaperFolding：折纸问题
