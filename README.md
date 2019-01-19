@@ -218,3 +218,4 @@
 - PointInTriangle：判断一点钟是否在三角形内部
 - PaperFolding：折纸问题
 - ReservoirSampling：蓄水池取样算法
+- SetAllHashMap：设计有setAll功能的哈希表
