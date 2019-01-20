@@ -219,3 +219,4 @@
 - PaperFolding：折纸问题
 - ReservoirSampling：蓄水池取样算法
 - SetAllHashMap：设计有setAll功能的哈希表
+- MaxAbsoluteBetweenLeftAndRight：最大的leftMax与rightMax之差的绝对值
