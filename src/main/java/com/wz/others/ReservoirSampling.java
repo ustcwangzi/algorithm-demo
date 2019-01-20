@@ -52,15 +52,20 @@ public class ReservoirSampling {
             result[i] = i + 1;
         }
         for (int i = k + 1; i < max + 1; i++) {
-            // 随机产生1～i
-            int p = new Random().nextInt(i) + 1;
             // 决定i进不进袋子
-            if (p <= k) {
+            if (rand(i) <= k) {
                 // i随机替换掉袋子中的一个
-                result[p - 1] = i;
+                result[rand(k)- 1] = i;
             }
         }
         return result;
+    }
+
+    /**
+     * 随机产生1～max
+     */
+    private static int rand(int max) {
+        return new Random().nextInt(max) + 1;
     }
 
     public static void main(String[] args) {
