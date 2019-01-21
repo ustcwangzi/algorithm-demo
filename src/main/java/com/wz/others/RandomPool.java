@@ -88,20 +88,35 @@ public class RandomPool {
         }
     }
 
+    private static void printCountMap(Map<String, Integer> map) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " appears " + entry.getValue() + " times");
+        }
+    }
+
     public static void main(String[] args) {
         Pool<String> pool = new Pool<>();
         pool.insert("A");
         pool.insert("B");
         pool.insert("C");
-        for (int i = 0; i < 20; i++) {
-            System.out.print(pool.getRandom() + " ");
-        }
 
-        System.out.println();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < 10000; i++) {
+            String str = pool.getRandom();
+            Integer num = map.get(str);
+            map.put(str, num == null ? 1 : num + 1);
+        }
+        printCountMap(map);
+
+        System.out.println("===============");
 
         pool.delete("B");
-        for (int i = 0; i < 20; i++) {
-            System.out.print(pool.getRandom() + " ");
+        map = new HashMap<>();
+        for (int i = 0; i < 10000; i++) {
+            String str = pool.getRandom();
+            Integer num = map.get(str);
+            map.put(str, num == null ? 1 : num + 1);
         }
+        printCountMap(map);
     }
 }
