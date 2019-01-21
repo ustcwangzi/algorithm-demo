@@ -1,5 +1,5 @@
 /**
- * <p>Title: LeastRecentlyUsedCache</p>
+ * <p>Title: RandomPool</p>
  * <p>Description: </p>
  * <p>Created by wangzi on 2019/1/21</p>
  * <p>Emil: ustcwangzi@foxmail.com</p>
