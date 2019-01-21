@@ -222,3 +222,4 @@
 - LeastRecentlyUsedCache：设计可以变更的缓存结构
 - RandomPool：设计RandomPool结构
 - MaxAbsoluteBetweenLeftAndRight：最大的leftMax与rightMax之差的绝对值
+- ProbabilityXPowerK：调整[0,x)区间上的数出现的概率
