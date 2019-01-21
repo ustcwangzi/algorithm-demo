@@ -220,4 +220,5 @@
 - ReservoirSampling：蓄水池取样算法
 - SetAllHashMap：设计有setAll功能的哈希表
 - LeastRecentlyUsedCache：设计可以变更的缓存结构
+- RandomPool：设计RandomPool结构
 - MaxAbsoluteBetweenLeftAndRight：最大的leftMax与rightMax之差的绝对值
