@@ -223,3 +223,4 @@
 - RandomPool：设计RandomPool结构
 - MaxAbsoluteBetweenLeftAndRight：最大的leftMax与rightMax之差的绝对值
 - ProbabilityXPowerK：调整[0,x)区间上的数出现的概率
+- PathsToNumbers：路径数组变为统计数组
