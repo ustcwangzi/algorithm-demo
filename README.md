@@ -226,4 +226,4 @@
 - PathsToNumbers：路径数组变为统计数组
 - SmallestUnFormedSum：正数数组的最小不可组成和
 - NumberAndString：一种字符串和数字的对应关系
-- OneNumbers：1到n中数字1出现的次数
+- NumbersOfOne：1到n中数字1出现的次数
