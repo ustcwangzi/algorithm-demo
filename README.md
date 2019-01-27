@@ -230,3 +230,4 @@
 - PrintRandomNumbersInArray：从N个数中等概率随机打印M个数
 - PalindromeNumber：判断一个数是否是回文数
 - FindMinInSortedRotateArray：在有序旋转数组中找到最小值
+- FindNumberInSortedRotateArray：在有序旋转数组中找到一个数
