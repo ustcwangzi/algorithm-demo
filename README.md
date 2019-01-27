@@ -227,3 +227,4 @@
 - SmallestUnFormedSum：正数数组的最小不可组成和
 - NumberAndString：一种字符串和数字的对应关系
 - NumbersOfOne：1到n中数字1出现的次数
+- PrintRandomNumbersInArray：从N个数中等概率随机打印M个数
