@@ -231,5 +231,5 @@
 - PalindromeNumber：判断一个数是否是回文数
 - FindMinInSortedRotateArray：在有序旋转数组中找到最小值
 - FindNumberInSortedRotateArray：在有序旋转数组中找到一个数
-- ChineseExpressionForNumber：数字的中文表达式
-- EnglishExpressionForNumber：数字的英文表达式
+- ChineseExpressionForNumber：数字的中文表达
+- EnglishExpressionForNumber：数字的英文表达

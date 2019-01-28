@@ -8,7 +8,20 @@
 package com.wz.others;
 
 /**
- * <p>数字的英文表达式</p>
+ * <p>数字的英文表达</p>
+ * <p>
+ *     给定一个32位正数number，获取number的英文表达字符串。
+ *     例如：
+ *        319：Three Hundred Nineteen
+ *        1024：One Thousand, Twenty Four
+ *        -2147483648：Negative, Two Billion, One Hundred Forty Seven Million, Four Hundred Eighty Three Thousand,
+ *                    Six Hundred Forty Eight
+ *     解决方案：
+ *        英文的表达是以三个数为一组的，所以只要能表达出1～999，然后将数字分解成十亿组，百万组，千组，1～999组，
+ *        每组都用1～999表达再把组与组之间各自的表达字符串连接起来即可。
+ *        如何实现1～999的表达？从简单场景出发，依次实现1～19，1～99，1～999即可。
+ *        注意的是负数要加一个前缀Negative，number如果为最小负整数的时候要考虑取绝对值时会溢出的问题。
+ * </p>
  *
  * @author wangzi
  */

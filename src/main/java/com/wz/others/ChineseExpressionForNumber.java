@@ -8,7 +8,10 @@
 package com.wz.others;
 
 /**
- * <p>数字的中文表达式</p>
+ * <p>数字的中文表达</p>
+ * <p>
+ *     给定一个32位正数number，获取number的中文表达字符串。
+ * </p>
  *
  * @author wangzi
  */
