@@ -22,12 +22,36 @@ package com.wz.others;
  *     例如：
  *        array = [1,2,2]，糖果分配[1,2,2]，即可满足要求且数量最少，所以返回5。
  * </p>
- *
  * @author wangzi
  */
 public class DistributeCandy {
 
     public static int candyOne(int[] array) {
+        if (array == null || array.length == 0) {
+            return 0;
+        }
+        int result = 0;
+        int[] numbers = new int[array.length];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = 1;
+        }
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i + 1] > array[i]) {
+                numbers[i + 1] = numbers[i] + 1;
+            }
+        }
+        for (int i = array.length - 1; i > 0; i--) {
+            if (array[i - 1] > array[i]) {
+                numbers[i - 1] = Math.max(numbers[i - 1], numbers[i] + 1);
+            }
+        }
+        for (int i : numbers) {
+            result += i;
+        }
+        return result;
+    }
+
+    public static int candyTwo(int[] array) {
         if (array == null || array.length == 0) {
             return 0;
         }
@@ -71,7 +95,7 @@ public class DistributeCandy {
         return length + length * (length - 1) / 2;
     }
 
-    public static int candyTwo(int[] array) {
+    public static int candy(int[] array) {
         if (array == null || array.length == 0) {
             return 0;
         }
@@ -132,5 +156,6 @@ public class DistributeCandy {
         int[] array = {3, 0, 5, 5, 4, 4, 0};
         System.out.println(candyOne(array));
         System.out.println(candyTwo(array));
+        System.out.println(candy(array));
     }
 }
