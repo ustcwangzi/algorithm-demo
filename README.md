@@ -233,3 +233,4 @@
 - FindNumberInSortedRotateArray：在有序旋转数组中找到一个数
 - ChineseExpressionForNumber：数字的中文表达
 - EnglishExpressionForNumber：数字的英文表达
+- DistributeCandy：分糖果问题
