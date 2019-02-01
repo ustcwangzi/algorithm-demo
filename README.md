@@ -235,4 +235,4 @@
 - EnglishExpressionForNumber：数字的英文表达
 - DistributeCandy：分糖果问题
 - ReceiveAndPrintOrderLine：一种消息接收并打印的结构设计
-
+- HeapWithoutDilatation：设计一个没有扩容负担的堆结构
