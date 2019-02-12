@@ -237,4 +237,4 @@
 - ReceiveAndPrintOrderLine：一种消息接收并打印的结构设计
 - HeapWithoutDilatation：设计一个没有扩容负担的堆结构
 - MedianQuick：快速找到中位数
-- FindUpMedian：在两个长度相等的排序数组中找到上中位数
+- FindUpMedian：在两个长度相等的有序数组中找到上中位数
