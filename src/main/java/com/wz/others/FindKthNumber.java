@@ -9,8 +9,33 @@ package com.wz.others;
 
 /**
  * <p>在两个有序数组中找到第K小的数</p>
+ * <p>
+ *     给定两个有序数组self和other，已知两个数组的长度都为N，求两个数组中所有数的上中位数。
+ *     例如：
+ *        self=[1,2,3,4,5]，other=[3,4,5]，k=1，1是所有数中第1小的数，因此返回1；
+ *        self=[1,2,3]，other=[3,4,5,6]，k=4，3是所有数中第4小的数，因此返回3。
+ *     解决方案：
+ *        本题需要使用到"在两个长度相等的有序数组中找到上中位数"，即getUpMedian()，思路见com.wz.others.FindUpMedian。
+ *        假设两个数组，长度较短的为shortArray，长度记为lenShort；长度较长的为longArray，长度记为lenLong。那么对于k，有以下三种情况：
+ *        1、k < lenShort。
+ *           那么在shortArray中选前k个数，在longArray中也选前k个数，这两段数组中的中位数就是整体的第k个最小的数；
+ *        2、k > lenLong。
+ *           对于longArray中的前k-lenShort-1个数，都不能满足要求，因为即使它们比shortArray中所有的数都大，也无法达到第k个。
+ *           longArray中的第k-lenShort个数，如果它比shortArray中的所有数都大，那么它就是第k小数，否则，它也不是。
+ *           对于shortArray中的前k-lenLong-1个数，都不能满足要求，因为即使它们比longArray中所有的数都大，也无法达到第k个。
+ *           shortArray中的第k-lenLong个数，如果它比longArray中的所有数都大，那么它就是第k小数，否则，它也不是。
+ *           接下来只需考虑shortArray[k-lenLong...lenShort-1]和longArray[k-LenShort...lenLong-1]，其上中位数就是整体的第k小数；
+ *        3、lenShort <= k <= lenLong。
+ *           对于longArray中的前k-lenShort-1个数，都不能满足要求，因为即使它们比shortArray中所有的数都大，也无法达到第k个。
+ *           longArray中的第k-lenShort个数，如果它比shortArray中的所有数都大，那么它就是第k小数，否则，它也不是。
+ *           对于longArray中的第k个数以后部分，也都不能满足要求，因为这些数之前至少已经有k个数了。
+ *           接下来只需要考虑shortArray[0...lenShort-1]和longArray[k-lenShort...k-1]，其上中位数就是整体的第k小数。
+ * </p>
+ * <p>
+ *     时间复杂度为O(log(min{M,N}))，空间复杂度为O(1)
+ * </p>
  *
- * @author wangzi
+ * @author wangzi 
  */
 public class FindKthNumber {
 
