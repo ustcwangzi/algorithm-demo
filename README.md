@@ -240,3 +240,4 @@
 - FindUpMedian：在两个长度相等的有序数组中找到上中位数
 - FindKthNumber：在两个有序数组中找到第K小的数
 - TopKSumCrossTwoArray：两个有序数组间相加和的TopK
+- TopKTimesInArray：数组中出现次数的TopK
