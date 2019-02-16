@@ -12,6 +12,26 @@ import java.util.Map;
 
 /**
  * <p>出现次数的TopK结构</p>
+ * <p>
+ *     设计并实现TopKRecord结构，可以不断地向其中加入字符串，并且可以根据字符串出现的情况随时打印加入次数最多的前k个字符串，具体为：
+ *     1、k在TopKRecord实例生成时指定，并且不再变化（k是构造函数的参数）；
+ *     2、含有add(String str)方法，即向TopKRecord中加入字符串；
+ *     3、含有printTopK()方法，即打印加入次数最多的前k个字符串，打印有哪些字符串和对应出现的次数即可，不要求严格按排名顺序打印。
+ *     要求：
+ *     在任何时刻，add方法的时间复杂度不超过O(logk)；
+ *     在任何时刻，printTopK方法的时间复杂度不超过O(k)。
+ *     解决方案：
+ *        问题的关键在于，字符串出现的次数是动态的，当然也可以像TopKTimesInArray一样，每加入一个字符串，就更新哈希表以及小根堆。
+ *        这样可以做到add方法的时间复杂度为O(1)，但是，每次printTopK的时候，都需要遍历一遍哈希表并且重新构建小根堆，
+ *        时间复杂度为O(N*logk)。要做到printTopK的时间复杂度为O(logk)，我们就希望每加入一个字符串的时候，
+ *        可以利用到之前创建的小根堆，而不是直接重建小根堆。
+ *        因此，在TopKTimesInArray的基础上改进一下，每次放入小根堆的元素都记录下它在小根堆中的位置以及它的词频。
+ *        即使用valueNodeMap和nodeIndexMap分别记录元素的词频和在堆中的位置，例如"A"出现10次，则valueNodeMap存在记录：
+ *        (key="A", value=("A", 10))，假设"A"也在堆中，并且位置为5，则nodeIndexMap存在记录：(key=("A", 10), value=5)。
+ *        这样的好处是：假设一个字符串出现了一次，如果字符串已经在小根堆中，此时只需要在小根堆中找到这个字符串所在的位置，
+ *        让该字符串的词频加1，然后从该位置开始向下调整小根堆即可。如果该字符串之前不在小根堆中，
+ *        只需要看它的词频加一后是否大于堆顶的词频，如果大的话，更新堆顶，并向下调整堆。
+ * </p>
  *
  * @author wangzi
  */
@@ -49,8 +69,14 @@ public class TopKTimesRecord {
     public static class TopKRecord {
         private Node[] heap;
         private int index;
-        private Map<String, Node> valueNodeMap;
+        /**
+         * 记录堆中的位置
+         */
         private Map<Node, Integer> nodeIndexMap;
+        /**
+         * 记录词频
+         */
+        private Map<String, Node> valueNodeMap;
 
         public TopKRecord(int size) {
             this.heap = new Node[size];
