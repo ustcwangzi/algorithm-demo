@@ -241,3 +241,4 @@
 - FindKthNumber：在两个有序数组中找到第K小的数
 - TopKSumCrossTwoArray：两个有序数组间相加和的TopK
 - TopKTimesInArray：数组中出现次数的TopK
+- TopKTimesRecord：出现次数的TopK结构

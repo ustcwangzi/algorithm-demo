@@ -82,6 +82,9 @@ public class TopKTimesInArray {
 
     public static void main(String[] args) {
         String[] array = {"A", "B", "C", "D", "E", "A", "C", "B", "C", "B", "A", "A"};
-        printTopK(array, 2);
+        for (int i = 1; i < 6; i++) {
+            printTopK(array, i);
+            System.out.println("------------------");
+        }
     }
 }
