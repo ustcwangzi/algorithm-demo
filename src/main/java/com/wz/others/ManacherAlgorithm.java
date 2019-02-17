@@ -40,6 +40,11 @@ package com.wz.others;
  *             此时这部分需要一个一个进行匹配，直到发生失配，从而更新right、center以及radiusArray[i]；
  *        3.2、i > right，说明对于中点为i的回文串还一点都没有匹配，这个时候，就只能老老实实地一个一个匹配了，
  *             匹配完成后要更新right、center以及radiusArray[i]。
+ *        算法的核心在于：radiusArray[i] = right > i ? Math.min(radiusArray[2 * center - i], right - i) : 1。
+ *        问题二解决方案：
+ *           其实就是找在必须包含最后一个字符的情况下，最长的回文子串是什么，然后将之前不是最长回文子串的部分逆序，就是需要添加的部分。
+ *           在问题一解决方案的基础上修改即可，从左到右计算回文半径时，关注最右回文右边界是否到达最后位置，即
+ *           right==manacherArray.length，到达则说明必须包含最后一个字符的最长回文半径已找到，退出检查，返回需要添加的字符串即可。
  * </p>
  *
  * @author wangzi
