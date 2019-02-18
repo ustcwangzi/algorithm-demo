@@ -243,3 +243,4 @@
 - TopKTimesInArray：数组中出现次数的TopK
 - TopKTimesRecord：出现次数的TopK结构
 - ManacherAlgorithm：Manacher算法
+- KMPAlgorithm：KMP算法
