@@ -49,6 +49,7 @@ public class ThrowChessPieces {
         if (k == 1) {
             return n;
         }
+
         int[][] dp = new int[n + 1][k + 1];
         // dp[N][1]=N，只使用一个棋子
         for (int i = 1; i < dp.length; i++) {
@@ -69,9 +70,44 @@ public class ThrowChessPieces {
         return dp[n][k];
     }
 
+    /**
+     * 动态规划空间压缩
+     */
+    public static int solutionThree(int n, int k) {
+        if (n < 1 || k < 1) {
+            return 0;
+        }
+        if (k == 1) {
+            return n;
+        }
+
+        int[] preArray = new int[n + 1];
+        int[] curArray = new int[n + 1];
+        // 只使用一个棋子
+        for (int i = 1; i < curArray.length; i++) {
+            curArray[i] = i;
+        }
+
+        for (int i = 1; i < k; i++) {
+            int[] tmp = preArray;
+            preArray = curArray;
+            curArray = tmp;
+            for (int j = 1; j < curArray.length; j++) {
+                int min = Integer.MAX_VALUE;
+                for (int h = 1; h < j + 1; h++) {
+                    // dp[N][K]只依赖了左边的数据dp[0...N-1][K-1]和它上面的数据dp[0...N-1][K]
+                    min = Math.min(min, Math.max(preArray[h - 1], curArray[j - h]));
+                }
+                curArray[j] = min + 1;
+            }
+        }
+        return curArray[n];
+    }
+
     public static void main(String[] args) {
         int n = 21, k = 2;
         System.out.println(solutionOne(n, k));
         System.out.println(solutionTwo(n, k));
+        System.out.println(solutionThree(n, k));
     }
 }
