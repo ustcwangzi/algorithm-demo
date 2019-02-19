@@ -244,3 +244,4 @@
 - TopKTimesRecord：出现次数的TopK结构
 - ManacherAlgorithm：Manacher算法
 - KMPAlgorithm：KMP算法
+- ThrowChessPieces：丢棋子问题
