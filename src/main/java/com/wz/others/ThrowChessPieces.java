@@ -228,7 +228,7 @@ public class ThrowChessPieces {
     }
 
     /**
-     * 最优解，i个棋子最多高端的楼层数
+     * 最优解，i个棋子最多解决的楼层数
      */
     public static int solutionFive(int n, int k) {
         if (n < 1 || k < 1) {
