@@ -26,18 +26,15 @@ package com.wz.others;
  *        2、第一个画匠负责array[0...1]，第二个画匠负责array[2...j]，所需的时间为max{sum[0...1], sum[2...j]}；
  *        3、第一个画匠负责array[0...k]，第二个画匠负责array[k+1...j]，所需要的时间为max{sum[0...k], sum[k+1...j]}。
  *        所有情况中所需要时间最少的就是最终的答案。
- *        当画匠数量大于2时，假设dp[i][j]表示i个画匠搞定array[0...j]这些画所需要的最少时间，那么有如下几种方案：
- *        1、第1～i-1个画匠负责array[0]，第i个画匠负责array[1...j]，所需的时间为max{dp[i-1][0], sum[1...j]}；
- *        2、第1～i-1个画匠负责array[0...1]，第i个画匠负责array[2...j]，所需的时间为max{dp[i-1][1], sum[2...j]}；
- *        3、第1～i-1个画匠负责array[0...k]，第i个画匠负责array[k+1...j]，所需要的时间为max{dp[i-1][k], sum[k+1...j]}。
+ *        当画匠数量大于2时，假设dp[i][j]表示i+1个画匠搞定array[0...j]这些画所需要的最少时间，那么有如下几种方案：
+ *        1、第1～i个画匠负责array[0]，第i+1个画匠负责array[1...j]，所需的时间为max{dp[i-1][0], sum[1...j]}；
+ *        2、第1～i个画匠负责array[0...1]，第i+1个画匠负责array[2...j]，所需的时间为max{dp[i-1][1], sum[2...j]}；
+ *        3、第1～i个画匠负责array[0...k]，第i+1个画匠负责array[k+1...j]，所需要的时间为max{dp[i-1][k], sum[k+1...j]}。
  *        哪种情况所需要的时间最少，dp[i][j]的值就等于哪个。
  *        即dp[i][j] = min{ max{dp[i-1][k], sum[k+1...j]}(0<=k<j) }
- *        可见dp[i][j]仅依赖了dp[i-1][...]的值，因为可以使用空间压缩方式实现。
  *     解决方案二：
- *        使用"四边形不等式"优化动态规划。
- *        假设计算dp[i-1][j]时，在最好的划分方案中，第i-1个画匠负责array[a...j]的画作。
- *        在计算dp[i][j+1]时，在最好的划分方案中，第i个画匠负责array[b...j]的画作。
- *        那么在计算dp[i][j]时，假设最好的划分方式是让第i个画匠负责array[k...j]，那么k的范围一定是[a, b]，这样就省去了很多无效的枚举过程。
+ *        动态规划的空间压缩。
+ *        方案一中dp[i][j]仅依赖了dp[i-1][...]的值，因为可以使用空间压缩方式实现。
  *     解决方案三：
  *        最优解。如果规定每个画匠的作画时间不能多余limit，那么要几个画匠才能完成呢，这个问题非常简单，从左到右遍历array做累加，
  *        一旦累加和大于limit，则认为当前的画array[i]必须分给下一个画匠，同时让累加和清零，从array[i]开始重新累加。
@@ -46,7 +43,7 @@ package com.wz.others;
  *        limit一开始为[0,array的累加和]，然后不断二分，缩小范围，最终确定limit的大小。
  * </p>
  * <p>
- *     方案一时间复杂度为O(number*N^2)，方案二时间复杂度为O(N^2)
+ *     方案一和方案二的时间复杂度为O(number*N^2)
  *     方案三中，假设array的累加和为S，那么时间复杂度为O(N*logS)
  * </p>
  *
@@ -54,10 +51,40 @@ package com.wz.others;
  */
 public class Artist {
 
+    public static int solutionOne(int[] array, int number) {
+        if (array == null || array.length == 0 || number < 1) {
+            throw new RuntimeException("error");
+        }
+
+        int[] sumArray = new int[array.length];
+        int[][] dp = new int[number][array.length];
+        sumArray[0] = array[0];
+        dp[0][0] = array[0];
+
+        for (int i = 1; i < sumArray.length; i++) {
+            // sum[0...i]
+            sumArray[i] = sumArray[i - 1] + array[i];
+            // 只有一个画匠，直接时间叠加即可
+            dp[0][i] = sumArray[i];
+        }
+        // i+1个画匠搞定array[0...j]这些画所需要的最少时间
+        for (int i = 1; i < number; i++) {
+            for (int j = array.length - 1; j > 0; j--) {
+                int min = Integer.MAX_VALUE;
+                // 前i个画匠负责0～k副画，最后一个画匠负责剩下的，遍历获取最优解
+                for (int k = 0; k < j; k++) {
+                    min = Math.min(min, Math.max(dp[i-1][k], sumArray[j] - sumArray[k]));
+                }
+                dp[i][j] = min;
+            }
+        }
+        return dp[number-1][array.length-1];
+    }
+
     /**
      * 动态规划的空间压缩
      */
-    public static int solutionOne(int[] array, int number) {
+    public static int solutionTwo(int[] array, int number) {
         if (array == null || array.length == 0 || number < 1) {
             throw new RuntimeException("error");
         }
@@ -77,43 +104,6 @@ public class Artist {
                 int min = Integer.MAX_VALUE;
                 for (int k = i - 1; k < j; k++) {
                     min = Math.min(min, Math.max(map[k], sumArray[j] - sumArray[k]));
-                }
-                map[j] = min;
-            }
-        }
-        return map[array.length - 1];
-    }
-
-    /**
-     * 四边形不等式
-     */
-    public static int solutionTwo(int[] array, int number) {
-        if (array == null || array.length == 0 || number < 1) {
-            throw new RuntimeException("error");
-        }
-
-        int[] sumArray = new int[array.length];
-        int[] map = new int[array.length];
-        sumArray[0] = array[0];
-        map[0] = array[0];
-
-        for (int i = 1; i < sumArray.length; i++) {
-            sumArray[i] = sumArray[i - 1] + array[i];
-            map[i] = sumArray[i];
-        }
-
-        int[] cands = new int[array.length];
-        for (int i = 1; i < number; i++) {
-            for (int j = map.length - 1; j > i - 1; j--) {
-                int minPar = cands[j];
-                int maxPar = j == map.length - 1 ? j : cands[j + 1];
-                int min = Integer.MAX_VALUE;
-                for (int k = minPar; k < maxPar + 1; k++) {
-                    int cur = Math.max(map[k], sumArray[j] - sumArray[k]);
-                    if (cur <= min) {
-                        min = cur;
-                        cands[j] = k;
-                    }
                 }
                 map[j] = min;
             }
