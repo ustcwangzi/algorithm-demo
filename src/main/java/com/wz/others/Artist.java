@@ -68,8 +68,8 @@ public class Artist {
             dp[0][i] = sumArray[i];
         }
         // i+1个画匠搞定array[0...j]这些画所需要的最少时间
-        for (int i = 1; i < number; i++) {
-            for (int j = array.length - 1; j > 0; j--) {
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
                 int min = Integer.MAX_VALUE;
                 // 前i个画匠负责0～k副画，最后一个画匠负责剩下的，遍历获取最优解
                 for (int k = 0; k < j; k++) {
