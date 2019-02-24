@@ -53,15 +53,18 @@ public class PostOfficeTest {
 
     public static void main(String[] args) {
         int times = 100;
+        boolean result = true;
         for (int i = 0; i < times; i++) {
             int[] array = RandomUtils.genRandomArray(i + 1);
             for (int j = 0; j < array.length; j++) {
-                int result = solution(array, j + 1);
-                if (result != PostOffice.minDistance(array, j + 1)) {
+                if (solution(array, j + 1) != PostOffice.minDistance(array, j + 1)) {
+                    result = false;
                     System.out.println("Error, array:" + Arrays.toString(array) + ", number:" + j + 1);
                 }
             }
         }
-        System.out.println("Past");
+        if (result) {
+            System.out.println("Past");
+        }
     }
 }
