@@ -50,7 +50,7 @@ package com.wz.others;
 public class PostOffice {
 
     public static int minDistance(int[] array, int number) {
-        if (array == null || number < 1 || array.length <= number) {
+        if (array == null || number < 1 || array.length == number) {
             return 0;
         }
 
