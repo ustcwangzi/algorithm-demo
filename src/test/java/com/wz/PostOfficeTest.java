@@ -18,7 +18,7 @@ import java.util.Arrays;
  */
 public class PostOfficeTest {
     private static int solution(int[] array, int number) {
-        if (array == null || number < 1 || array.length == number) {
+        if (array == null || number < 1 || array.length <= number) {
             return 0;
         }
 
