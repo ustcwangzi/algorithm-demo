@@ -9,6 +9,11 @@ package com.wz;
 
 import com.wz.others.ThrowChessPieces;
 
+/**
+ * <p>m层楼，n个棋子，地面为第0层，最高位第m层，要找到棋子扔下不会碎的最高层数，求出最差情况下扔的次数</p>
+ *
+ * @author wangzi
+ */
 public class ThrowChessPiecesTest {
     private static int solution(int m, int n) {
         if (m < 1 || n < 1) {
@@ -24,6 +29,7 @@ public class ThrowChessPiecesTest {
             for (int j = 2; j < n + 1; j++) {
                 int min = Integer.MAX_VALUE;
                 for (int k = 1; k <= i; k++) {
+                    // 第k层时，没碎：还是j个棋子，且k层以下不用再试；碎了：剩下j-1个棋子，且k层以上不用再试
                     min = Math.min(min, Math.max(dp[i - k][j], dp[k - 1][j - 1]));
                 }
                 dp[i][j] = min + 1;
