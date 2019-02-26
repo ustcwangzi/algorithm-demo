@@ -21,6 +21,17 @@ public class RandomUtils {
         return new Random().nextInt(SIZE);
     }
 
+    public static String genRandomString() {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < random.nextInt(SIZE); i++) {
+            int number = random.nextInt(62);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
+    }
+
     public static int[][] genRandomArray(int m, int n) {
         int[][] array = new int[m][n];
         for (int i = 0; i < m; i++) {
