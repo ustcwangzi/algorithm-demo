@@ -2,6 +2,11 @@ package com.wz;
 
 import com.wz.others.KMPAlgorithm;
 
+/**
+ * <p>KMP算法</p>
+ *
+ * @author wangzi
+ */
 public class KMPAlgorithmTest {
 
     private static int solution(String str, String pattern) {
@@ -55,7 +60,7 @@ public class KMPAlgorithmTest {
         boolean result = true;
         for (int i = 0; i < times; i++) {
             String str = RandomUtils.genRandomString();
-            if (solution(str, "abc") != KMPAlgorithm.kmpSearch(str, "abc")) {
+            if (solution(str, "ababc") != KMPAlgorithm.kmpSearch(str, "ababc")) {
                 result = false;
                 System.out.println("Error, str:" + str);
             }
