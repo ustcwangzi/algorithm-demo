@@ -2,6 +2,11 @@ package com.wz;
 
 import com.wz.others.ManacherAlgorithm;
 
+/**
+ * <p>Manacher算法查找最大回文长度</p>
+ *
+ * @author wangzi
+ */
 public class ManacherAlgorithmTest {
     private static int solution(String str) {
         if (str == null || str.length() == 0) {
@@ -19,6 +24,7 @@ public class ManacherAlgorithmTest {
             // 核心
             radius[i] = right > i ? Math.min(radius[2 * center - i], right - i) : 1;
             while (i + radius[i] < manacher.length && i - radius[i] > -1) {
+                // 左右扩展
                 if (manacher[i + radius[i]] == manacher[i - radius[i]]) {
                     radius[i]++;
                 } else {
