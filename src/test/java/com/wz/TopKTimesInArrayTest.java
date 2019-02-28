@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/**
+ * <p>输出词频前K的字符</p>
+ *
+ * @author wangzi
+ */
 public class TopKTimesInArrayTest {
 
     private static class Node {
@@ -23,6 +28,7 @@ public class TopKTimesInArrayTest {
         if (array == null || array.length == 0) {
             return;
         }
+        // 词频统计
         Map<String, Integer> map = new HashMap<>();
         for (String cur : array) {
             if (map.containsKey(cur)) {
@@ -32,6 +38,7 @@ public class TopKTimesInArrayTest {
             }
         }
 
+        // 小根堆
         Queue<Node> heap = new PriorityQueue<>(k, (Node o1, Node o2) -> (Integer.compare(o1.times, o2.times)));
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             if (heap.isEmpty() || heap.size() < k) {
