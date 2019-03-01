@@ -3,6 +3,11 @@ package com.wz;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>输出词频前K的字符，有输入功能</p>
+ *
+ * @author wangzi
+ */
 public class TopKTimesRecordTest {
     private static class Node {
         public String value;
