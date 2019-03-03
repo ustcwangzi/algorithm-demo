@@ -42,14 +42,17 @@ public class FindUpMedianTest {
     }
 
     public static void main(String[] args) {
-        int times = 100;
+        int[] self = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] other = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         boolean result = true;
-        for (int i = 0; i < times; i++) {
-            int[] self = RandomUtils.genRandomArray(i + 1);
-            int[] other = RandomUtils.genRandomArray(i + 1);
-            if (solution(self, other) != FindUpMedian.getUpMedian(self, other)) {
-                result = false;
-                System.out.println("Error, array:" + Arrays.toString(self) + ", other:" + Arrays.toString(other));
+        for (int i = 0; i < self.length - 1; i++) {
+            for (int j = i + 1; j < self.length; j++) {
+                int[] selfCopy = Arrays.copyOfRange(self, i, j);
+                int[] otherCopy = Arrays.copyOfRange(other, i, j);
+                if (solution(selfCopy, otherCopy) != FindUpMedian.getUpMedian(selfCopy, otherCopy)) {
+                    result = false;
+                    System.out.println("Error, array:" + Arrays.toString(selfCopy) + ", other:" + Arrays.toString(otherCopy));
+                }
             }
         }
         if (result) {
