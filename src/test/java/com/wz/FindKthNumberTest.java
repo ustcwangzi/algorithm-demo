@@ -12,7 +12,7 @@ import com.wz.others.FindKthNumber;
 import java.util.Arrays;
 
 /**
- * <p></p>
+ * <p>在两个有序数组中找到第K小的数</p>
  *
  * @author wangzi
  */
@@ -23,23 +23,32 @@ public class FindKthNumberTest {
         int[] shortArray = self.length < other.length ? self : other;
         int lenLong = longArray.length, lenShort = shortArray.length;
         if (k <= lenShort) {
+            // short[0...k-1]与long[0...k-1]的上中位数
             return getUpMedian(shortArray, 0, k - 1, longArray, 0, k - 1);
         }
         if (k > lenLong) {
+            // 比short所有数都大
             if (longArray[k - lenShort - 1] >= shortArray[lenShort - 1]) {
                 return longArray[k - lenShort - 1];
             }
+            // 比long所有数都大
             if (shortArray[k - lenLong - 1] >= longArray[lenLong - 1]) {
                 return shortArray[k - lenLong - 1];
             }
+            // short[k-lenLong...end1]与long[k-lenShort...end2]的上中位数
             return getUpMedian(shortArray, k - lenLong, lenShort - 1, longArray, k - lenShort, lenLong - 1);
         }
+        // lenShort < k <= lenLong
         if (longArray[k - lenShort - 1] >= shortArray[lenShort - 1]) {
             return longArray[k - lenShort - 1];
         }
+        // short[0...end1]与long[k-lenShort...k-1]的上中位数
         return getUpMedian(shortArray, 0, lenShort - 1, longArray, k - lenShort, k - 1);
     }
 
+    /**
+     * self[start1...end1]、other[start2...end2]找到上中位数
+     */
     private static int getUpMedian(int[] self, int start1, int end1, int[] other, int start2, int end2) {
         int mid1, mid2, offset;
         while (start1 < end1) {
