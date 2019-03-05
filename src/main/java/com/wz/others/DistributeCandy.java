@@ -7,6 +7,8 @@
  */
 package com.wz.others;
 
+import java.util.Arrays;
+
 /**
  * <p>分糖果问题</p>
  * <p>
@@ -58,7 +60,6 @@ public class DistributeCandy {
         if (array == null || array.length == 0) {
             return 0;
         }
-        int result = 0;
         int[] numbers = new int[array.length];
         // 每个人至少得一个
         for (int i = 0; i < numbers.length; i++) {
@@ -76,10 +77,7 @@ public class DistributeCandy {
                 numbers[i - 1] = Math.max(numbers[i - 1], numbers[i] + 1);
             }
         }
-        for (int i : numbers) {
-            result += i;
-        }
-        return result;
+        return Arrays.stream(numbers).sum();
     }
 
     public static int candyTwo(int[] array) {
@@ -130,7 +128,6 @@ public class DistributeCandy {
         if (array == null || array.length == 0) {
             return 0;
         }
-        int result = 0;
         int[] numbers = new int[array.length];
         // 每个人至少得一个
         for (int i = 0; i < numbers.length; i++) {
@@ -154,10 +151,7 @@ public class DistributeCandy {
                 numbers[i - 1] = numbers[i];
             }
         }
-        for (int i : numbers) {
-            result += i;
-        }
-        return result;
+        return Arrays.stream(numbers).sum();
     }
 
     public static int candyWithEqualTwo(int[] array) {
