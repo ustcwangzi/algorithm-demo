@@ -40,7 +40,7 @@ public class DistributeCandyTest {
         int times = 100;
         boolean result = true;
         for (int i = 0; i < times; i++) {
-            int[] array = RandomUtils.genRandomArray(i + 1);
+            int[] array = RandomUtils.genRandomArray();
             if (solution(array) != DistributeCandy.candyWithEqualOne(array)) {
                 result = false;
                 System.out.println("Error, array:" + Arrays.toString(array));

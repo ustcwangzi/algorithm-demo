@@ -32,19 +32,17 @@ public class RandomUtils {
         return sb.toString();
     }
 
-    public static int[][] genRandomArray(int m, int n) {
-        int[][] array = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                array[i][j] = new Random().nextInt(SIZE);
-            }
+    public static int[] genRandomArray() {
+        int[] array = new int[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            array[i] = new Random().nextInt(SIZE);
         }
         return array;
     }
 
     public static int[] genRandomArray(int m) {
         int[] array = new int[m];
-        for (int i = 0; i != m; i++) {
+        for (int i = 0; i < m; i++) {
             array[i] = new Random().nextInt(SIZE);
         }
         return array;
