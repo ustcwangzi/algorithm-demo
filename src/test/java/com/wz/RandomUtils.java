@@ -7,6 +7,9 @@
  */
 package com.wz;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -17,11 +20,11 @@ import java.util.Random;
 public class RandomUtils {
     private static final int SIZE = 100;
 
-    public static int genRandomNumber() {
+    protected static int genRandomNumber() {
         return new Random().nextInt(SIZE);
     }
 
-    public static String genRandomString() {
+    protected static String genRandomString() {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
@@ -32,7 +35,7 @@ public class RandomUtils {
         return sb.toString();
     }
 
-    public static int[] genRandomArray() {
+    protected static int[] genRandomArray() {
         int[] array = new int[SIZE];
         for (int i = 0; i < SIZE; i++) {
             array[i] = new Random().nextInt(SIZE);
@@ -40,7 +43,22 @@ public class RandomUtils {
         return array;
     }
 
-    public static int[] genRandomArray(int m) {
+    protected static int[] genRandomArrayNoRepeat(int m) {
+        List<Integer> list = new ArrayList<>(m);
+        int[] result = new int[m];
+        for (int i = 0; i < m; i++) {
+            int number = new Random().nextInt(SIZE+m);
+            while (list.contains(number)) {
+                number = new Random().nextInt(SIZE+m);
+            }
+            list.add(number);
+            result[i] = number;
+        }
+
+        return result;
+    }
+
+    protected static int[] genRandomArray(int m) {
         int[] array = new int[m];
         for (int i = 0; i < m; i++) {
             array[i] = new Random().nextInt(SIZE);

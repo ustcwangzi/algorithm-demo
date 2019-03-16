@@ -46,7 +46,6 @@ public class PrintRandomNumbersInArray {
             // 在[0,length-count)中等概率随机获取一个位置
             index = new Random().nextInt(array.length - count);
             result[count++] = array[index];
-            count++;
             // 与"当前最后一个元素"交换，保证下次不会再被选中
             swap(array, array.length - count, index);
         }
@@ -64,7 +63,7 @@ public class PrintRandomNumbersInArray {
 
     public static void main(String[] args) {
         int[] array = {6, 2, 3, 5, 1, 4};
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= array.length; i++) {
             System.out.println(Arrays.toString(printRandom(array, i)));
         }
     }
