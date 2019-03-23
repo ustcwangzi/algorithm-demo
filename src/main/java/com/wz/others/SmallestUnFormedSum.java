@@ -116,7 +116,7 @@ public class SmallestUnFormedSum {
         // dp[j]代表j这个累加和能否array的子集相加得到
         boolean[] dp = new boolean[max + 1];
         dp[0] = true;
-        // 如果array[0...i]组成的子集可以累加出k，那么array[0...i+1]组成的子集必然可以累加出k+array[i+1]
+        // 如果array[0...i]组成的子集可以累加出k，那么array[0...i+1]组成的子集必然可以累加出k+array[i]
         for (int cur : array) {
             for (int j = max; j >= cur; j--) {
                 dp[j] = dp[j - cur] || dp[j];
