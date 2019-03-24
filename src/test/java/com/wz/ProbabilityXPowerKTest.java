@@ -8,7 +8,7 @@
 package com.wz;
 
 /**
- * <p></p>
+ * <p>调整[0,x)区间上的数出现的概率</p>
  *
  * @author wangzi
  */
@@ -16,6 +16,8 @@ public class ProbabilityXPowerKTest {
 
     private static double solution(int k) {
         double result = -1;
+        // k次调用random()
+        // 如果想要返回在[0,x)区间上的数，k次调用的返回值都必须落在[0,x)区间上，否则会返回大于x的数，所以概率为x^k
         for (int i = 0; i < k; i++) {
             result = Math.max(result, Math.random());
         }
