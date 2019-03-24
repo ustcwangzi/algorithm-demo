@@ -23,6 +23,8 @@ public class MaxAbsoluteBetweenLeftAndRightTest {
             max = Math.max(max, cur);
         }
 
+        // max作为左部分最大值时，右部分只含有array[N-1]是最小的情况
+        // max作为右部分最大值时，左部分只含有array[0]是最小的情况
         return max - Math.min(array[0], array[array.length - 1]);
     }
 
