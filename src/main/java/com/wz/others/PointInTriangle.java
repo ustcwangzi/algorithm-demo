@@ -90,10 +90,10 @@ public class PointInTriangle {
         double y2 = 8;
         double x3 = 5;
         double y3 = 0;
-        double x = 0;
-        double y = 5;
 
-        System.out.println(isInsideOne(x1, y1, x2, y2, x3, y3, x, y));
-        System.out.println(isInsideTwo(x1, y1, x2, y2, x3, y3, x, y));
+        System.out.println(isInsideOne(x1, y1, x2, y2, x3, y3, 0, 5));
+        System.out.println(isInsideTwo(x1, y1, x2, y2, x3, y3, 0, 5));
+        System.out.println(isInsideOne(x1, y1, x2, y2, x3, y3, 0, 10));
+        System.out.println(isInsideTwo(x1, y1, x2, y2, x3, y3, 0, 10));
     }
 }
