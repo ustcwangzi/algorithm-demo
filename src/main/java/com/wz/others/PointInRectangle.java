@@ -12,7 +12,7 @@ package com.wz.others;
  * <p>
  *     在二维坐标系中，所有的值都是double类型，那么一个矩形可以由四个点代表，(x1,y1)为最左的点，(x2,y2)为最上的点，(x3,y3)为最下的点，
  *     (x4,y4)为最右的点，给定四个点代表的矩形，再给定一个点(x,y)，判断(x,y)是否在矩形中。
- *     解决方案：
+ *     解决方案一：
  *        当矩形的边平行于坐标轴时，直接判断该点是否完全在矩形的左侧、右侧、上侧或下侧，如果都不是，就一定在矩形中。
  *        当矩形的边不平行于坐标轴时，可通过坐标变换把矩形转成平行的情况，在旋转时所有的点跟着转动，旋转完成后，再进行判断。
  *        旋转变换就是将平面上任意一点绕原点旋转θ角，一般规定逆时针方向为正，顺时针方向为负，具体如图resources/PointInRectangle.png。
@@ -22,13 +22,15 @@ package com.wz.others;
  *        在这里将矩形按照顺时针方向进行旋转，因此可以得到：
  *        x1 = r*cos(A-B) = r*(cosAcosB+sinAsinB) = r*cosAcosB+r*sinAsinB = x*cosB+y*sinB
  *        y1 = r*sin(A-B) = r*(sinAcosB-cosAsinB) = r*sinAcosB-r*cosAsinB = y*cosB-x*sinB
+ *     解决方案二：
+ *        向量差乘法，思路见com.wz.others.PointInTriangle。
  * </p>
  *
  * @author wangzi
  */
 public class PointInRectangle {
 
-    public static boolean isInside(double x1, double y1, double x2, double y2,
+    public static boolean isInsideOne(double x1, double y1, double x2, double y2,
                                    double x3, double y3, double x4, double y4, double x, double y) {
         if (y1 == y2) {
             return isInside(x1, y1, x4, y4, x, y);
@@ -70,6 +72,27 @@ public class PointInRectangle {
         return true;
     }
 
+    /**
+     * 向量解法
+     */
+    private static boolean isInsideTwo(double x1, double y1, double x2, double y2,
+                                       double x3, double y3, double x4, double y4, double x, double y) {
+        double productPAB = crossProduct(x - x1, y - y1, x2 - x1, y2 - y1);
+        double productPBC = crossProduct(x - x2, y - y2, x3 - x2, y3 - y2);
+        double productPCD = crossProduct(x - x3, y - y3, x4 - x3, y4 - y3);
+        double productPDA = crossProduct(x - x4, y - y4, x1 - x4, y1 - y4);
+
+        return (productPAB >= 0 && productPBC >= 0 && productPCD >= 0 && productPDA >= 0) ||
+                (productPAB < 0 && productPBC < 0 && productPCD < 0 && productPDA < 0);
+    }
+
+    /**
+     * 向量差乘
+     */
+    private static double crossProduct(double x1, double y1, double x2, double y2) {
+        return x1 * y2 - x2 * y1;
+    }
+
     public static void main(String[] args) {
         // (x1,y1) should be the most left
         double x1 = 0;
@@ -84,8 +107,15 @@ public class PointInRectangle {
         double x4 = 7;
         double y4 = 4;
 
-        double x = 4;
-        double y = 3;
-        System.out.print(isInside(x1, y1, x2, y2, x3, y3, x4, y4, x, y));
+        int max = 4;
+        for (int i = 0; i < max; i++) {
+            for (int j = 0; j < max; j++) {
+                if (isInsideOne(x1, y1, x2, y2, x3, y3, x4, y4, i, j) != isInsideTwo(x1, y1, x3, y3, x4, y4, x2, y2, i, j)) {
+                    System.out.println("i:" + i + ", j:" + j);
+                } else {
+                    System.out.println("Pass");
+                }
+            }
+        }
     }
 }
