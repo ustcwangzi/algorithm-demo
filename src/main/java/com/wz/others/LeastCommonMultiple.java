@@ -19,6 +19,9 @@ package com.wz.others;
  */
 public class LeastCommonMultiple {
     public static int lcm(int m, int n) {
+        if (m == 0 && n == 0) {
+            return 0;
+        }
         return m * n / gcd(m, n);
     }
 
