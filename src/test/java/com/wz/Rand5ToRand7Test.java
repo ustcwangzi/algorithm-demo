@@ -12,8 +12,12 @@ public class Rand5ToRand7Test {
     private static int solution() {
         int num;
         do {
+            // rand1To5()-1 随机产生 0～4，乘5后 随机产生 0,5,10,15,20
+            // (0,5,10,15,20)+(0,1,2,3,4) 随机产生 0～24
+            // 将21～24分配到0～20
             num = (rand1To5() - 1) * 5 + rand1To5() - 1;
         } while (num > 20);
+        // (0～20)%7 随机产生 0～6
         return num % 7 + 1;
     }
 
