@@ -21,6 +21,9 @@ public class Rand5ToRand7Test {
         return num % 7 + 1;
     }
 
+    /**
+     * 已知条件
+     */
     private static int rand1To5() {
         return new Random().nextInt(5) + 1;
     }
