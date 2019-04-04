@@ -14,7 +14,7 @@ package com.wz.arrayandmatrix;
  *     例如，array=[1,0,2,4]，返回3。
  *     解决方案：
  *        1、生成变量left、right，left表示遍历到目前为止，数组已包含的正整数范围是[1...left]，初始时left=0；
- *           right表示遍历到目前为止，在后续出现最优状况的情况下，数组可能包含的正正数范围是[1...right]，初始时right=N，
+ *           right表示遍历到目前为止，在后续出现最优状况的情况下，数组可能包含的正整数范围是[1...right]，初始时right=N，
  *           因为还没有开始遍历，所以后续出现最优状况是array包含1～N所有的整数，right同时表示array当前的结束位置
  *        2、从左到右遍历array，遍历到位置left
  *        3、如果array[left]==left+1，没有遍历array[left]之前，array已经包含的正整数范围是[1...left]，
@@ -74,7 +74,6 @@ public class SmallestMissNum {
 
     public static void main(String[] args) {
         int[] array = {-1, 0, 2, 1, 3, 5};
-        ;
         System.out.println(missNum(array));
     }
 }
