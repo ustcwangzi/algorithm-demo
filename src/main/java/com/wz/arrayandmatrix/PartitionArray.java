@@ -49,9 +49,9 @@ import java.util.Arrays;
  */
 public class PartitionArray {
 
-    public static void leftUnique(int[] array) {
+    public static int[] leftUnique(int[] array) {
         if (array == null || array.length < 2) {
-            return;
+            return array;
         }
         // array[0...uniqueIndex]无重复升序
         int uniqueIndex = 0;
@@ -62,11 +62,12 @@ public class PartitionArray {
                 swap(array, ++uniqueIndex, index - 1);
             }
         }
+        return array;
     }
 
-    public static void partitionSort(int[] array) {
+    public static int[] partitionSort(int[] array) {
         if (array == null || array.length < 2) {
-            return;
+            return array;
         }
 
         int left = -1, index = 0, right = array.length;
@@ -82,6 +83,7 @@ public class PartitionArray {
                 index++;
             }
         }
+        return array;
     }
 
     private static void swap(int[] array, int self, int other) {
@@ -95,10 +97,8 @@ public class PartitionArray {
 
     public static void main(String[] args) {
         int[] array1 = {1, 2, 2, 2, 3, 3, 4, 5, 6, 6, 7, 7, 8, 8, 8, 9};
-        leftUnique(array1);
-        System.out.println(Arrays.toString(array1));
+        System.out.println(Arrays.toString(leftUnique(array1)));
         int[] array2 = {2, 1, 2, 0, 1, 1, 2, 2, 0};
-        partitionSort(array2);
-        System.out.println(Arrays.toString(array2));
+        System.out.println(Arrays.toString(partitionSort(array2)));
     }
 }
