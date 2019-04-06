@@ -70,7 +70,7 @@ public class MaxOneBorderSize {
     private static boolean hasSizeOfBorder(int size, int[][] right, int[][] down) {
         for (int i = 0; i < right.length - size + 1; i++) {
             for (int j = 0; j < right[0].length - size + 1; j++) {
-                // 检查(i,j)的又右边和下边、正方形左下角的右边、正方形右上角的下边
+                // 检查(i,j)的右边和下边、正方形左下角的右边、正方形右上角的下边
                 if (right[i][j] >= size && down[i][j] >= size &&
                         right[i + size - 1][j] >= size && down[i][j + size - 1] >= size) {
                     return true;
