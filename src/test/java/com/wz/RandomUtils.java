@@ -8,12 +8,11 @@
 package com.wz;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 /**
- * <p></p>
+ * <p>随机函数</p>
  *
  * @author wangzi
  */
@@ -43,13 +42,25 @@ public class RandomUtils {
         return array;
     }
 
+    protected static double[] genRandomDoubleArray() {
+        double[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9,
+                10, 20, 30, 40, 50, 60, 70, 80, 90,
+                -1, -2, -3, -4, -5, -6, -7, -8, -9,
+                0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
+        int size = array.length;
+        for (int i = 0; i < size; i++) {
+            array[i] = array[new Random().nextInt(size)];
+        }
+        return array;
+    }
+
     protected static int[] genRandomArrayNoRepeat(int m) {
         List<Integer> list = new ArrayList<>(m);
         int[] result = new int[m];
         for (int i = 0; i < m; i++) {
-            int number = new Random().nextInt(SIZE+m);
+            int number = new Random().nextInt(SIZE + m);
             while (list.contains(number)) {
-                number = new Random().nextInt(SIZE+m);
+                number = new Random().nextInt(SIZE + m);
             }
             list.add(number);
             result[i] = number;
