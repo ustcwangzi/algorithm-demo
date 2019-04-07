@@ -42,6 +42,16 @@ public class RandomUtils {
         return array;
     }
 
+    protected static int[] genRandomArrayWithMinus() {
+        int[] array = new int[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            int value = new Random().nextInt(SIZE);
+            boolean minus = new Random().nextBoolean();
+            array[i] = minus ? -value : value;
+        }
+        return array;
+    }
+
     protected static double[] genRandomDoubleArray() {
         double[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9,
                 10, 20, 30, 40, 50, 60, 70, 80, 90,
