@@ -12,19 +12,22 @@ import com.wz.arrayandmatrix.FindOneLessValueIndex;
 import java.util.Arrays;
 
 /**
- * <p></p>
+ * <p>无序数组中找到局部最小值的下标</p>
  *
  * @author wangzi
  */
 public class FindOneLessValueIndexTest {
     private static int solution(int[] array) {
+        // array[0]局部最小
         if (array.length == 1 || array[0] < array[1]) {
             return 0;
         }
+        // array[N-1]局部最小
         if (array[array.length - 1] < array[array.length - 2]) {
             return array.length - 1;
         }
         int left = 1, mid, right = array.length - 2;
+        // 二分法查找局部最小，因为可以确定二分两侧的某一侧肯定存在要找的内容
         while (left < right) {
             mid = (left + right) / 2;
             if (array[mid] > array[mid - 1]) {
