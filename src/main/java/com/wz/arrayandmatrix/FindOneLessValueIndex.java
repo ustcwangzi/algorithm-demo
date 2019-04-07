@@ -12,7 +12,7 @@ package com.wz.arrayandmatrix;
  * <p>
  *     若数组长度为1，则array[0]是局部最小；array长度为N(N>1)时，若array[0]<array[1]，则array[0]为局部最小；
  *     若array[N-1]<array[N-2]，则array[N-1]为局部最小；若0<i<N-1，既有array[i]<array[i-1]，又有array[i]<array[i+1]，
- *     则array[i]最局部最小。
+ *     则array[i]为局部最小。
  *     现给定无序数组array，已知array中任意两个相邻的数都不相等，获取array中任意一个局部最小出现的位置。
  *     解决方案：
  *        1、若array为空或长度为0，返回-1表示不存在局部最小；
