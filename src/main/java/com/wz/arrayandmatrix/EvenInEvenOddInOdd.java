@@ -36,9 +36,9 @@ import java.util.Arrays;
  */
 public class EvenInEvenOddInOdd {
 
-    public static void modify(int[] array) {
+    public static int[] modify(int[] array) {
         if (array == null || array.length < 2) {
-            return;
+            return array;
         }
         int even = 0, odd = 1;
         int end = array.length - 1;
@@ -53,6 +53,7 @@ public class EvenInEvenOddInOdd {
                 odd += 2;
             }
         }
+        return array;
     }
 
     private static void swap(int[] array, int self, int other) {
@@ -63,7 +64,6 @@ public class EvenInEvenOddInOdd {
 
     public static void main(String[] args) {
         int[] array = {1, 8, 3, 2, 4, 6};
-        modify(array);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(modify(array)));
     }
 }
