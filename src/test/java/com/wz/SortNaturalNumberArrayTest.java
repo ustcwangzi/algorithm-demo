@@ -5,10 +5,14 @@ import com.wz.arrayandmatrix.SortNaturalNumberArray;
 import java.util.Arrays;
 
 /**
+ * <p>对只包含1～N的数组进行排序</p>
+ *
+ * @author wangzi
  */
 public class SortNaturalNumberArrayTest {
     private static int[] solution(int[] array) {
         for (int i = 0; i < array.length; i++) {
+            // 发现值与位置不对应，立马调整
             while (array[i] != i + 1) {
                 // array[i]的值应该是i+1，反过来值array[i]应该放在array[i]-1处
                 swap(array, array[i] - 1, i);
