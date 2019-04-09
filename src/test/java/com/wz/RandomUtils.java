@@ -8,6 +8,7 @@
 package com.wz;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -32,6 +33,19 @@ public class RandomUtils {
             sb.append(str.charAt(number));
         }
         return sb.toString();
+    }
+
+    protected static int[] genShuffleArray() {
+        int[] array = new int[SIZE];
+        List<Integer> list = new ArrayList<>(SIZE);
+        for (int i = 0; i < SIZE; i++) {
+            list.add(i + 1);
+        }
+        Collections.shuffle(list);
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
+        }
+        return array;
     }
 
     protected static int[] genRandomArray() {

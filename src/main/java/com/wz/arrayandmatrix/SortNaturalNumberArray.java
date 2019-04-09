@@ -37,48 +37,50 @@ import java.util.Arrays;
  */
 public class SortNaturalNumberArray {
 
-    public static void sortOne(int[] array) {
+    public static int[] sortOne(int[] array) {
         if (array == null || array.length < 2) {
-            return;
+            return array;
         }
 
         int tmp, next;
-        for (int i = 0; i < array.length; i++) {
-            tmp = array[i];
+        int[] result = Arrays.copyOf(array, array.length);
+        for (int i = 0; i < result.length; i++) {
+            tmp = result[i];
             // 进行跳的过程，跳一圈回到原位置后，i位置上数据正确
-            while (array[i] != i + 1) {
+            while (result[i] != i + 1) {
                 // 被替换下来的数
-                next = array[tmp - 1];
+                next = result[tmp - 1];
                 // tmp放在正确的位置上
-                array[tmp - 1] = tmp;
+                result[tmp - 1] = tmp;
                 tmp = next;
             }
         }
+        return result;
     }
 
-    public static void sortTow(int[] array) {
+    public static int[] sortTow(int[] array) {
         if (array == null || array.length < 2) {
-            return;
+            return array;
         }
 
         int tmp;
-        for (int i = 0; i < array.length; i++) {
+        int[] result = Arrays.copyOf(array, array.length);
+        for (int i = 0; i < result.length; i++) {
             // i位置上直接进行数据交换
-            while (array[i] != i + 1) {
-                tmp = array[array[i] - 1];
-                array[array[i] - 1] = array[i];
-                array[i] = tmp;
+            while (result[i] != i + 1) {
+                tmp = result[result[i] - 1];
+                result[result[i] - 1] = result[i];
+                result[i] = tmp;
             }
         }
+        return result;
     }
 
     public static void main(String[] args) {
         int[] array = {8, 2, 1, 6, 9, 3, 7, 5, 4};
-        sortOne(array);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(sortOne(array)));
 
         array = new int[]{8, 2, 1, 6, 9, 3, 7, 5, 4};
-        sortTow(array);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(sortTow(array)));
     }
 }
