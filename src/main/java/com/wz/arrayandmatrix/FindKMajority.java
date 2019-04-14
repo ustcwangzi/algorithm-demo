@@ -76,7 +76,6 @@ public class FindKMajority {
     public static Integer[] kMajor(int[] array, int k) {
         List<Integer> result = new ArrayList<>();
         if (k < 2) {
-            System.out.println("the value k is invalid");
             return result.toArray(new Integer[result.size()]);
         }
         // 候选
@@ -95,10 +94,9 @@ public class FindKMajority {
 
         // 真实出现次数
         Map<Integer, Integer> timesMap = getRealTimesMap(array, candidateMap);
-        for (Map.Entry<Integer, Integer> entry : candidateMap.entrySet()) {
-            Integer key = entry.getKey();
-            if (timesMap.get(key) > array.length / k) {
-                result.add(key);
+        for (Map.Entry<Integer, Integer> entry : timesMap.entrySet()) {
+            if (entry.getValue() > array.length / k) {
+                result.add(entry.getKey());
             }
         }
         return result.toArray(new Integer[result.size()]);
@@ -114,8 +112,9 @@ public class FindKMajority {
             Integer value = entry.getValue();
             if (value == 1) {
                 removeList.add(key);
+            } else {
+                map.put(key, value - 1);
             }
-            map.put(key, value - 1);
         }
         for (Integer removeKey : removeList) {
             map.remove(removeKey);
