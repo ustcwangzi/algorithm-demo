@@ -19,12 +19,14 @@ import java.util.*;
 public class FindKMajorityTest {
     private static Integer[] solution(int[] array, int k) {
         Map<Integer, Integer> candidateMap = new HashMap<>();
+        // 每次删除k个不同的数
         for (int cur : array) {
             if (candidateMap.containsKey(cur)) {
                 // 次数加一
                 candidateMap.put(cur, candidateMap.get(cur) + 1);
             } else {
                 if (candidateMap.size() == k - 1) {
+                    // 出现了k个不同的数，每个数次数均减一
                     allCandidateMinusOne(candidateMap);
                 } else {
                     candidateMap.put(cur, 1);
@@ -34,6 +36,7 @@ public class FindKMajorityTest {
 
         int threshold = array.length / k;
         List<Integer> result = new ArrayList<>();
+        // 获取真实的出现次数
         Map<Integer, Integer> timesMap = getTimesMap(array, candidateMap);
         for (Map.Entry<Integer, Integer> entry : timesMap.entrySet()) {
             if (entry.getValue() > threshold) {
@@ -43,6 +46,9 @@ public class FindKMajorityTest {
         return result.toArray(new Integer[result.size()]);
     }
 
+    /**
+     * 统计出现次数
+     */
     private static Map<Integer, Integer> getTimesMap(int[] array, Map<Integer, Integer> candidateMap) {
         Map<Integer, Integer> timesMap = new HashMap<>(candidateMap.size());
         for (int cur : array) {
@@ -58,6 +64,9 @@ public class FindKMajorityTest {
         return timesMap;
     }
 
+    /**
+     * map中每个key的value减一，减到0的删除
+     */
     private static void allCandidateMinusOne(Map<Integer, Integer> map) {
         List<Integer> removeKeys = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
@@ -67,6 +76,7 @@ public class FindKMajorityTest {
                 map.put(entry.getKey(), entry.getValue() - 1);
             }
         }
+        // 减一后次数为0的从map中去除
         for (Integer key : removeKeys) {
             map.remove(key);
         }
