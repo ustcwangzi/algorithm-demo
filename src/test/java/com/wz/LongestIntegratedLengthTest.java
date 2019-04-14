@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p></p>
+ * <p>最长可整合子数组(排序后，每两个相邻的数值之差的绝对值都是1)长度</p>
  *
  * @author wangzi
  */
@@ -25,14 +25,17 @@ public class LongestIntegratedLengthTest {
         for (int i = 0; i < array.length; i++) {
             int min = Integer.MAX_VALUE;
             int max = Integer.MIN_VALUE;
+            // 无重复元素，并且最大值减去最小值加1的结果，等于数组中的元素个数，那么就是可整合数组
             for (int j = i; j < array.length; j++) {
                 // 有重复元素时直接退出
                 if (set.contains(array[j])) {
                     break;
                 }
                 set.add(array[j]);
+                // 获取每次循环中的最大值、最小值
                 min = Math.min(min, array[j]);
                 max = Math.max(max, array[j]);
+                // (max-min+1) == (j-i+1) 时，说明是可整合数组
                 if (max - min == j - i) {
                     result = Math.max(result, j - i + 1);
                 }
@@ -47,7 +50,9 @@ public class LongestIntegratedLengthTest {
         boolean result = true;
         for (int i = 0; i < times; i++) {
             int[] array = RandomUtils.genRandomArray();
-            if (solution(array) != LongestIntegratedLength.getMaxLengthTwo(array)) {
+            int length = solution(array);
+            if (length != LongestIntegratedLength.getMaxLengthOne(array) ||
+                    length != LongestIntegratedLength.getMaxLengthTwo(array)) {
                 result = false;
                 System.out.println("Error, array:" + Arrays.toString(array));
             }
