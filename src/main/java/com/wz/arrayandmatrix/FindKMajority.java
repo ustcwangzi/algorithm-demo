@@ -7,10 +7,7 @@
  */
 package com.wz.arrayandmatrix;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>数组中找到出现次数大于N/K的数</p>
@@ -46,9 +43,9 @@ import java.util.Map;
  * @author wangzi
  */
 public class FindKMajority {
-    public static void printHalfMajor(int[] array) {
+    public static int halfMajor(int[] array) {
         if (array == null || array.length == 0) {
-            return;
+            return -1;
         }
         // 候选
         int candidate = 0;
@@ -72,13 +69,14 @@ public class FindKMajority {
                 times++;
             }
         }
-        System.out.println(times > array.length / 2 ? candidate : "no such number");
+        return times > array.length / 2 ? candidate : -1;
     }
 
-    public static void printKMajor(int[] array, int k) {
+    public static Integer[] kMajor(int[] array, int k) {
+        List<Integer> result = new ArrayList<>();
         if (k < 2) {
-            System.out.println("the vaule k is invalid");
-            return;
+            System.out.println("the value k is invalid");
+            return result.toArray(new Integer[result.size()]);
         }
         // 候选
         Map<Integer, Integer> candidateMap = new HashMap<>();
@@ -96,15 +94,13 @@ public class FindKMajority {
 
         // 真实出现次数
         Map<Integer, Integer> timesMap = getRealTimesMap(array, candidateMap);
-        boolean hasPrint = false;
         for (Map.Entry<Integer, Integer> entry : candidateMap.entrySet()) {
             Integer key = entry.getKey();
             if (timesMap.get(key) > array.length / k) {
-                hasPrint = true;
-                System.out.print(key + " ");
+                result.add(key);
             }
         }
-        System.out.println(hasPrint ? "" : "no such number");
+        return result.toArray(new Integer[result.size()]);
     }
 
     /**
@@ -131,6 +127,9 @@ public class FindKMajority {
     private static Map<Integer, Integer> getRealTimesMap(int[] array, Map<Integer, Integer> candidateMap) {
         Map<Integer, Integer> realTimesMap = new HashMap<>();
         for (int cur : array) {
+            if (!candidateMap.containsKey(cur)) {
+                continue;
+            }
             if (realTimesMap.containsKey(cur)) {
                 realTimesMap.put(cur, realTimesMap.get(cur) + 1);
             } else {
@@ -142,11 +141,11 @@ public class FindKMajority {
 
     public static void main(String[] args) {
         int[] array1 = {1, 2, 3, 1, 1, 2, 1};
-        printHalfMajor(array1);
-        printKMajor(array1, 4);
+        System.out.println(halfMajor(array1));
+        System.out.println(Arrays.toString(kMajor(array1, 4)));
 
         int[] array2 = {1, 2, 3};
-        printHalfMajor(array2);
-        printKMajor(array2, 2);
+        System.out.println(halfMajor(array2));
+        System.out.println(Arrays.toString(kMajor(array2, 2)));
     }
 }
