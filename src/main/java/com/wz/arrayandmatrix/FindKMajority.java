@@ -59,6 +59,7 @@ public class FindKMajority {
             } else if (cur == candidate) {
                 times++;
             } else {
+                // candidate与当前值不同，删除当前值，candidate次数也减一
                 times--;
             }
         }
@@ -140,7 +141,7 @@ public class FindKMajority {
     }
 
     public static void main(String[] args) {
-        int[] array1 = {1, 2, 3, 1, 1, 2, 1};
+        int[] array1 = {2, 1, 3, 1, 1, 2, 1};
         System.out.println(halfMajor(array1));
         System.out.println(Arrays.toString(kMajor(array1, 4)));
 
