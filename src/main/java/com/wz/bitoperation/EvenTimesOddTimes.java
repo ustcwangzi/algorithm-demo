@@ -7,6 +7,8 @@
  */
 package com.wz.bitoperation;
 
+import java.util.Arrays;
+
 /**
  * <p>其他数出现偶数次的数组中找到出现奇数次的数</p>
  * <p>
@@ -29,19 +31,21 @@ package com.wz.bitoperation;
  */
 public class EvenTimesOddTimes {
 
-    public static void printOneOddTimesNum(int[] array) {
+    public static int findOneOddTimesNum(int[] array) {
         int tmp = 0;
         for (int cur : array) {
             tmp ^= cur;
         }
-        System.out.println(tmp);
+        return tmp;
     }
 
-    public static void printTwoOddTimesNum(int[] array) {
+    public static int[] printTwoOddTimesNum(int[] array) {
+        int[] result = new int[2];
         int tmp = 0, one = 0;
         for (int cur : array) {
             tmp ^= cur;
         }
+
         // 第k位为1
         int rightOne = tmp & (~tmp + 1);
         for (int cur : array) {
@@ -50,14 +54,17 @@ public class EvenTimesOddTimes {
                 one ^= cur;
             }
         }
-        System.out.println(one + ", " + (tmp ^ one));
+
+        result[0] = one;
+        result[1] = tmp ^ one;
+        return result;
     }
 
     public static void main(String[] args) {
         int[] arr1 = {3, 3, 2, 3, 1, 1, 1, 3, 1, 1, 1};
-        printOneOddTimesNum(arr1);
+        System.out.println(findOneOddTimesNum(arr1));
 
         int[] arr2 = {4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2};
-        printTwoOddTimesNum(arr2);
+        System.out.println(Arrays.toString(printTwoOddTimesNum(arr2)));
     }
 }
