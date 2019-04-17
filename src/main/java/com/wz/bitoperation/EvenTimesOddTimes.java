@@ -22,8 +22,8 @@ import java.util.Arrays;
  *        出现偶数次的数都会被异或掉，即结果为0，再去与出现奇数次的数异或，最后的结果就是出现奇数次的数。
  *     问题二解答：
  *        假设a和b出现了奇数次，那么最终的tmp就是a^b，即最终结果不为0，在tmp中找到不为0的bit位，假设为第k位，
- *        那么a和b的第k位肯定一个是0，另一个是1。接下来用另一个变量one与数组中第k位上是1的数进行异或，
- *        结束后，one就是a和b中的一个，而tmp^one就是另一个。
+ *        那么a和b的第k位肯定一个是0，另一个是1，假设a的第k位是1。接下来用另一个变量one与数组中第k位上是1的数进行异或，
+ *        因为这些数中只有a出现了奇数次，所以结束后one就是a，那么b=tmp^a=tmp^one。
  * </p>
  * <p>时间复杂度为O(N)，空间复杂度为O(1)</p>
  *
@@ -32,14 +32,14 @@ import java.util.Arrays;
 public class EvenTimesOddTimes {
 
     public static int findOneOddTimesNum(int[] array) {
-        int tmp = 0;
+        int result = 0;
         for (int cur : array) {
-            tmp ^= cur;
+            result ^= cur;
         }
-        return tmp;
+        return result;
     }
 
-    public static int[] printTwoOddTimesNum(int[] array) {
+    public static int[] findTwoOddTimesNum(int[] array) {
         int[] result = new int[2];
         int tmp = 0, one = 0;
         for (int cur : array) {
@@ -65,6 +65,6 @@ public class EvenTimesOddTimes {
         System.out.println(findOneOddTimesNum(arr1));
 
         int[] arr2 = {4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2};
-        System.out.println(Arrays.toString(printTwoOddTimesNum(arr2)));
+        System.out.println(Arrays.toString(findTwoOddTimesNum(arr2)));
     }
 }
