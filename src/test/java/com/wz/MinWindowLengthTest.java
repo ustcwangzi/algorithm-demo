@@ -4,6 +4,11 @@ import com.wz.string.MinWindowLength;
 
 import java.util.Random;
 
+/**
+ * <p>包含给定字符串中所有字符的最小子串长度</p>
+ *
+ * @author wangzi
+ */
 public class MinWindowLengthTest {
     private static int solution(String str, String target) {
         char[] strArray = str.toCharArray();
@@ -20,16 +25,22 @@ public class MinWindowLengthTest {
         int deficit = targetArray.length;
         // 最终结果
         int result = 0;
+        // right右移是在归还，left右移是在取回，deficit为0时才右移left
         while (right < strArray.length) {
+            // right右移时，表示在还给target字符
             map[strArray[right]]--;
+            // 减过之后大于等于0，说明确实需要还，因此总的欠target的字符减少
             if (map[strArray[right]] >= 0) {
                 deficit--;
             }
+            // deficit为0时，left右移，表示在取回字符
             if (deficit == 0) {
+                // map中的value小于0，说明还多了，可以取回
                 while (map[strArray[left]] < 0) {
                     map[strArray[left++]]++;
                 }
                 result = Math.min(result, right - left + 1);
+                // 不能取时停止，然后left再右移一次，表示此时开始又要欠target字符了
                 deficit++;
                 map[strArray[left++]]++;
             }
