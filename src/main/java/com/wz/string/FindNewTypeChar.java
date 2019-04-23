@@ -12,7 +12,7 @@ package com.wz.string;
  * <p>
  *     新类型字符定义如下：
  *     1、新类型字符是长度为1或2的字符串
- *     2、表现形式可以近视小写字母，如"e"；也可以是大写字母+小写字母，如"Ab"；还可以是大写字母+大写字母，如"DC"。
+ *     2、表现形式可以只是小写字母，如"e"；也可以是大写字母+小写字母，如"Ab"；还可以是大写字母+大写字母，如"DC"。
  *     现给定一个字符串str，str一定是若干新类型字符正确组合的结果，比如"eaBBCi"，由新类型字符"e"、"a"、"BB"和"Ci"组成。
  *     再给定一个整数k，代表str中的位置。请获取k位置处的新类型字符。
  *     例如：str="aaABCDEcBCg"
@@ -22,7 +22,7 @@ package com.wz.string;
  *        另一种更快的方法，从k-1位置开始，向左统计连续出现的大写字母的数量upperNum，遇到小写字母就停止。
  *        1、如果upperNum为奇数，str[k-1...k]就是需要的新类型字符，如例1；
  *        2、如果upperNum为偶数且str[k]是大写字母，str[k...k+1]就是需要的新类型字符，如例2；
- *        1、如果upperNum为偶数且str[k]是小写字母，str[k]就是需要的新类型字符，如例3。
+ *        3、如果upperNum为偶数且str[k]是小写字母，str[k]就是需要的新类型字符，如例3。
  * </p>
  *
  * @author wangzi
@@ -46,9 +46,11 @@ public class FindNewTypeChar {
         if ((upperNum & 1) == 1) {
             return str.substring(k - 1, k + 1);
         }
+        // upperNum为偶数，且位置k上是大写字母
         if (array[k] >= 'A' && array[k] <= 'Z') {
             return str.substring(k, k + 2);
         }
+        // upperNum为偶数，且位置k上是小写字母
         return String.valueOf(array[k]);
     }
 
