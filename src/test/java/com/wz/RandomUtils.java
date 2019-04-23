@@ -35,6 +35,17 @@ public class RandomUtils {
         return sb.toString();
     }
 
+    protected static String genRandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
+    }
+
     protected static int[] genShuffleArray() {
         int[] array = new int[SIZE];
         List<Integer> list = new ArrayList<>(SIZE);
