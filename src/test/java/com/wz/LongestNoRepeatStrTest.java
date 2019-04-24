@@ -5,6 +5,11 @@ import com.wz.string.LongestNoRepeatSubstring;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>无重复字符的最长子串</p>
+ *
+ * @author wangzi
+ */
 public class LongestNoRepeatStrTest {
     private static String solution(String str) {
         int maxLength = 0, end = -1;
@@ -17,7 +22,9 @@ public class LongestNoRepeatStrTest {
             if (map.containsKey(cur)) {
                 preIndex = Math.max(preIndex, map.get(cur));
             }
+            // preIndex+1...i是无重复元素的
             if (i - preIndex > maxLength) {
+                // 更新最大长度和结尾位置
                 maxLength = i - preIndex;
                 end = i;
             }
