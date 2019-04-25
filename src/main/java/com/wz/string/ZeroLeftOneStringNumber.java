@@ -10,11 +10,11 @@ package com.wz.string;
 /**
  * <p>0左边必有1的二进制字符串数量</p>
  * <p>
- *     给定一个整数N，求出由"0"和"1"组成的成都为N的所有字符串中，满足"0"的左边必有"1"的字符串数量。
+ *     给定一个整数N，求出由"0"和"1"组成的位数为N的所有字符串中，满足"0"的左边必有"1"的字符串数量。
  *     例如：
  *     N=1，共有两个字符串"0"、"1"，其中"1"满足要求，返回1；
  *     N=2，共有四个字符串"00"、"01"、"10"、"11"，其中"10"、"11"满足要求，返回2；
- *     N=3，共有两个字符串"000"、"001"、"010"、"011"、"100"、"101"、"110"、"111"，其中"101"、"110"、"111"满足要求，返回3。
+ *     N=3，共有八个字符串"000"、"001"、"010"、"011"、"100"、"101"、"110"、"111"，其中"101"、"110"、"111"满足要求，返回3。
  *     可以直接使用暴力求解，即检查每一个长度为N的二进制字符串，看有多少符合要求，总共的字符串数量为2^N，检查是否符合要求时间复杂度为O(N)，
  *     因此该方法总的时间复杂度为O(N*2^N)，此处不再详述。
  *     分析：
@@ -53,9 +53,6 @@ public class ZeroLeftOneStringNumber {
         return process(1, n);
     }
 
-    /**
-     * 动态规划求解
-     */
     private static int process(int i, int n) {
         if (i == n - 1) {
             return 2;
@@ -67,7 +64,7 @@ public class ZeroLeftOneStringNumber {
     }
 
     /**
-     * 矩阵乘法求解
+     * 动态规划求解
      */
     public static int getNumTwo(int n) {
         if (n < 1) {
@@ -76,15 +73,18 @@ public class ZeroLeftOneStringNumber {
         if (n == 1) {
             return 1;
         }
-        int pre = 1, cur = 1, tmp;
+        int pre = 1, result = 1, tmp;
         for (int i = 2; i < n + 1; i++) {
-            tmp = cur;
-            cur += pre;
+            tmp = result;
+            result += pre;
             pre = tmp;
         }
-        return cur;
+        return result;
     }
 
+    /**
+     * 矩阵乘法求解
+     */
     public static int getNumThree(int n) {
         if (n < 1) {
             return 0;
