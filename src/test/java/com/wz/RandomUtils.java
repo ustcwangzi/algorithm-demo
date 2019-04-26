@@ -46,6 +46,17 @@ public class RandomUtils {
         return sb.toString();
     }
 
+    protected static String genRandomParentheses() {
+        String str = "()";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < random.nextInt(SIZE); i++) {
+            int number = random.nextInt(2);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
+    }
+
     protected static int[] genShuffleArray() {
         int[] array = new int[SIZE];
         List<Integer> list = new ArrayList<>(SIZE);
