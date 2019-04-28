@@ -25,7 +25,7 @@ package com.wz.string;
  *           str[i...j]由1个字符组成；
  *           str[i...j]由2个字符组成，并且2个字符相等；
  *           str[i+1...j-1]是回文串，即p[i+1][j-1]为true，并且str[i]==str[j]，即str[i...j]上首尾两个字符相等。
- *           计算dp过程中，i是从右到左依次计算的，为对于每个i，又依次从i位置向右枚举所有的j(i<=j<len)，依次决策出dp[i]，
+ *           计算dp过程中，i是从右到左依次计算的，而对于每个i，又依次从i位置向右枚举所有的j(i<=j<len)，依次决策出dp[i]，
  *           所以对于每个p[i][j]来说，p[i+1][j-1]一定是计算过的，这使得判断一个子串是否为回文子串变得极为方便
  *        4、最终dp[0]就是最后的结果。
  * </p>
@@ -48,7 +48,7 @@ public class PalindromeMinCut {
         // 从右向左依次计算dp[i]
         for (int i = len - 1; i >= 0; i--) {
             dp[i] = Integer.MAX_VALUE;
-            // 对于每个i，从i开始向右闷局所有位置来计算出dp[i]
+            // 对于每个i，从i开始向右枚举所有位置来计算出dp[i]
             for (int j = i; j < len; j++) {
                 // 如果str[i...j]是回文子串，那么dp[i]可能是dp[j+1]+1
                 if (array[i] == array[j] && (j - i < 2 || isPalindrome[i + 1][j - 1])) {
