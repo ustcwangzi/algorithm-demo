@@ -23,12 +23,12 @@ public class PalindromeMinCutTest {
         // str[i+1...j-1]是回文串，并且str[i]==str[j]
         boolean[][] isPalindrome = new boolean[length][length];
 
+        // 假设j位于i与N-1之间，如果str[i...j]是回文串，那么dp[i]可能是dp[j+1]+1，
+        // 因为在str[i...N-1]上，除去str[i...j]是回文，剩下部分str[j+1...N-1]需要继续做切割
+        // 让j在i到N-1上枚举，其中的最小值就是dp[i]的值，即dp[i]=Min{dp[j+1]+1}
         for (int i = length - 1; i >= 0; i--) {
             dp[i] = Integer.MAX_VALUE;
-            // 对于每个i，从i开始向右枚举所有位置来计算出dp[i]
             for (int j = i; j < length; j++) {
-                // 如果str[i...j]是回文子串，那么dp[i]可能是dp[j+1]+1
-                // 因为在str[i...N-1]上，除去str[i...j]是回文，剩下部分str[j+1...N-1]需要继续做切割
                 // i从右到左遍历，j从i向右遍历，因此对于每个isPalindrome[i][j]，isPalindrome[i+1][j-1]一定是计算过的
                 if (array[i] == array[j] && (j - i < 2 || isPalindrome[i + 1][j - 1])) {
                     isPalindrome[i][j] = true;
