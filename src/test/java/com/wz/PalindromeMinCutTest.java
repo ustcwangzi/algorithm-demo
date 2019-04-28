@@ -2,19 +2,34 @@ package com.wz;
 
 import com.wz.string.PalindromeMinCut;
 
+/**
+ * <p>把字符串全部切成回文子串的最小分割数</p>
+ *
+ * @author wangzi
+ */
 public class PalindromeMinCutTest {
     private static int solution(String str) {
         if (str == null || str.length() == 0) {
             return 0;
         }
+
         char[] array = str.toCharArray();
         int length = array.length;
+        // dp[i]表示str[i...N-1]至少要切割的次数，那么dp[0]就是结果
         int[] dp = new int[length + 1];
         dp[length] = -1;
+        // isPalindrome[i][j]表示str[i...j]是否是回文，三种情况是回文：
+        // str[i...j]由1个字符组成；str[i...j]由2个字符组成，并且2个字符相等；
+        // str[i+1...j-1]是回文串，并且str[i]==str[j]
         boolean[][] isPalindrome = new boolean[length][length];
+
         for (int i = length - 1; i >= 0; i--) {
             dp[i] = Integer.MAX_VALUE;
+            // 对于每个i，从i开始向右枚举所有位置来计算出dp[i]
             for (int j = i; j < length; j++) {
+                // 如果str[i...j]是回文子串，那么dp[i]可能是dp[j+1]+1
+                // 因为在str[i...N-1]上，除去str[i...j]是回文，剩下部分str[j+1...N-1]需要继续做切割
+                // i从右到左遍历，j从i向右遍历，因此对于每个isPalindrome[i][j]，isPalindrome[i+1][j-1]一定是计算过的
                 if (array[i] == array[j] && (j - i < 2 || isPalindrome[i + 1][j - 1])) {
                     isPalindrome[i][j] = true;
                     dp[i] = Math.min(dp[i], dp[j + 1] + 1);
