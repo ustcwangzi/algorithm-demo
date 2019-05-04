@@ -11,10 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>数组中两个字符串的最小距离</p>
+ * <p>数组中两个字符的最小距离</p>
  * <p>
  *     问题一：
- *        给定字符串数组array[]，在给定两个字符串self和other，求出array中self和other的最小距离，
+ *        给定字符串数组array，在给定两个字符串self和other，求出array中self和other的最小距离，
  *        如果self或other为null，或不存在，返回-1。
  *     问题二：
  *        在问题一的基础上，如果查询发生的次数有很多，如何把每次查询的时间复杂度将为O(1)。
