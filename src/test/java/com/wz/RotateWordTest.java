@@ -10,7 +10,9 @@ import java.util.Arrays;
 public class RotateWordTest {
 
     private static char[] solution(char[] array) {
+        // 将整个数组翻转
         reverse(array, 0, array.length - 1);
+        // 找到每个单词的开始、结束位置，进行单次翻转
         int left = -1, right = -1;
         for (int i = 0; i < array.length; i++) {
             if (array[i] != ' ') {
