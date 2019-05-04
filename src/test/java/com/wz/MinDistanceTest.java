@@ -26,6 +26,7 @@ public class MinDistanceTest {
             return 0;
         }
         int result = Integer.MAX_VALUE;
+        // 最近一次出现self、other出现的位置
         int latestSelf = -1,latestOther = -1;
         for (int i =0;i<array.length;i++){
             if (array[i].equals(self)) {
