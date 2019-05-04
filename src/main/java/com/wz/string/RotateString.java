@@ -26,9 +26,9 @@ package com.wz.string;
  * @author wangzi
  */
 public class RotateString {
-    public static void rotateWord(char[] array) {
+    public static char[] rotateWord(char[] array) {
         if (array == null || array.length == 0) {
-            return;
+            return array;
         }
 
         // 整体逆序
@@ -47,16 +47,18 @@ public class RotateString {
                 right = -1;
             }
         }
+        return array;
     }
 
-    public static void rotatePart(char[] array, int size) {
+    public static char[] rotatePart(char[] array, int size) {
         if (array == null || array.length == 0 || size >= array.length) {
-            return;
+            return array;
         }
 
         reverse(array, 0, size - 1);
         reverse(array, size, array.length - 1);
         reverse(array, 0, array.length - 1);
+        return array;
     }
 
     private static void reverse(char[] array, int start, int end) {
@@ -73,12 +75,10 @@ public class RotateString {
     public static void main(String[] args) {
         char[] array1 = {'d', 'o', 'g', ' ', 'l', 'o', 'v', 'e', 's', ' ', 'p', 'i', 'g'};
         System.out.println(array1);
-        rotateWord(array1);
-        System.out.println(array1);
+        System.out.println(rotateWord(array1));
 
         char[] array2 = {'1', '2', '3', '4', '5', 'A', 'B', 'C'};
         System.out.println(array2);
-        rotatePart(array2, 5);
-        System.out.println(array2);
+        System.out.println(rotatePart(array2, 5));
     }
 }
