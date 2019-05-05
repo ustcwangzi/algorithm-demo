@@ -5,10 +5,18 @@ import com.wz.string.RotateString;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * <p>部分字符翻转</p>
+ *
+ * @author wangzi
+ */
 public class RotatePartTest {
     private static char[] solution(char[] array, int k){
+        // 翻转array[0...k-1]
         reverse(array, 0, k-1);
+        // 翻转array[k+1...N-1]
         reverse(array, k, array.length-1);
+        // 翻转array[0...N-1]
         reverse(array, 0, array.length-1);
         return array;
     }
