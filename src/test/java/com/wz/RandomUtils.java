@@ -46,11 +46,22 @@ public class RandomUtils {
         return result;
     }
 
-    protected static char[] genRandomCharArray() {
+    protected static char[] genRandomCharArrayWithEmpty() {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
         Random random = new Random();
         char[] result = new char[SIZE];
         for (int i = 0; i < result.length; i++) {
+            int number = random.nextInt(63);
+            result[i] = str.charAt(number);
+        }
+        return result;
+    }
+
+    protected static char[] genRandomCharArrayWithEmpty(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
+        Random random = new Random();
+        char[] result = new char[SIZE];
+        for (int i = 0; i < length; i++) {
             int number = random.nextInt(63);
             result[i] = str.charAt(number);
         }

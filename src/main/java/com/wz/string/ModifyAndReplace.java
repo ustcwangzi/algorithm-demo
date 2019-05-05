@@ -33,9 +33,9 @@ import java.util.Arrays;
  * @author wangzi
  */
 public class ModifyAndReplace {
-    public static void replace(char[] array) {
+    public static char[] replace(char[] array) {
         if (array == null || array.length == 0) {
-            return;
+            return array;
         }
 
         // 左半区空格数
@@ -49,24 +49,25 @@ public class ModifyAndReplace {
         }
 
         // 替换后的长度
-        int j = len + num * 2 - 1;
+        int j = len + num * 2;
         // 从右到左复制
         for (int i = len - 1; i > -1; i--) {
             if (array[i] != ' ') {
                 // 非空格直接复制
-                array[j--] = array[i];
+                array[--j] = array[i];
             } else {
                 // 空格替换
-                array[j--] = '0';
-                array[j--] = '2';
-                array[j--] = '%';
+                array[--j] = '0';
+                array[--j] = '2';
+                array[--j] = '%';
             }
         }
+        return array;
     }
 
-    public static void modify(char[] array) {
+    public static char[] modify(char[] array) {
         if (array == null || array.length == 0) {
-            return;
+            return array;
         }
 
         int j = array.length - 1;
@@ -81,14 +82,13 @@ public class ModifyAndReplace {
             // 剩余部分设为'*'
             array[j--] = '*';
         }
+        return array;
     }
 
     public static void main(String[] args) {
         char[] array1 = {'a', ' ', 'b', ' ', ' ', 'c', 0, 0, 0, 0, 0, 0, 0, 0};
-        replace(array1);
-        System.out.println(Arrays.toString(array1));
+        System.out.println(Arrays.toString(replace(array1)));
         char[] array2 = {'1', '2', '*', '*', '3', '4', '5'};
-        modify(array2);
-        System.out.println(Arrays.toString(array2));
+        System.out.println(Arrays.toString(modify(array2)));
     }
 }

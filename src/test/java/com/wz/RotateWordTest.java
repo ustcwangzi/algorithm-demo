@@ -45,7 +45,7 @@ public class RotateWordTest {
         int times = 100;
         boolean result = true;
         for (int i = 0; i < times; i++) {
-            char[] array = RandomUtils.genRandomCharArray();
+            char[] array = RandomUtils.genRandomCharArrayWithEmpty();
             if (!Arrays.equals(solution(Arrays.copyOf(array, array.length)),
                     RotateString.rotateWord(Arrays.copyOf(array, array.length)))) {
                 result = false;
