@@ -5,7 +5,9 @@ import com.wz.string.RotateString;
 import java.util.Arrays;
 
 /**
- * <p>单次翻转</p>
+ * <p>单词翻转</p>
+ *
+ * @author wangzi
  */
 public class RotateWordTest {
 
@@ -21,6 +23,8 @@ public class RotateWordTest {
             }
             if (left != -1 && right != -1) {
                 reverse(array, left, right);
+                left = -1;
+                right = -1;
             }
         }
         return array;
@@ -42,7 +46,8 @@ public class RotateWordTest {
         boolean result = true;
         for (int i = 0; i < times; i++) {
             char[] array = RandomUtils.genRandomCharArray();
-            if (!Arrays.equals(solution(array), RotateString.rotateWord(array))) {
+            if (!Arrays.equals(solution(Arrays.copyOf(array, array.length)),
+                    RotateString.rotateWord(Arrays.copyOf(array, array.length)))) {
                 result = false;
                 System.out.println("Error, array:" + Arrays.toString(array));
             }

@@ -19,7 +19,7 @@ package com.wz.string;
  *     问题一解答：
  *        首先把array整体逆序，逆序后，遍历array找到每一个单词，然后再把每一个单词里的字符逆序即可。
  *     问题二解答：
- *        先把array[o...size-1]部分逆序，再把array[size...N-1]部分逆序，最后把array整体逆序即可。
+ *        先把array[0...size-1]部分逆序，再把array[size...N-1]部分逆序，最后把array整体逆序即可。
  *        比如"ABCDE"，size=3，先把array[0...2]逆序变成"CBADE"，再把array[3...4]逆序变成"CBAED"，最后整体逆序变成"EDABC"。
  * </p>
  *
