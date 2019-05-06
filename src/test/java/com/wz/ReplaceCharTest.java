@@ -3,6 +3,7 @@ package com.wz;
 import com.wz.string.ModifyAndReplace;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * <p>数组足够长，将' '替换为'%20'</p>
@@ -38,7 +39,8 @@ public class ReplaceCharTest {
         int times = 100;
         boolean result = true;
         for (int i = 0; i < times; i++) {
-            char[] array = RandomUtils.genRandomCharArrayWithEmpty(50);
+            int len = new Random().nextInt(60) + 1;
+            char[] array = RandomUtils.genRandomCharArrayWithEmpty(len);
             if (!Arrays.equals(solution(Arrays.copyOf(array, array.length)),
                     ModifyAndReplace.replace(Arrays.copyOf(array, array.length)))) {
                 result = false;

@@ -36,7 +36,7 @@ public class RotatePartTest {
         int times = 100;
         boolean result = true;
         for (int i = 0; i < times; i++) {
-            char[] array = RandomUtils.genRandomCharArrayWithEmpty();
+            char[] array = RandomUtils.genRandomCharArray();
             int k = new Random().nextInt(array.length);
             if (!Arrays.equals(solution(Arrays.copyOf(array, array.length), k),
                     RotateString.rotatePart(Arrays.copyOf(array, array.length), k))) {
