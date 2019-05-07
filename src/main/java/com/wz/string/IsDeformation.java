@@ -34,12 +34,12 @@ public class IsDeformation {
         char[] chSelf = self.toCharArray();
         char[] chOther = other.toCharArray();
         int[] map = new int[256];
-        for (int i = 0; i < chSelf.length; i++) {
-            // 记录字符chSelf[i]出现的次数
-            map[chSelf[i]]++;
+        for (char cur : chSelf) {
+            // 记录字符cur出现的次数
+            map[cur]++;
         }
-        for (int i = 0; i < chOther.length; i++) {
-            if (map[chOther[i]]-- == 0) {
+        for (char cur : chOther) {
+            if (map[cur]-- == 0) {
                 return false;
             }
         }
