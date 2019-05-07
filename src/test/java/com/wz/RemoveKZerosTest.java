@@ -2,12 +2,18 @@ package com.wz;
 
 import com.wz.string.RemoveKZeros;
 
+/**
+ * <p>去除连续k个'0'字符</p>
+ *
+ * @author wangzi
+ */
 public class RemoveKZerosTest {
     private static String solution(String str, int k) {
         if (str == null || str.length() == 0 || str.length() < k) {
             return str;
         }
         char[] array = str.toCharArray();
+        // 连续'0'的次数及开始位置
         int count = 0, start = -1;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == '0') {
@@ -23,6 +29,7 @@ public class RemoveKZerosTest {
                 start = -1;
             }
         }
+        // 连续'0'可能出现在末尾位置
         if (count == k) {
             while (count-- != 0) {
                 array[start++] = 0;
