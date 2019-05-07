@@ -49,17 +49,17 @@ public class RemoveKZeros {
                 count = 0;
                 start = -1;
             }
-            if (count == k) {
-                while (count-- != 0) {
-                    charArray[start++] = 0;
-                }
+        }
+        if (count == k) {
+            while (count-- != 0) {
+                charArray[start++] = 0;
             }
         }
         return String.valueOf(charArray);
     }
 
     public static void main(String[] args) {
-        String str = "000A00B000C0D00";
+        String str = "000A00B0000C0D000";
         System.out.println(remove(str, 3));
     }
 }
