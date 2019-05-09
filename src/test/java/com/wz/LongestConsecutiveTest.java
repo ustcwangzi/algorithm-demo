@@ -6,8 +6,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>数组元素能组成的最长连续递增序列</p>
+ *
+ * @author wangzi
+ */
 public class LongestConsecutiveTest {
     private static int solution(int[] array) {
+        // 记录元素所在的连续序列长度
         Map<Integer, Integer> map = new HashMap<>();
         int result = 0;
         for (int cur : array) {
@@ -15,6 +21,7 @@ public class LongestConsecutiveTest {
                 continue;
             }
             map.put(cur, 1);
+            // 序列合并，长度相加
             if (map.containsKey(cur - 1)) {
                 result = Math.max(result, merge(map, cur - 1, cur));
             }
@@ -25,13 +32,18 @@ public class LongestConsecutiveTest {
         return result;
     }
 
-    private static int merge(Map<Integer, Integer> map, int small, int big) {
-        int left = small - map.get(small) + 1;
-        int right = big + map.get(big) - 1;
-        int len = right - left + 1;
-        map.put(left, len);
-        map.put(right, len);
-        return len;
+    /**
+     * 将small和big所在的连续序列进行合并，只更新最大最小值的序列长度，中间记录不再更新
+     */
+    private static int merge(Map<Integer, Integer> map, int left, int right) {
+        // 序列中的最小元素
+        int min = left - map.get(left) + 1;
+        // 序列中的最大元素
+        int max = right + map.get(right) - 1;
+        int length = max - min + 1;
+        map.put(min, length);
+        map.put(max, length);
+        return length;
     }
 
     public static void main(String[] args) {
