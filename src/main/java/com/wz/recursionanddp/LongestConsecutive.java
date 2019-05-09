@@ -19,9 +19,9 @@ import java.util.Map;
  *     1、生成哈希表map，key代表遍历过的某个元素，value代表key所在的连续序列长度
  *     2、从左到右遍历array，假设遍历到array[i]，若array[i]之前出现过，直接遍历下一个元素，否则将(array[i],1)加入map，
  *        代表array[i]单独作为一个连续序列。
- *     2.1、看map中是否存在array[i]-1，若存在，将array[i]-1所在的序列与array[i]合并，
+ *     2.1、检查map中是否存在array[i]-1，若存在，将array[i]-1所在的序列与array[i]合并，
  *          合并后长度为len，最小值为left，最大值为right，在map中更新left与right记录，更新为(left,len)和(right,len)；
- *     2.2、看map中是否存在array[i]+1，若存在，将array[i]+1所在的序列与array[i]合并，
+ *     2.2、检查map中是否存在array[i]+1，若存在，将array[i]+1所在的序列与array[i]合并，
  *          合并后长度为len，最小值为left，最大值为right，在map中更新left与right记录，更新为(left,len)和(right,len)；
  *     3、遍历过程中用全局变量max记录每次合并后的序列的长度最大值，最后返回max。
  *     整个过程中，只是每个连续序列最小值和最大值在map中的记录有意义，中间数的记录不再更新，因为再也不会用到。
