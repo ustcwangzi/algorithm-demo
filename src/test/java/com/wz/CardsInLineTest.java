@@ -18,10 +18,17 @@ import java.util.Arrays;
  */
 public class CardsInLineTest {
     private static int solution(int[] array) {
+        // array[i...j] 先拿者得分
         int[][] first = new int[array.length][array.length];
+        // array[i...j] 后拿者得分
         int[][] second = new int[array.length][array.length];
 
+        // 动态规划
+        // 先拿者有两种选择：拿array[i]剩下array[i+1...j]，或拿array[j]剩下array[i...j-1]
+        // 一定是取两种情况下得分最高的，拿过后，对于下一次而言自己是后拿者
+        // 对于后拿者，先拿者肯定会把得分低的情况留给他
         for (int j = 0; j < array.length; j++) {
+            // 只剩一个，先拿者得到
             first[j][j] = array[j];
             for (int i = j - 1; i > -1; i--) {
                 first[i][j] = Math.max(array[i] + second[i + 1][j], array[j] + second[i][j - 1]);
