@@ -26,7 +26,7 @@ package com.wz.recursionanddp;
  *           2.2、拿走array[j]，剩下array[i...j-1]，对当前玩家来说，面对array[i...j-1]时，他是后拿的人，后续得分为second(i,j-1)
  *           当前玩家必然会在两种决策中选择最优的，即 max{array[i]+second(i+1,j), array[j]+second(i,j-1)}
  *        分析second(i,j)：
- *           1、如果i==j，即只剩下一张纸牌，当然会被先拿的人拿走，返回array[i]
+ *           1、如果i==j，即只剩下一张纸牌，当然会被先拿的人拿走，返回0
  *           2、如果i!=j，对手会先拿牌，而且对手会将最差的情况留给自己，即 min{first(i+1,j), first(i,j-1)}
  *     方案二：
  *        动态规划。
@@ -55,7 +55,7 @@ public class CardsInLine {
     /**
      * array[i...j]被先拿，能获得的分数
      */
-    public static int first(int[] array, int i, int j) {
+    private static int first(int[] array, int i, int j) {
         if (i == j) {
             return array[i];
         }
@@ -66,7 +66,7 @@ public class CardsInLine {
     /**
      * array[i...j]被后拿，能获得的分数
      */
-    public static int second(int[] array, int i, int j) {
+    private static int second(int[] array, int i, int j) {
         if (i == j) {
             return 0;
         }
@@ -97,7 +97,7 @@ public class CardsInLine {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 9, 1};
+        int[] array = {1, 2, 100, 4};
         System.out.println(winOne(array));
         System.out.println(winTwo(array));
     }
