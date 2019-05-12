@@ -8,7 +8,7 @@
 package com.wz.recursionanddp;
 
 /**
- * <p>表达式得到期望结果的组成种数</p>
+ * <p>表达式得到期望结果的组成数量</p>
  * <p>
  *     给定一个只由0(假)、1(真)、&(逻辑与)、|(逻辑或)、^(逻辑非)五种字符组成的字符串express，在给定一个布尔值desired。
  *     求出express有多少中组合方式，可以达到desired。
@@ -20,22 +20,22 @@ package com.wz.recursionanddp;
  *     3、表达式奇数位置的字符必须为'&'或'|'或'^'
  *     方案一：
  *        暴力递归。
- *        将express划分为左右两部分，求出各种划分的情况下，能得到desired的种数是多少。
+ *        将express划分为左右两部分，求出各种划分的情况下，能得到desired的数量是多少。
  *        1、划分符号为^、desired为true时：
- *           result = 左部分为真的种数 * 右部分为假的种数 + 左部分为假的种数 * 右部分为真的种数
+ *           result = 左部分为真的数量 * 右部分为假的数量 + 左部分为假的数量 * 右部分为真的数量
  *        2、划分符号为^、desired为false时：
- *           result = 左部分为真的种数 * 右部分为真的种数 + 左部分为假的种数 * 右部分为假的种数
+ *           result = 左部分为真的数量 * 右部分为真的数量 + 左部分为假的数量 * 右部分为假的数量
  *        3、划分符号为&、desired为true时：
- *           result = 左部分为真的种数 * 右部分为真的种数
+ *           result = 左部分为真的数量 * 右部分为真的数量
  *        4、划分符号为&、desired为false时：
- *           result = 左部分为真的种数 * 右部分为假的种数 + 左部分为假的种数 * 右部分为真的种数
+ *           result = 左部分为真的数量 * 右部分为假的数量 + 左部分为假的数量 * 右部分为真的数量
  *        5、划分符号为|、desired为true时：
- *           result = 左部分为真的种数 * 右部分为假的种数 + 左部分为假的种数 * 右部分为真的种数 + 左部分为真的种数 * 右部分为真的种数
+ *           result = 左部分为真的数量 * 右部分为假的数量 + 左部分为假的数量 * 右部分为真的数量 + 左部分为真的数量 * 右部分为真的数量
  *        6、划分符号为|、desired为false时：
- *           result = 左部分为假的种数 * 右部分为假的种数
+ *           result = 左部分为假的数量 * 右部分为假的数量
  *     方案二：
  *        动态规划。
- *        生成两个N*N的矩阵t和f，t[i][j]表示express[i...j]组成true的种数，f[i][j]表示express[i...j]组成false的种数。
+ *        生成两个N*N的矩阵t和f，t[i][j]表示express[i...j]组成true的数量，f[i][j]表示express[i...j]组成false的数量。
  *        t[i][j]和f[i][j]的计算方式还是枚举express[i...j]上的每种划分。
  * </p>
  * <p>
@@ -147,9 +147,9 @@ public class ExpressionNumber {
         f[0][0] = exp[0] == '1' ? 0 : 1;
 
         for (int j = 2; j < exp.length; j += 2) {
-            // t[i][j]表示exp[i...j]组成true的种数
+            // t[i][j]表示exp[i...j]组成true的数量
             t[j][j] = exp[j] == '0' ? 0 : 1;
-            // f[i][j]表示exp[i...j]组成false的种数
+            // f[i][j]表示exp[i...j]组成false的数量
             f[j][j] = exp[j] == '1' ? 0 : 1;
             // 对exp[i...j]进行划分
             for (int i = j - 2; i >= 0; i -= 2) {

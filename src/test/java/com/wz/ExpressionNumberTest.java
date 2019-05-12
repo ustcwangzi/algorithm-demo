@@ -12,7 +12,7 @@ import com.wz.recursionanddp.ExpressionNumber;
 import java.util.Random;
 
 /**
- * <p>表达式得到期望结果的组成种数</p>
+ * <p>表达式得到期望结果的组成数量</p>
  *
  * @author wangzi
  */
@@ -22,22 +22,31 @@ public class ExpressionNumberTest {
         if (!isValid(array)) {
             return 0;
         }
+        // t[i][j] 表示 array[i][j]组成true的数量
         int[][] t = new int[array.length][array.length];
+        // f[i][j] 表示 array[i][j]组成false的数量
         int[][] f = new int[array.length][array.length];
 
         for (int j = 2; j < array.length; j++) {
             t[j][j] = array[j] == '1' ? 1 : 0;
             f[j][j] = array[j] == '0' ? 1 : 0;
             for (int i = j - 2; i > -1; i -= 2) {
+                // 对array[i][j] 进行划分
                 for (int k = i; k < j; k += 2) {
                     if (array[k + 1] == '&') {
+                        // 左true、右true
                         t[i][j] = t[i][k] * t[k + 2][j];
+                        // 左true、右false + 左false、右true + 左false、右false
                         f[i][j] = t[i][k] * f[k + 2][j] + f[i][k] * t[k + 2][j] + f[i][k] * f[k + 2][j];
                     } else if (array[k + 1] == '|') {
+                        // 左true、右true + 左true、右false + 左false、右true
                         t[i][j] = t[i][k] * t[k + 2][j] + t[i][k] * f[k + 2][j] + f[i][k] * t[k + 2][j];
+                        // 左false、右false
                         f[i][j] = f[i][k] * f[k + 2][j];
                     } else {
+                        // 左true、右false + 左false、右true
                         t[i][j] = t[i][k] * f[k + 2][j] + f[i][k] * t[k + 2][j];
+                        // 左true、右true + 左false、右false
                         f[i][j] = t[i][k] * t[k + 2][j] + f[i][k] * f[k + 2][j];
                     }
                 }
