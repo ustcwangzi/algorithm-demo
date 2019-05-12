@@ -79,6 +79,20 @@ public class RandomUtils {
         return sb.toString();
     }
 
+    protected static String genRandomExpress(int length) {
+        String str = "&|^";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            if ((i & 1) == 1) {
+                sb.append(str.charAt(random.nextInt(3)));
+            } else {
+                sb.append(random.nextInt());
+            }
+        }
+        return sb.toString();
+    }
+
     protected static String genRandomParentheses() {
         String str = "()";
         Random random = new Random();
