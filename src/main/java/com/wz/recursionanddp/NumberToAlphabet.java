@@ -123,7 +123,7 @@ public class NumberToAlphabet {
     }
 
     public static void main(String[] args) {
-        String str = "781231783161018231";
+        String str = "7812317831610182310";
         System.out.println(numOne(str));
         System.out.println(numTwo(str));
         System.out.println(numThree(str));
