@@ -10,6 +10,7 @@ import com.wz.recursionanddp.DungeonGame;
 public class DungeonGameTest {
     private static int solution(int[][] map) {
         int row = map.length, col = map[0].length;
+        //
         int[][] dp = new int[row][col];
         dp[row - 1][col - 1] = map[row - 1][col - 1] > 0 ? 1 : 1 - map[row - 1][col - 1];
         for (int j = col - 2; j > -1; j--) {
