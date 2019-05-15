@@ -35,6 +35,18 @@ public class RandomUtils {
         return sb.toString();
     }
 
+    protected static String shuffle(String str) {
+        char[] array = str.toCharArray();
+        int length = array.length;
+        for (int i = 0; i < array.length; i++) {
+            int index = new Random().nextInt(length--);
+            char tmp = array[index];
+            array[index] = array[length];
+            array[length] = tmp;
+        }
+        return String.valueOf(array);
+    }
+
     protected static String genRandomNumberString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < SIZE; i++) {

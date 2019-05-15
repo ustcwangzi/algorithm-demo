@@ -18,11 +18,11 @@ package com.wz.recursionanddp;
  *        生成大小为(M+1)*(N+1)的动态规划矩阵dp，dp[i][j]代表aim[0...i+j-1]能否被self[0...i-1]和other[0...j-1]交错组成。
  *        1、dp[0][0]=true，因为aim为空串时，可以被self为空串和other为空串交错组成
  *        2、第一列dp[0...M-1][0]，dp[i][0]代表aim[0...i-1]能否只被self[0...i-1]交错组成，比较aim[0...i-1]与self[0...i-1]即可
- *        3、第一列dp[0][0...N-1]，dp[0][j]代表aim[0...j-1]能否只被other[0...j-1]交错组成，比较aim[0...j-1]与other[0...j-1]即可
+ *        3、第一行dp[0][0...N-1]，dp[0][j]代表aim[0...j-1]能否只被other[0...j-1]交错组成，比较aim[0...j-1]与other[0...j-1]即可
  *        4、其他位置(i,j)，dp[i][j]的值由以下三种情况决定：
  *        4.1、dp[i-1][j]代表aim[0...i+j-2]能否被self[0...i-2]和other[0...j-1]交错组成，如果可以，那么再有self[i-1]=aim[i+j-1]，
  *            说明self[i-1]可以作为交错组成aim[0...i+j-1]的最后一个字符。此时令dp[i][j]=true
- *        4.2、dp[1][j-1]代表aim[0...i+j-2]能否被self[0...i-1]和other[0...j-2]交错组成，如果可以，那么再有other[j-1]=aim[i+j-1]，
+ *        4.2、dp[i][j-1]代表aim[0...i+j-2]能否被self[0...i-1]和other[0...j-2]交错组成，如果可以，那么再有other[j-1]=aim[i+j-1]，
  *            说明other[j-1]可以作为交错组成aim[0...i+j-1]的最后一个字符。此时令dp[i][j]=true
  *        4.3、其他情况下，令dp[i][j]=false
  *     方案二：
