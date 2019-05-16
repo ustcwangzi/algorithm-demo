@@ -20,14 +20,14 @@ package com.wz.recursionanddp;
  *        2、矩阵第一列dp[0...M-1][0]，dp[i][0]表示self[0...i-1]编辑成空串的最小代价，即删除self[0...i-1]所有字符，dp[i][0]=dc*i
  *        3、矩阵第一行dp[0][0...N-1]，dp[0][j]表示空串编辑成other[0...j-1]的最小代价，即插入other[0...j-1]所有字符，dp[0][j]=ic*j
  *        4、其他位置按照从左到右、从上到下计算，dp[i][j]的值只可能来自以下四种情况：
- *        4.1、self[0...i-1]删除self[i-1]变成self[0...i-2]，由self[0...i-2]编辑成other[0...j-1]，dp[i-1][j]表示
+ *        4.1、self[0...i-1]删除self[i-1]变成self[0...i-2]，再由self[0...i-2]编辑成other[0...j-1]，dp[i-1][j]表示
  *            self[0...i-2]编辑成other[0...j-1]的最小代价，因此dp[i][j]=dc+dp[i-1][j]
- *        4.2、self[0...i-1]先编辑成other[0...j-2]，然后插入other[j-1]，编辑成other[0...j-1]，dp[i][j-1]表示
+ *        4.2、self[0...i-1]先编辑成other[0...j-2]，再插入other[j-1]变成other[0...j-1]，dp[i][j-1]表示
  *            self[0...i-1]编辑成other[0...j-2]的最小代价，因此dp[i][j]=dp[i][j-1]+ic
  *        4.3、如果self[i-1]!=other[j-1]，先把self[0...i-2]编辑成other[0...j-2]，然后把self[i-1]替换成other[j-1]，
  *            dp[i-1][j-1]表示self[0...i-2]编辑成other[0...j-2]的最小代价，因此dp[i][j]=dp[i-1][j-1]+rc
  *        4.3、如果self[i-1]==other[j-1]，把self[0...i-2]编辑成other[0...j-2]即可，dp[i][j]=dp[i-1][j-1]
- *        以上四种可能的值中，选择最小的值最为dp[i][j]
+ *        以上四种可能的值中，选择最小的值就是dp[i][j]
  *     方案二：
  *        动态规划基础上的空间压缩解法。思想与com.wz.recursionanddp.MinPathSum的方案二类似。
  *        不同之处在于MinPathSum中dp[i][j]依赖两个位置的值dp[i-1][j]和dp[i][j-1]，滚动数组从左到右更新是没问题的，因为在求dp[j]时，
