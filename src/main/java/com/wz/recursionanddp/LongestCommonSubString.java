@@ -48,9 +48,9 @@ public class LongestCommonSubString {
         char[] chOther = other.toCharArray();
         // 生成动态规划矩阵
         int[][] dp = getDp(chSelf, chOther);
-        // 最大长度
-        int end = 0;
         // 最长公共子串的结尾位置
+        int end = 0;
+        // 最大长度
         int max = 0;
         for (int i = 0; i < chSelf.length; i++) {
             for (int j = 0; j < chOther.length; j++) {
