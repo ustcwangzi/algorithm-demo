@@ -171,9 +171,9 @@ public class RandomUtils {
         List<Integer> list = new ArrayList<>(m);
         int[] result = new int[m];
         for (int i = 0; i < m; i++) {
-            int number = new Random().nextInt(SIZE + m);
+            int number = new Random().nextInt(SIZE + m) + 1;
             while (list.contains(number)) {
-                number = new Random().nextInt(SIZE + m);
+                number = new Random().nextInt(SIZE + m) + 1;
             }
             list.add(number);
             result[i] = number;
