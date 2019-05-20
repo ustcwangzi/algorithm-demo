@@ -145,6 +145,16 @@ public class RandomUtils {
         return array;
     }
 
+    protected static int[][] genRandomMatrix() {
+        int[][] matrix = new int[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                matrix[i][j] = new Random().nextInt(SIZE);
+            }
+        }
+        return matrix;
+    }
+
     protected static int[] genRandomArrayWithMinus() {
         int[] array = new int[SIZE];
         for (int i = 0; i < SIZE; i++) {
