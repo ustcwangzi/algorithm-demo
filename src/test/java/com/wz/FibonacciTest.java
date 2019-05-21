@@ -15,6 +15,7 @@ public class FibonacciTest {
         if (n == 1 || n == 2) {
             return 1;
         }
+        // f(n)=f(n-1)+f(n-2)，a为f(n-1)，b为f(n-2)，result为f(n)
         int a = 1, b = 1, result = 0;
         for (int i = 3; i <= n; i++) {
             result = a + b;
