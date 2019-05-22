@@ -152,11 +152,11 @@ public class Fibonacci {
             return n;
         }
 
-        int result = 2, pre = 1, tmp;
+        int a = 1, b = 2, result = 0;
         for (int i = 3; i <= n; i++) {
-            tmp = result;
-            result += pre;
-            pre = tmp;
+            result = a + b;
+            a = b;
+            b = result;
         }
         return result;
     }
