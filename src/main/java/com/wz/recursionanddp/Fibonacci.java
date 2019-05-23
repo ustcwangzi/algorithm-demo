@@ -202,13 +202,12 @@ public class Fibonacci {
             return n;
         }
 
-        int result = 3, pre = 2, prePre = 1, tmp1, tmp2;
+        int a = 1, b = 2, c = 3, result = 0;
         for (int i = 4; i <= n; i++) {
-            tmp1 = result;
-            tmp2 = pre;
-            result += prePre;
-            pre = tmp1;
-            prePre = tmp2;
+            result = a + c;
+            a = b;
+            b = c;
+            c = result;
         }
         return result;
     }
