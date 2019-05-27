@@ -47,18 +47,18 @@ public class PreInArrayToPosArray {
     }
 
     /**
-     * 从右向左填充后序数组posArray，posStart为本次填充的位置，返回值为下一个该填充的位置
+     * 从右向左填充后序数组posArray，posIndex为本次填充的位置，返回值为下一个该填充的位置
      */
     private static int setPos(int[] preArray, int preStart, int preEnd, int[] inArray, int inStart, int inEnd,
-                              int[] posArray, int posStart, Map<Integer, Integer> map) {
+                              int[] posArray, int posIndex, Map<Integer, Integer> map) {
         if (preStart > preEnd) {
-            return posStart;
+            return posIndex;
         }
 
-        posArray[posStart--] = preArray[preStart];
+        posArray[posIndex--] = preArray[preStart];
         int index = map.get(preArray[preStart]);
-        posStart = setPos(preArray, preEnd - inEnd + index + 1, preEnd, inArray, index + 1, inEnd, posArray, posStart, map);
-        return setPos(preArray, preStart + 1, preStart + index - inStart, inArray, inStart, index - 1, posArray, posStart, map);
+        posIndex = setPos(preArray, preEnd - inEnd + index + 1, preEnd, inArray, index + 1, inEnd, posArray, posIndex, map);
+        return setPos(preArray, preStart + 1, preStart + index - inStart, inArray, inStart, index - 1, posArray, posIndex, map);
     }
 
     public static void main(String[] args) {
