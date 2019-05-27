@@ -23,14 +23,20 @@ public class PreInArrayToPosArrayTest {
         return posArray;
     }
 
+    /**
+     * 设置posArray中posIndex位置的值，返回下一次需要设置的位置
+     */
     private static int setPos(int[] preArray, int preStart, int preEnd, int[] inArray, int inStart, int inEnd,
                               int[] posArray, int posIndex, Map<Integer, Integer> map) {
         if (preStart > preEnd) {
             return posIndex;
         }
         posArray[posIndex--] = preArray[preStart];
+        // 通过"当前根"在中序数组中的位置对先序数组和中序数组进行划分
         int inIndex = map.get(preArray[preStart]);
+        // 划分右子树
         posIndex = setPos(preArray, preEnd - inEnd + inIndex + 1, preEnd, inArray, inIndex + 1, inEnd, posArray, posIndex, map);
+        // 划分左子树
         return setPos(preArray, preStart + 1, preStart - inStart + inIndex, inArray, inStart, inIndex - 1, posArray, posIndex, map);
     }
 
