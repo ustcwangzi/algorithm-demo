@@ -34,10 +34,10 @@ public class PreInArrayToPosArrayTest {
         posArray[posIndex--] = preArray[preStart];
         // 通过"当前根"在中序数组中的位置对先序数组和中序数组进行划分
         int inIndex = map.get(preArray[preStart]);
-        // 划分右子树
-        posIndex = setPos(preArray, preEnd - inEnd + inIndex + 1, preEnd, inArray, inIndex + 1, inEnd, posArray, posIndex, map);
-        // 划分左子树
-        return setPos(preArray, preStart + 1, preStart - inStart + inIndex, inArray, inStart, inIndex - 1, posArray, posIndex, map);
+        // 划分右子树，inEnd - inIndex 为右子树节点数
+        posIndex = setPos(preArray, preEnd - (inEnd - inIndex) + 1, preEnd, inArray, inIndex + 1, inEnd, posArray, posIndex, map);
+        // 划分左子树，inIndex-inStart 为左子树节点数
+        return setPos(preArray, preStart + 1, preStart + inIndex - inStart, inArray, inStart, inIndex - 1, posArray, posIndex, map);
     }
 
     public static void main(String[] args) {

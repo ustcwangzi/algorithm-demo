@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**　
- * <p>先序、中序和后序数组两两结合重新二叉树</p>
+ * <p>先序、中序和后序数组两两结合重建二叉树</p>
  * <p>
  *     一直二叉树中的所有节点值都不同，给定该二叉树的先序、中序和后序数组，分别两两结合重新生成原二叉树
  *     先序和中序数组重建二叉树：
@@ -144,23 +144,29 @@ public class PreInPosArrayToTree {
         return head;
     }
 
-    private static void printPreOrder(Node head) {
+    public static void preOrder(Node head, StringBuilder result) {
         if (head == null) {
             return;
         }
-        System.out.print(head.value + " ");
-        printPreOrder(head.left);
-        printPreOrder(head.right);
+        result.append(head.value).append(" ");
+        preOrder(head.left, result);
+        preOrder(head.right, result);
     }
 
     public static void main(String[] args) {
         int[] preArray = {1, 2, 4, 5, 8, 9, 3, 6, 7};
         int[] inArray = {4, 2, 8, 5, 9, 1, 6, 3, 7};
         int[] posArray = {4, 8, 9, 5, 2, 6, 7, 3, 1};
-        printPreOrder(preInArrayToTree(preArray, inArray));
-        System.out.println();
-        printPreOrder(inPosToTree(inArray, posArray));
-        System.out.println();
-        printPreOrder(prePosToTree(preArray, posArray));
+        StringBuilder result = new StringBuilder();
+        preOrder(preInArrayToTree(preArray, inArray), result);
+        System.out.println(result);
+
+        result = new StringBuilder();
+        preOrder(inPosToTree(inArray, posArray), result);
+        System.out.println(result);
+
+        result = new StringBuilder();
+        preOrder(prePosToTree(preArray, posArray), result);
+        System.out.println(result);
     }
 }
