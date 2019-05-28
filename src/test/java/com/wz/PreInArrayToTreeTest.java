@@ -36,8 +36,11 @@ public class PreInArrayToTreeTest {
             return null;
         }
         Node head = new Node(preArray[preStart]);
+        // 以节点在中序遍历中的位置来分割左右子树
         int inIndex = map.get(preArray[preStart]);
+        // 左子树，inIndex-inStart 为左子树的节点数
         head.left = buildTree(preArray, preStart + 1, preStart + inIndex - inStart, inArray, inStart, inIndex - 1, map);
+        // 右子树
         head.right = buildTree(preArray, preStart + inIndex - inStart + 1, preEnd, inArray, inIndex + 1, inEnd, map);
         return head;
     }
