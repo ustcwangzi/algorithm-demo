@@ -36,8 +36,11 @@ public class InPosArrayToTreeTest {
             return null;
         }
         Node head = new Node(posArray[posEnd]);
+        // 以节点在中序遍历中的位置来分割左右子树
         int inIndex = map.get(posArray[posEnd]);
+        // 左子树，inIndex-inStart 为左子树的节点数
         head.left = buildTree(inArray, inStart, inIndex - 1, posArray, posStart, posStart + inIndex - inStart - 1, map);
+        // 右子树
         head.right = buildTree(inArray, inIndex + 1, inEnd, posArray, posStart + inIndex - inStart, posEnd - 1, map);
         return head;
     }
