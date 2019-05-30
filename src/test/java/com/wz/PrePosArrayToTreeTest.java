@@ -36,8 +36,11 @@ public class PrePosArrayToTreeTest {
         if (preStart == preEnd) {
             return head;
         }
+        // 先序数组中当前根结点的下一个节点是左子树的根结点，该节点在后序数组中处于左子树最后的位置，因此以该节点划分左右子树
         int index = map.get(preArray[++preStart]);
+        // 左子树，index-posStart 为左子树的节点数
         head.left = buildTree(preArray, preStart, preStart + index - posStart, posArray, posStart, index, map);
+        // 右子树
         head.right = buildTree(preArray, preStart + index - posStart + 1, preEnd, posArray, index + 1, posEnd - 1, map);
         return head;
     }
