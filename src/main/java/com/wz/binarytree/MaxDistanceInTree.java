@@ -12,22 +12,21 @@ package com.wz.binarytree;
  * <p>
  *     二叉树上从节点A出发，可以向上或向下，沿途节点只能经过一次，到达节点B时，路径上的节点数叫做A到B的距离
  *     一棵以head为头节点的树上，最大距离只可能来自以下三种情况：
- *     1、head的左子树上的最大距离
- *     2、head的右子树上的最大距离
- *     3、head左子树上离head.left最远的距离 + 1 + head右子树上离head.right最远的距离
- *     三个值中最大的那个就是整棵树中的最远距离
- *     整个过程为后序遍历，在二叉树的每颗子树上执行以下步骤：
- *     假设子树头节点为h，处理h的左子树得到两个信息：左子树上的最大距离leftMax、左子树上距离h.left的最远距离maxFromLeft，
- *     同理，处理h的右子树得到两个信息：右子树上的最大距离rightMax、右子树上距离h.right的最远距离maxFromRight，
- *     maxFromLeft + 1 + maxFromRight就是跨h节点情况下的最大距离，再于leftMax、rightMax比较，最大值作为h树上的最大距离，即返回值
- *     maxFromLeft + 1是h左子树上离h的最远距离，maxFromRight + 1是h右子树上离h的最远距离，两者较大的是h树上距离h的最远距离，即record[0]
+ *     1、head的左子树上节点间的最大距离
+ *     2、head的右子树上节点间的最大距离
+ *     3、head左子树最大深度 + 1 + head右子树最大深度
+ *     三个值中最大的那个就是整棵树中节点间的最远距离
+ *     整个过程采用后序遍历：对当前结点h，先获取左子树节点间最大距离以及左子树最大深度，
+ *     再获取右子树节点间最大距离以及右子树深度，最后统计出h的节点间最大距离以及h的最大深度并返回上层。
+ *     递归获取两个值：子树的节点间最大距离、子树的最大深度，
+ *     其中，子树的节点间最大距离由递归函数的返回值返回，子树最大深度通过一个数组引用的方式获取结果。
  * </p>
  * <p>时间复杂度为O(N)</p>
  *
  * @author wangzi
  */
 public class MaxDistanceInTree {
-    private static class Node {
+    public static class Node {
         public int value;
         public Node left;
         public Node right;
@@ -38,41 +37,47 @@ public class MaxDistanceInTree {
     }
 
     public static int maxDistance(Node head) {
-        int[] record = new int[1];
-        return posOrder(head, record);
+        int[] depth = new int[1];
+        return posOrder(head, depth);
     }
 
-    private static int posOrder(Node head, int[] record) {
+    private static int posOrder(Node head, int[] depth) {
         if (head == null) {
-            record[0] = 0;
+            depth[0] = 0;
             return 0;
         }
 
-        // 左子树上的最大距离
-        int leftMax = posOrder(head.left, record);
-        // 左子树上距离h左孩子的最远距离
-        int maxFromLeft = record[0];
-        // 右子树上的最大距离
-        int rightMax = posOrder(head.right, record);
-        // 右子树上距离h右孩子的最远距离
-        int maxFromRight = record[0];
-        // 跨h节点情况下的最大距离
-        int curNodeMax = maxFromLeft + maxFromRight + 1;
-        // 距离h最远的距离
-        record[0] = Math.max(maxFromLeft, maxFromRight) + 1;
-        // h树上的最大距离
-        return Math.max(Math.max(leftMax, rightMax), curNodeMax);
+        // 左子树节点间最大距离
+        int leftMaxDistance = posOrder(head.left, depth);
+        // 左子树最大深度
+        int leftMaxDepth = depth[0];
+        // 右子树节点间最大距离
+        int rightMaxDistance = posOrder(head.right, depth);
+        // 右子树最大深度
+        int rightMaxDepth = depth[0];
+        // 当前节点高度
+        depth[0] = Math.max(leftMaxDepth, rightMaxDepth) + 1;
+        // 最终的最大距离
+        return Math.max(Math.max(leftMaxDistance, rightMaxDistance), leftMaxDepth + rightMaxDepth + 1);
     }
 
     public static void main(String[] args) {
         Node head = new Node(1);
+        System.out.println(maxDistance(head));
         head.left = new Node(2);
+        System.out.println(maxDistance(head));
         head.right = new Node(3);
+        System.out.println(maxDistance(head));
         head.left.left = new Node(4);
+        System.out.println(maxDistance(head));
         head.left.right = new Node(5);
+        System.out.println(maxDistance(head));
         head.right.left = new Node(6);
+        System.out.println(maxDistance(head));
         head.right.right = new Node(7);
+        System.out.println(maxDistance(head));
         head.left.left.left = new Node(8);
+        System.out.println(maxDistance(head));
         head.right.left.right = new Node(9);
         System.out.println(maxDistance(head));
     }
