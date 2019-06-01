@@ -16,9 +16,9 @@ import java.util.Set;
  * <p>二叉树中两个节点最近的公共祖先</p>
  * <p>
  *     方案一：
- *          后序遍历二叉树，假设当前遍历到节点cur，因为是后序遍历，所以先处理cur的两个子树
+ *          后序遍历二叉树，寻找self和other节点，假设当前遍历到节点cur，因为是后序遍历，所以先处理cur的两个子树
  *          假设处理左子树时返回left，处理右子树时返回right，则：
- *          1、如果cur等于null或self或other，则返回cur
+ *          1、如果cur等于null或等于self或等于other，则返回cur
  *          2、如果left和right都为空，说明cur的整颗子树没有发现self或other，返回null
  *          3、如果left和right都不为空，说明左子树和右子树都发现过self或other，说明self和other向上过程中首次在cur相遇，返回cur
  *          4、如果left和right只有一个不为空，记为node，则node要么为self或other中的一个，要么已经是self和other的公共祖先，返回node
