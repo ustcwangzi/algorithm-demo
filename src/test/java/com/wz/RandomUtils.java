@@ -137,6 +137,14 @@ public class RandomUtils {
         return array;
     }
 
+    protected static Integer[] genIncreaseArray(int size) {
+        Integer[] array = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = i + 1;
+        }
+        return array;
+    }
+
     protected static int[] genRandomArray() {
         int[] array = new int[SIZE];
         for (int i = 0; i < SIZE; i++) {

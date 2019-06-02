@@ -49,7 +49,7 @@ public class SortedArrayToBalancedBinarySearchTree {
     /**
      * 中序遍历
      *
-     * @see com.wz.binarytree.MorrisTraversal#inOrder(com.wz.binarytree.MorrisTraversal.Node)
+     * @see com.wz.binarytree.MorrisTraversal#inOrder
      */
     private static void inOrder(Node head) {
         if (head == null) {
