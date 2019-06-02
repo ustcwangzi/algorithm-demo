@@ -17,11 +17,17 @@ public class DescendantNodeTest {
         }
     }
 
+    /**
+     * node存在右子树时，后继节点时右子树的最左节点
+     * node不存在右子树且node是左孩子时，后继节点是node的父节点
+     * node不存在右子树且node是右孩子时，找到祖先节点s，并且s是p的左孩子，此时p是node的后继节点
+     */
     private static Node solution(Node node) {
         if (node.right != null) {
             return getMostLeft(node.right);
         }
 
+        // 向上移动，直到找到存在左子树的节点
         Node parent = node.parent;
         while (parent != null && parent.left != node) {
             node = parent;
@@ -30,6 +36,9 @@ public class DescendantNodeTest {
         return parent;
     }
 
+    /**
+     * 找到以node为根的最左节点
+     */
     private static Node getMostLeft(Node node) {
         if (node == null) {
             return null;
