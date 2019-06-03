@@ -24,6 +24,9 @@ public class SortedArrayToBalancedBinarySearchTreeTest {
         return buildTree(array, 0, array.length - 1);
     }
 
+    /**
+     * 用有序数组中间元素生成头节点，然后左边的元素生成左子树、右边的元素生成右子树
+     */
     private static Node buildTree(Integer[] array, int start, int end) {
         if (start > end) {
             return null;
@@ -35,6 +38,9 @@ public class SortedArrayToBalancedBinarySearchTreeTest {
         return head;
     }
 
+    /**
+     * 中序遍历
+     */
     private static void inOrder(Node head, List<Integer> list) {
         if (head == null) {
             return;
