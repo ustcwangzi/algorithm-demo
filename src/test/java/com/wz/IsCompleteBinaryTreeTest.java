@@ -19,6 +19,11 @@ public class IsCompleteBinaryTreeTest {
         }
     }
 
+    /**
+     * 利用队列对二叉树进行层次遍历
+     * 如果当前节点有右孩子，但没有左孩子，直接返回false
+     * 如果当前节点不存在右孩子，那么之后的节点必须全是叶节点
+     */
     private static boolean solution(Node head) {
         if (head == null) {
             return true;
@@ -29,9 +34,11 @@ public class IsCompleteBinaryTreeTest {
         queue.offer(head);
         while (!queue.isEmpty()) {
             Node node = queue.poll();
+            // 之后的节点必须全是叶节点
             if (isLeaf && (node.left != null || node.right != null)) {
                 return false;
             }
+            // 不能只存在右孩子
             if (node.right != null && node.left == null) {
                 return false;
             }
