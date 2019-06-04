@@ -30,7 +30,7 @@ public class PosArrayToBinarySearchTree {
         }
     }
 
-    public static boolean isPosArray(int[] array) {
+    private static boolean isPosArray(int[] array) {
         if (array == null || array.length == 0) {
             return false;
         }
@@ -45,13 +45,14 @@ public class PosArrayToBinarySearchTree {
         // less代表最后一个比头节点大的，more代表第一个比头节点小的
         int less = -1, more = end;
         for (int i = start; i < end; i++) {
-            if (array[end] > array[i]) {
+            if (array[i] < array[end]) {
                 less = i;
             } else {
                 more = more == end ? i : more;
             }
         }
 
+        // 只剩下两个元素时会出现该情况
         if (less == -1 || more == end) {
             return isPosArray(array, start, end - 1);
         }
@@ -62,7 +63,7 @@ public class PosArrayToBinarySearchTree {
     }
 
     public static Node posArrayToBST(int[] array) {
-        if (array == null) {
+        if (!isPosArray(array)) {
             return null;
         }
         return posArrayToBST(array, 0, array.length - 1);
@@ -77,7 +78,7 @@ public class PosArrayToBinarySearchTree {
         // less和more将数组分为左右两部分，代表左右两个子树
         int less = -1, more = end;
         for (int i = start; i < end; i++) {
-            if (array[end] > array[i]) {
+            if (array[i] < array[end]) {
                 less = i;
             } else {
                 more = more == end ? i : more;
@@ -89,11 +90,20 @@ public class PosArrayToBinarySearchTree {
         return head;
     }
 
+    private static void inOrder(Node head) {
+        if (head == null) {
+            return;
+        }
+        inOrder(head.left);
+        System.out.print(head.value + " ");
+        inOrder(head.right);
+    }
+
     public static void main(String[] args) {
         int[] array = {2, 1, 3, 6, 5, 7, 4};
         System.out.println(isPosArray(array));
 
         Node head = posArrayToBST(array);
-        System.out.println(head.value);
+        inOrder(head);
     }
 }
