@@ -39,7 +39,7 @@ public class IsCompleteBinaryTree {
         }
 
         boolean isLeaf = false;
-        Node left = null, right = null;
+        Node left, right;
         Queue<Node> queue = new LinkedList<>();
         queue.offer(head);
         while (!queue.isEmpty()) {
@@ -71,11 +71,18 @@ public class IsCompleteBinaryTree {
 
     public static void main(String[] args) {
         Node head = new Node(4);
-        head.left = new Node(2);
-        head.right = new Node(6);
-        head.left.left = new Node(1);
-        head.right.left = new Node(5);
+        System.out.println(isBST(head));
 
+        head.left = new Node(2);
+        System.out.println(isBST(head));
+
+        head.right = new Node(6);
+        System.out.println(isBST(head));
+
+        head.left.left = new Node(1);
+        System.out.println(isBST(head));
+
+        head.right.left = new Node(5);
         System.out.println(isBST(head));
 
         head.left.right = new Node(3);
