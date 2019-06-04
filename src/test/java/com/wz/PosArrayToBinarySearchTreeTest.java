@@ -24,11 +24,16 @@ public class PosArrayToBinarySearchTreeTest {
         return buildTree(array, 0, array.length - 1);
     }
 
+    /**
+     * 数组的最后一个元素是头节点
+     * 左侧都比头节点小，右侧都比头节点大，以此划分数组，递归建立二叉树
+     */
     private static Node buildTree(int[] array, int start, int end) {
         if (start > end) {
             return null;
         }
         Node head = new Node(array[end]);
+        // left是比头节点小的最后位置，right是比头节点大的第一个位置
         int left = -1, right = end;
         for (int i = start; i < end; i++) {
             if (array[i] < array[end]) {
@@ -42,6 +47,11 @@ public class PosArrayToBinarySearchTreeTest {
         return head;
     }
 
+    /**
+     * 检查是否可以生成搜索二叉树
+     * 头节点的值一定是该数组最后一个元素
+     * 再根据搜索二叉树的性质，头节点会将数组分成左右两边，左边都比头节点小，右边都比头节点大
+     */
     private static boolean isValid(int[] array, int start, int end) {
         if (array == null || array.length == 0) {
             return false;
@@ -50,6 +60,7 @@ public class PosArrayToBinarySearchTreeTest {
         if (start == end) {
             return true;
         }
+        // left是比头节点小的最后位置，right是比头节点大的第一个位置
         int left = -1, right = end;
         for (int i = start; i < end; i++) {
             if (array[i] < array[end]) {
@@ -59,9 +70,11 @@ public class PosArrayToBinarySearchTreeTest {
             }
         }
 
+        // 只有两个元素时会出现该情况
         if (left == -1 || right == end) {
             return isValid(array, start, end - 1);
         }
+        // left和right相差一个位置才是合法的
         if (left != right - 1) {
             return false;
         }
