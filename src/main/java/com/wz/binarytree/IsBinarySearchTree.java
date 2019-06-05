@@ -63,12 +63,21 @@ public class IsBinarySearchTree {
 
     public static void main(String[] args) {
         Node head = new Node(4);
-        head.left = new Node(2);
-        head.right = new Node(6);
-        head.left.left = new Node(1);
-        head.left.right = new Node(3);
-        head.right.left = new Node(5);
+        System.out.println(isBST(head));
 
+        head.left = new Node(2);
+        System.out.println(isBST(head));
+
+        head.right = new Node(6);
+        System.out.println(isBST(head));
+
+        head.left.left = new Node(1);
+        System.out.println(isBST(head));
+
+        head.left.right = new Node(3);
+        System.out.println(isBST(head));
+
+        head.right.left = new Node(5);
         System.out.println(isBST(head));
     }
 }
