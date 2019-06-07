@@ -8,7 +8,7 @@
 package com.wz;
 
 /**
- * <p></p>
+ * <p>判断二叉树是否是平衡二叉树</p>
  *
  * @author wangzi
  */
@@ -32,6 +32,10 @@ public class IsBalancedTreeTest {
         return result[0];
     }
 
+    /**
+     * 整体采用后续遍历，获取左子树和右子树的高度，若高度之差大于一，说明不平衡
+     * 递归返回结果为"树的高度"，另外，利用数组result[]记录"是否平衡"
+     */
     private static int getHeight(Node head, boolean[] result) {
         if (head == null) {
             return 0;
