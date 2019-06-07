@@ -31,47 +31,50 @@ public class IsBalancedTree {
 
     public static boolean isBalance(Node head) {
         boolean[] result = new boolean[]{true};
-        getHeight(head, 1, result);
+        getHeight(head, result);
         return result[0];
     }
 
-    private static int getHeight(Node head, int level, boolean[] result) {
+    private static int getHeight(Node head, boolean[] result) {
         if (head == null) {
-            return level;
+            return 0;
         }
 
-        int leftHeight = getHeight(head.left, level + 1, result);
-        if (!result[0]) {
-            return level;
-        }
+        int leftHeight = getHeight(head.left, result);
+        int rightHeight = getHeight(head.right, result);
 
-        int rightHeight = getHeight(head.right, level + 1, result);
-        if (!result[0]) {
-            return level;
-        }
         if (Math.abs(leftHeight - rightHeight) > 1) {
             result[0] = false;
         }
 
-        return Math.max(leftHeight, rightHeight);
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     public static void main(String[] args) {
-        Node head1 = new Node(1);
-        head1.left = new Node(2);
-        head1.left.left = new Node(4);
-        head1.left.right = new Node(5);
+        Node head = new Node(1);
 
-        System.out.println(isBalance(head1));
+        head.left = new Node(2);
+        System.out.println(isBalance(head));
 
-        Node head2 = new Node(1);
-        head2.left = new Node(2);
-        head2.right = new Node(3);
-        head2.left.left = new Node(4);
-        head2.left.right = new Node(5);
-        head2.right.left = new Node(6);
-        head2.right.right = new Node(7);
+        head.left.left = new Node(4);
+        System.out.println(isBalance(head));
 
-        System.out.println(isBalance(head2));
+        head.left.right = new Node(5);
+        System.out.println(isBalance(head));
+
+        head.right = new Node(6);
+        System.out.println(isBalance(head));
+
+        head.right.right = new Node(7);
+        System.out.println(isBalance(head));
+
+        head.right.right.left = new Node(8);
+        System.out.println(isBalance(head));
+
+        head.right.right.right = new Node(9);
+        System.out.println(isBalance(head));
+
+        head.right.left = new Node(10);
+        System.out.println(isBalance(head));
     }
 }
