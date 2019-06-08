@@ -41,7 +41,10 @@ public class KMPAlgorithmTest {
             if (k == -1 || array[j] == array[k]) {
                 j++;
                 k++;
+                // 优化前代码
                 // next[j] = k;
+
+                // 以下为优化后代码
                 if (array[j] == array[k]) {
                     next[j] = next[k];
                 } else {
