@@ -8,7 +8,7 @@
 package com.wz;
 
 /**
- * <p></p>
+ * <p>一棵树是否包含另一棵树全部的拓扑结构</p>
  *
  * @author wangzi
  */
@@ -23,6 +23,10 @@ public class ContainsTopologyTest {
         }
     }
 
+    /**
+     * 如果self中某棵子树头节点的值和other头节点的值一样，则从这两个头节点开始匹配
+     * 匹配的每一步都是让self上的节点跟着other的先序遍历移动，每移动一步，检查两个节点的值是否相同
+     */
     private static boolean solution(Node self, Node other) {
         if (other == null) {
             return true;
@@ -33,6 +37,9 @@ public class ContainsTopologyTest {
         return equals(self, other) || solution(self.left, other) || solution(self.right, other);
     }
 
+    /**
+     * 先序遍历，检查节点值是否相同
+     */
     private static boolean equals(Node self, Node other) {
         if (other == null) {
             return true;
