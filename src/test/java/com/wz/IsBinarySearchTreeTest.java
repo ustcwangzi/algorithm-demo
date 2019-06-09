@@ -1,5 +1,7 @@
 package com.wz;
 
+import java.util.Stack;
+
 /**
  * <p>判断二叉树是否为搜索二叉树(中序遍历结果有序)</p>
  *
@@ -43,23 +45,49 @@ public class IsBinarySearchTreeTest {
         return isBinarySearchTree(head.right, pre);
     }
 
+    /**
+     * 用堆实现中序遍历
+     */
+    private static boolean isBinarySearchTree(Node head) {
+        if (head == null) {
+            return true;
+        }
+        Stack<Node> stack = new Stack<>();
+        Node pre = null;
+        while (!stack.isEmpty() || head != null) {
+            if (head != null) {
+                stack.push(head);
+                head = head.left;
+            } else {
+                head = stack.pop();
+                // 出现降序
+                if (pre != null && pre.value > head.value) {
+                    return false;
+                }
+                pre = head;
+                head = head.right;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         Node head = new Node(4);
-        System.out.println(solution(head));
+        System.out.println(solution(head) == isBinarySearchTree(head));
 
         head.left = new Node(2);
-        System.out.println(solution(head));
+        System.out.println(solution(head) == isBinarySearchTree(head));
 
         head.right = new Node(6);
-        System.out.println(solution(head));
+        System.out.println(solution(head) == isBinarySearchTree(head));
 
         head.left.left = new Node(1);
-        System.out.println(solution(head));
+        System.out.println(solution(head) == isBinarySearchTree(head));
 
         head.left.right = new Node(3);
-        System.out.println(solution(head));
+        System.out.println(solution(head) == isBinarySearchTree(head));
 
         head.right.left = new Node(5);
-        System.out.println(solution(head));
+        System.out.println(solution(head) == isBinarySearchTree(head));
     }
 }
