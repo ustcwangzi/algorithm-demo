@@ -83,18 +83,22 @@ public class BiggestSubBinarySearchTree {
         head.left.left = new Node(0);
         head.left.right = new Node(3);
         head.right = new Node(12);
+        System.out.println(biggestSubBST(head).value);
+
         head.right.left = new Node(10);
         head.right.left.left = new Node(4);
+        System.out.println(biggestSubBST(head).value);
+
         head.right.left.left.left = new Node(2);
         head.right.left.left.right = new Node(5);
         head.right.left.right = new Node(14);
         head.right.left.right.left = new Node(11);
         head.right.left.right.right = new Node(15);
+        System.out.println(biggestSubBST(head).value);
+
         head.right.right = new Node(13);
         head.right.right.left = new Node(20);
         head.right.right.right = new Node(16);
-
-        Node bst = biggestSubBST(head);
-        System.out.println(bst.value);
+        System.out.println(biggestSubBST(head).value);
     }
 }
