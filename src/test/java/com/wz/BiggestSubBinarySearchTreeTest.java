@@ -1,5 +1,10 @@
 package com.wz;
 
+/**
+ * <p>找到含有节点数最多的搜索二叉子树</p>
+ *
+ * @author wangzi
+ */
 public class BiggestSubBinarySearchTreeTest {
     private static class Node {
         public int value;
@@ -12,10 +17,14 @@ public class BiggestSubBinarySearchTreeTest {
     }
 
     private static Node solution(Node head) {
+        // 存储节点数、最小值、最大值
         int[] record = new int[3];
         return posOrder(head, record);
     }
 
+    /**
+     * 递归结果返回最大搜索二叉子树的头节点，record存储子树的节点数、最小值、最大值
+     */
     private static Node posOrder(Node head, int[] record) {
         if (head == null) {
             record[0] = 0;
@@ -23,23 +32,30 @@ public class BiggestSubBinarySearchTreeTest {
             record[2] = Integer.MIN_VALUE;
             return null;
         }
+
+        // 左子树头节点、节点数、最小值、最大值
         Node left = posOrder(head.left, record);
         int leftSize = record[0];
         int leftMin = record[1];
         int leftMax = record[2];
 
+        // 右子树头节点、节点数、最小值、最大值
         Node right = posOrder(head.right, record);
         int rightSize = record[0];
         int rightMin = record[1];
         int rightMax = record[2];
 
+        // 当前树最小值、最大值
         record[1] = Math.min(leftMin, head.value);
         record[2] = Math.max(rightMax, head.value);
 
+        // 左子树最大值小于"当前头节点值"、并且右子树最小值大于"当前头节点值"时，可以进行合并
         if (left == head.left && right == head.right && leftMax < head.value && rightMin > head.value) {
             record[0] = leftSize + rightSize + 1;
             return head;
         }
+
+        // 无法进行合并时，返回节点数较多的子树
         record[0] = Math.max(leftSize, rightSize);
         return leftSize > rightSize ? left : right;
     }
