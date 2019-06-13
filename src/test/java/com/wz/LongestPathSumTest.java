@@ -3,6 +3,11 @@ package com.wz;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>二叉树节点值类型为整形，求累加和为target的最长路径长度</p>
+ *
+ * @author wangzi
+ */
 public class LongestPathSumTest {
     private static class Node {
         public int value;
@@ -20,6 +25,13 @@ public class LongestPathSumTest {
         return preOrder(head, target, 0, 1, 0, map);
     }
 
+    /**
+     * 整体采用先序遍历
+     * maxLen记录遍历到当前位置时累加和为target的最长路径长度
+     * map记录累加和key在遍历过程中最早出现的层数
+     * 遍历到cur时，从head到cur父节点的累加和为preSum，cur所在层数为level
+     * 遇到累加和为target时，更新maxLen，然后遍历cur的左右子树
+     */
     private static int preOrder(Node head, int target, int preSum, int level, int maxLen, Map<Integer, Integer> map) {
         if (head == null) {
             return maxLen;
@@ -28,6 +40,7 @@ public class LongestPathSumTest {
         if (!map.containsKey(curSum)) {
             map.put(curSum, level);
         }
+        // 累加和为target，更新最长路径
         if (map.containsKey(curSum - target)) {
             maxLen = Math.max(level - map.get(curSum - target), maxLen);
         }
