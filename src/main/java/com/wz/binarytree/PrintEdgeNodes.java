@@ -57,7 +57,7 @@ public class PrintEdgeNodes {
         // 叶节点
         printLeafNode(head, 0, edgeMap);
         // 右边界节点
-        for (int i = edgeMap.length - 1; i >= 0; i--) {
+        for (int i = height - 1; i >= 0; i--) {
             if (edgeMap[i][0] != edgeMap[i][1]) {
                 System.out.print(edgeMap[i][1].value + " ");
             }
