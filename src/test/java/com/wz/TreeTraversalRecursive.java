@@ -23,6 +23,9 @@ public class TreeTraversalRecursive {
         }
     }
 
+    /**
+     * 先序遍历
+     */
     private static void preOrder(Node head) {
         if (head == null) {
             return;
@@ -32,6 +35,9 @@ public class TreeTraversalRecursive {
         preOrder(head.right);
     }
 
+    /**
+     * 中序遍历
+     */
     private static void inOrder(Node head) {
         if (head == null) {
             return;
@@ -41,6 +47,9 @@ public class TreeTraversalRecursive {
         inOrder(head.right);
     }
 
+    /**
+     * 后序遍历
+     */
     private static void posOrder(Node head) {
         if (head == null) {
             return;
@@ -50,7 +59,13 @@ public class TreeTraversalRecursive {
         System.out.print(head.value + " ");
     }
 
+    /**
+     * 层次遍历
+     */
     private static void levelOrder(Node head) {
+        if (head == null) {
+            return;
+        }
         int height = getHeight(head, 0);
         for (int i = 1; i <= height; i++) {
             levelOrder(head, i);
@@ -66,10 +81,15 @@ public class TreeTraversalRecursive {
             System.out.print(head.value + " ");
             return;
         }
+        // 左子树
         levelOrder(head.left, level - 1);
+        // 右子树
         levelOrder(head.right, level - 1);
     }
 
+    /**
+     * 获取树的高度
+     */
     private static int getHeight(Node head, int height) {
         if (head == null) {
             return height;
