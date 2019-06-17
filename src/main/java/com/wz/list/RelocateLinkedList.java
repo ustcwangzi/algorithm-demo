@@ -58,7 +58,7 @@ public class RelocateLinkedList {
             left = right.next;
             right = next;
         }
-        // 最后一个right节点直接放后面
+        // 右部分剩余节点直接放后面
         left.next = right;
     }
 
