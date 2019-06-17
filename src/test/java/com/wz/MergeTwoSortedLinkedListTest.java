@@ -1,45 +1,31 @@
-/**
- * <p>Title: MergeTwoLinkedLists</p>
- * <p>Description: </p>
- * <p>Created by wangzi on 2018/10/14</p>
- * <p>Emil: ustcwangzi@foxmail.com</p>
- * <p>WebSite: https://github.com/ustcwangzi/</p>
- */
-package com.wz.list;
+package com.wz;
 
 /**
  * <p>合并两个有序单链表</p>
- *
- * @author wangzi
  */
-public class MergeTwoLinkedLists {
+public class MergeTwoSortedLinkedListTest {
     private static class Node {
         public int value;
         public Node next;
 
-        public Node(int value) {
+        private Node(int value) {
             this.value = value;
         }
     }
 
-    public static Node merge(Node head1, Node head2) {
-        if (head1 == null || head2 == null) {
-            return head1 != null ? head1 : head2;
+    private static Node solution(Node self, Node other) {
+        if (self == null || other == null) {
+            return self == null ? other : self;
         }
-
-        Node head = head1.value < head2.value ? head1 : head2;
-        // 指向头节点值较小的链表
-        Node cur1 = head == head1 ? head1 : head2;
-        // 指向头节点值较大的链表
-        Node cur2 = head == head1 ? head2 : head1;
-        Node pre = null, next = null;
+        Node head = self.value <= other.value ? self : other;
+        Node cur1 = head == self ? self : other;
+        Node cur2 = head == self ? other : self;
+        Node pre = null, next;
         while (cur1 != null && cur2 != null) {
             if (cur1.value <= cur2.value) {
-                // 直接后移
                 pre = cur1;
                 cur1 = cur1.next;
             } else {
-                // 从另一个链表中把节点拿过来
                 next = cur2.next;
                 pre.next = cur2;
                 cur2.next = cur1;
@@ -62,7 +48,7 @@ public class MergeTwoLinkedLists {
         head2.next.next = new Node(6);
         head2.next.next.next = new Node(7);
 
-        Node head = merge(head1, head2);
+        Node head = solution(head1, head2);
         while (head != null) {
             System.out.print(head.value + " ");
             head = head.next;
