@@ -17,15 +17,20 @@ public class MergeTwoSortedLinkedListTest {
         if (self == null || other == null) {
             return self == null ? other : self;
         }
+        // 最终的头节点，指向self和other中头节点值较小的
         Node head = self.value <= other.value ? self : other;
+        // 指向头节点值较小的链表
         Node cur1 = head == self ? self : other;
+        // 指向头节点值较大的链表
         Node cur2 = head == self ? other : self;
-        Node pre = null, next;
+        Node pre = cur1, next;
         while (cur1 != null && cur2 != null) {
             if (cur1.value <= cur2.value) {
+                // 直接右移
                 pre = cur1;
                 cur1 = cur1.next;
             } else {
+                // 将cur2插入pre和cur1之间
                 next = cur2.next;
                 pre.next = cur2;
                 cur2.next = cur1;
@@ -33,6 +38,7 @@ public class MergeTwoSortedLinkedListTest {
                 cur2 = next;
             }
         }
+        // 剩余部分直接放在pre之后
         pre.next = cur1 == null ? cur2 : cur1;
         return head;
     }
