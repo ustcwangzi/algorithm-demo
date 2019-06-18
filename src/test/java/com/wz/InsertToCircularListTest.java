@@ -1,5 +1,10 @@
 package com.wz;
 
+/**
+ * <p>有序环形单链表中插入新节点</p>
+ *
+ * @author wangzi
+ */
 public class InsertToCircularListTest {
     private static class Node {
         public int value;
@@ -18,6 +23,7 @@ public class InsertToCircularListTest {
         }
 
         Node pre = head, cur = head.next;
+        // 寻找插入点
         while (cur != head) {
             if (pre.value <= num && cur.value >= num) {
                 break;
@@ -26,8 +32,10 @@ public class InsertToCircularListTest {
             cur = cur.next;
         }
 
+        // 插入新节点
         pre.next = node;
         node.next = cur;
+        // 判断头节点是否需要调整
         return head.value < num ? head : node;
     }
 
