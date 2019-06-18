@@ -44,7 +44,7 @@ public class InsertToCircularList {
         return head.value < num ? head : node;
     }
 
-    public static void printCircularList(Node head) {
+    private static void printCircularList(Node head) {
         if (head == null) {
             return;
         }
