@@ -3,6 +3,11 @@ package com.wz;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * <p>二叉树转为双向链表，left转为pre，right转为next</p>
+ *
+ * @author wangzi
+ */
 public class BinaryTreeToListTest {
     private static class Node {
         public int value;
@@ -14,14 +19,21 @@ public class BinaryTreeToListTest {
         }
     }
 
+    /**
+     * 将二叉树的中序遍历结果存在队列中，然后从队列依次弹出节点，重新连接所有节点
+     */
     private static Node solution(Node head) {
         if (head == null) {
             return null;
         }
+
         Queue<Node> queue = new LinkedList<>();
+        // 中序遍历
         inOrder(head, queue);
+
         head = queue.poll();
         Node pre = head, cur;
+        // 出队列，重新连接节点
         while (!queue.isEmpty()) {
             cur = queue.poll();
             cur.left = pre;
