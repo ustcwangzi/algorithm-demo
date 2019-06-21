@@ -44,7 +44,7 @@ public class BinaryTreeToList {
         }
 
         Queue<Node> queue = new LinkedList<>();
-        queue = traverseInOrderToQueue(head, queue);
+        traverseInOrderToQueue(head, queue);
         if (queue.isEmpty()) {
             return head;
         }
@@ -119,15 +119,14 @@ public class BinaryTreeToList {
     /**
      * 中序遍历二叉树，结果存在队列中
      */
-    private static Queue<Node> traverseInOrderToQueue(Node head, Queue<Node> queue) {
+    private static void traverseInOrderToQueue(Node head, Queue<Node> queue) {
         if (head == null) {
-            return queue;
+            return;
         }
 
         traverseInOrderToQueue(head.left, queue);
         queue.offer(head);
         traverseInOrderToQueue(head.right, queue);
-        return queue;
     }
 
     private static void printTreeInOrder(Node head) {
