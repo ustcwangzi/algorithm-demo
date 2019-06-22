@@ -82,17 +82,18 @@ public class ConvertEveryGroup {
         }
 
         Node cur = head;
-        Node start = null, pre = null, next = null;
+        Node start = null, left = null, next = null;
         int count = 1;
         while (cur != null) {
             next = cur.next;
             if (count == k) {
-                start = pre == null ? head : pre.next;
+                start = left == null ? head : left.next;
                 // 首次逆序时保存头节点，后面不再改变
-                head = pre == null ? cur : head;
-                // (pre,next)之间的节点需要进行逆序，这些节点以start开始，cur结束
-                resign(pre, start, cur, next);
-                pre = start;
+                head = left == null ? cur : head;
+                // (left,next)之间的节点需要进行逆序，这些节点以start开始，cur结束
+                resign(left, start, cur, next);
+                left = start;
+                // 下面会执行count++，因此此处count置0
                 count = 0;
             }
             count++;
@@ -102,18 +103,19 @@ public class ConvertEveryGroup {
     }
 
     /**
-     * 逆置start到end直接的节点，逆置后left为队首，right为队尾
+     * 逆置start到end之间的节点，逆置后left为队首，right为队尾
      */
     private static void resign(Node left, Node start, Node end, Node right) {
         Node pre = start;
-        Node cur = start.next;
-        Node next = null;
+        // 每次需要逆置的节点，及其下一个节点
+        Node cur = start.next, next;
         while (cur != right) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
         }
+        // start到end逆置完成，与left、right连接一起
         if (left != null) {
             left.next = end;
         }
