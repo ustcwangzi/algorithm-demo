@@ -133,15 +133,26 @@ public class IsPalindromeList {
     }
 
     public static void main(String[] args) {
-        Node head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = new Node(2);
-        head.next.next.next.next = new Node(1);
+        Node head1 = new Node(1);
+        head1.next = new Node(2);
+        head1.next.next = new Node(3);
+        head1.next.next.next = new Node(2);
+        head1.next.next.next.next = new Node(1);
 
-        System.out.println(isPalindromeOne(head));
-        System.out.println(isPalindromeTwo(head));
-        System.out.println(isPalindromeThree(head));
+        System.out.println(isPalindromeOne(head1));
+        System.out.println(isPalindromeTwo(head1));
+        System.out.println(isPalindromeThree(head1));
+
+        Node head2 = new Node(1);
+        head2.next = new Node(2);
+        head2.next.next = new Node(3);
+        head2.next.next.next = new Node(3);
+        head2.next.next.next.next = new Node(2);
+        head2.next.next.next.next.next = new Node(1);
+
+        System.out.println(isPalindromeOne(head2));
+        System.out.println(isPalindromeTwo(head2));
+        System.out.println(isPalindromeThree(head2));
     }
 
 }
