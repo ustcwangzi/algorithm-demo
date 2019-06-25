@@ -1,5 +1,10 @@
 package com.wz;
 
+/**
+ * <p>逆置单链表</p>
+ *
+ * @author wangzi
+ */
 public class ReverseListTest {
     private static class Node {
         public int value;
