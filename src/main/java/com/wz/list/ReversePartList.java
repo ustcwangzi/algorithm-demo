@@ -29,6 +29,9 @@ public class ReversePartList {
     }
 
     public static Node reversePart(Node head, int from, int to) {
+        if (head == null || head.next == null || from < 1 || to <= from) {
+            return head;
+        }
         int len = 0;
         Node node1 = head;
         // 反转部分的前一个节点
@@ -42,7 +45,7 @@ public class ReversePartList {
             node1 = node1.next;
         }
 
-        if (from > to || from < 1 || to > len) {
+        if (to > len) {
             return head;
         }
 
