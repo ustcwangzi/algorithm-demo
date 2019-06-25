@@ -1,5 +1,10 @@
 package com.wz;
 
+/**
+ * <p>逆置部分单链表</p>
+ *
+ * @author wangzi
+ */
 public class ReversePartListTest {
     private static class Node {
         public int value;
@@ -16,14 +21,16 @@ public class ReversePartListTest {
         }
 
         int len = 0;
-        Node cur = head, left = null, end = null, last = null;
+        Node cur = head;
+        // 需要逆置的前一个节点、需要逆置的最后一个节点
+        Node left = null, end = null;
         while (cur != null) {
             len++;
             left = (len == from - 1) ? cur : left;
             end = len == to ? cur : end;
             cur = cur.next;
-            last = cur == null ? last : cur;
         }
+        // 说明to大于len
         if (end == null) {
             return head;
         }
@@ -32,7 +39,11 @@ public class ReversePartListTest {
         return left == null ? end : head;
     }
 
+    /**
+     * 逆置[start,end]，逆置后以left为队首，right为队尾
+     */
     private static void reverse(Node left, Node start, Node end, Node right) {
+        // 需要逆置的前一个节点、需要逆置的节点、及其下一个节点
         Node pre = start, cur = start.next, next;
         while (cur != right) {
             next = cur.next;
@@ -40,6 +51,7 @@ public class ReversePartListTest {
             pre = cur;
             cur = next;
         }
+        // 逆置后，和left、right连接一起
         if (left != null) {
             left.next = end;
         }
