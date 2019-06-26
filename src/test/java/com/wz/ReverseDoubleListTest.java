@@ -1,5 +1,10 @@
 package com.wz;
 
+/**
+ * <p>逆置双链表</p>
+ *
+ * @author wangzi
+ */
 public class ReverseDoubleListTest {
     public static class DoubleNode {
         public int value;

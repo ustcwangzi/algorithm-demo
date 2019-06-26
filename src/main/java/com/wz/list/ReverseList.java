@@ -34,7 +34,7 @@ public class ReverseList {
 
     public static Node reverseList(Node head) {
         Node pre = null;
-        Node next = null;
+        Node next;
         while (head != null) {
             next = head.next;
             head.next = pre;
@@ -46,7 +46,7 @@ public class ReverseList {
 
     public static DoubleNode reverseList(DoubleNode head) {
         DoubleNode pre = null;
-        DoubleNode next = null;
+        DoubleNode next;
         while (head != null) {
             next = head.next;
             head.next = pre;
