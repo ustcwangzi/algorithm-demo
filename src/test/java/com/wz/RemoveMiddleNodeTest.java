@@ -1,11 +1,16 @@
 package com.wz;
 
+/**
+ * <p>删除单链表的中间节点</p>
+ *
+ * @author wangzi
+ */
 public class RemoveMiddleNodeTest {
     private static class Node {
         public int value;
         public Node next;
 
-        public Node(int value) {
+        private Node(int value) {
             this.value = value;
         }
     }
@@ -18,11 +23,13 @@ public class RemoveMiddleNodeTest {
             return head.next;
         }
 
+        // pre每次移动一步，cur每次移动两步，停止时pre到达中间节点的前一个节点
         Node pre = head, cur = head.next.next;
         while (cur.next != null && cur.next.next != null) {
             pre = pre.next;
             cur = cur.next.next;
         }
+        // 删除中间节点，即pre的下一个节点
         pre.next = pre.next.next;
         return head;
     }
