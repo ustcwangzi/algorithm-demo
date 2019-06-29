@@ -8,7 +8,7 @@
 package com.wz;
 
 /**
- * <p></p>
+ * <p>删除单链表倒数第K个节点</p>
  *
  * @author wangzi
  */
@@ -22,6 +22,11 @@ public class RemoveLastKthNodeTest {
         }
     }
 
+    /**
+     * 从头节点开始遍历，每遍历一个节点k减一，直到尾部
+     * 此时k>0说明要删除的节点不存在，k==0说明要删除头节点
+     * 否则，重新从头开始遍历，每遍历一个节点k加一，k为0时停止，当前的节点就是要删除节点的前一个节点
+     */
     private static Node solution(Node head, int k) {
         if (head == null || k < 1) {
             return head;
@@ -32,13 +37,16 @@ public class RemoveLastKthNodeTest {
             k--;
             cur = cur.next;
         }
+
         if (k == 0) {
+            // 删除头节点
             head = head.next;
         } else if (k < 0) {
             cur = head;
             while (++k != 0) {
                 cur = cur.next;
             }
+            // 节点删除
             cur.next = cur.next.next;
         }
         return head;
