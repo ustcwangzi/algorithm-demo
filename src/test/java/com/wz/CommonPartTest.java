@@ -8,7 +8,7 @@
 package com.wz;
 
 /**
- * <p></p>
+ * <p>输出两个有序链表的公共部分</p>
  *
  * @author wangzi
  */
@@ -24,11 +24,13 @@ public class CommonPartTest {
 
     private static void solution(Node self, Node other) {
         while (self != null && other != null) {
+            // 值小的节点前移
             if (self.value > other.value) {
                 other = other.next;
             } else if (self.value < other.value) {
                 self = self.next;
             } else {
+                // 值相同，则输出
                 System.out.print(self.value + " ");
                 self = self.next;
                 other = other.next;
