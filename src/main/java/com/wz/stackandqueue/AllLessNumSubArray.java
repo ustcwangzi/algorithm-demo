@@ -19,7 +19,7 @@ import java.util.LinkedList;
  *          1、如果子数组array[i...j]满足条件，那么array[i...j]中的每个子数组都满足条件
  *          2、如果子数组array[i...j]不满足条件，所有包含array[i...j]的子数组都不满足条件
  *     可使用两个双端队列来维护子数组的最大最小值，过程如下：
- *          1、生成两个双端队列minQueue、maxQueue维持动态窗口的最大最小值
+ *          1、生成两个双端队列minQueue、maxQueue维持动态窗口的最小最大值
  *          2、j不断右移，并同时更新minQueue和maxQueue，保证minQueue队首永远是最小值、保证maxQueue队首永远是最大值
  *             一旦出现不满足条件的，j右移过程停止，此时array[i...j-1]均满足条件，
  *             即以array[i]为第一个元素的子数组，满足条件的数量为j-i个
