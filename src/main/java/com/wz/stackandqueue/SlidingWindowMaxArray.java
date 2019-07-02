@@ -39,8 +39,8 @@ import java.util.LinkedList;
 public class SlidingWindowMaxArray {
 
     public static int[] getMaxWindow(int[] array, int window) {
-        if (array == null || window < 1 || array.length < window) {
-            return new int[]{};
+        if (array == null || window <= 1 || array.length < window) {
+            return array;
         }
 
         // 存放数组array的下标
