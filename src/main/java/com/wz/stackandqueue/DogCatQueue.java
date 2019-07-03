@@ -32,7 +32,7 @@ public class DogCatQueue {
     private static final String TYPE_DOG = "dog";
     private static final String TYPE_CAT = "cat";
 
-    public static class Pet {
+    private static class Pet {
         private String type;
 
         public Pet(String type) {
