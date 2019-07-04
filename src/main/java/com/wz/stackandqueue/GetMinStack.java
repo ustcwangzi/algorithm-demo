@@ -32,7 +32,7 @@ public class GetMinStack {
          */
         private Stack<Integer> stackMin;
 
-        public MyStackOne() {
+        private MyStackOne() {
             stackData = new Stack<>();
             stackMin = new Stack<>();
         }
@@ -81,7 +81,7 @@ public class GetMinStack {
          */
         private Stack<Integer> stackMin;
 
-        public MyStackTwo() {
+        private MyStackTwo() {
             stackData = new Stack<>();
             stackMin = new Stack<>();
         }
