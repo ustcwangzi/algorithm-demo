@@ -67,18 +67,18 @@ public class MaxTree {
         Map<Node, Node> leftBigMap = new HashMap<>();
         Map<Node, Node> rightBigMap = new HashMap<>();
 
-        for (int i = 0; i < nodeArray.length; i++) {
-            Node curNode = nodeArray[i];
+        // 正向遍历，获取当前节点左边第一个比自己大的元素
+        for (Node curNode : nodeArray) {
             while (!stack.isEmpty() && stack.peek().value < curNode.value) {
                 popStackSetMap(stack, leftBigMap);
             }
             stack.push(curNode);
         }
-
         while (!stack.isEmpty()) {
             popStackSetMap(stack, leftBigMap);
         }
 
+        // 逆向遍历，获取当前节点右边第一个比自己大的元素
         for (int i = nodeArray.length - 1; i >= 0; i--) {
             Node curNode = nodeArray[i];
             while (!stack.isEmpty() && stack.peek().value < curNode.value) {
@@ -91,8 +91,7 @@ public class MaxTree {
         }
 
         Node head = null;
-        for (int i = 0; i < nodeArray.length; i++) {
-            Node curNode = nodeArray[i];
+        for (Node curNode : nodeArray) {
             Node left = leftBigMap.get(curNode);
             Node right = rightBigMap.get(curNode);
             if (left == null && right == null) {
@@ -130,7 +129,7 @@ public class MaxTree {
         }
     }
 
-    public static void printPreOrder(Node head) {
+    private static void printPreOrder(Node head) {
         if (head == null) {
             return;
         }
@@ -139,7 +138,7 @@ public class MaxTree {
         printPreOrder(head.right);
     }
 
-    public static void printInOrder(Node head) {
+    private static void printInOrder(Node head) {
         if (head == null) {
             return;
         }
